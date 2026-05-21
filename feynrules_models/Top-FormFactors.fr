@@ -1,0 +1,258 @@
+(***************************************************************)
+(***************************************************************)
+(** FeynRules model file for top dim-6 couplings induced *******)
+(** by a scalar top partner and a fermion singlet (DM).  *******)
+(** The couplings should be replaced by form factors, so the ***)
+(** full one loop calculation is reproduced.             *******)
+(** Only the operators relevant for q q > t t are included. ****)
+(** Counter terms for the t-t-G vertex are included.         ***)
+(******                                                        *)
+(****** A. Lessa                                               *)
+(******                                                        *)
+(****** Feel free to use this model file!                      *)
+(***************************************************************)
+(***************************************************************)
+
+M$ModelName = "Top-FormFactors";
+
+M$Information = {Authors -> {"Andre Lessa"}, 
+                 Version -> "1.0",
+                 Date -> "28.08.2023"};
+
+FeynmanGauge = True;
+
+M$InteractionOrderHierarchy = {  {NP, 1}, {QCD, 2}, {QED,3} };
+
+(* ************************** *)
+(* *****   Parameters   ***** *)
+(* ************************** *)
+
+M$Parameters = {
+
+(* Auxiliary external parameters *)
+  idebug  == {ComplexParameter -> False, ParameterType->External, Value->0.0, Description->"Turns on/off the printout of loop integral results"},
+  itri  == {ComplexParameter -> False, ParameterType->External, Value->1.0, Description->"Turns on/off the triangle integrals (only for the oneloop functions)"},
+  itrib  == {ComplexParameter -> False, ParameterType->External, Value->1.0, Description->"Turns on/off the s-channel triangle integral (only for the  oneloop functions)"},  
+  ibox  == {ComplexParameter -> False, ParameterType->External, Value->1.0, Description->"Turns on/off the box integrals (only for the oneloop functions)"},
+  iself  == {ComplexParameter -> False, ParameterType->External, Value->1.0, Description->"Turns on/off the self-energy integrals (only for the oneloop functions)"},
+
+
+(* New Physics (UV) Parameters *)
+  yDM  == { TeX->Subscript[y,DM],  ComplexParameter -> False, ParameterType->External, Value->1.0, InteractionOrder->{NP ,1}, Description->"Dark fermion - heavy stop - SM RH top Yukawa"},
+
+(* Counter-term parameters *)
+(* (the divergent term has been set to zero) *)
+
+xC == { TeX->Subscript[x,C],  
+        ComplexParameter -> False, 
+        ParameterType->Internal, 
+        Value -> mChi^2/mST^2
+      },
+
+xT == { TeX->Subscript[x,T],
+        ComplexParameter -> False, 
+        ParameterType->Internal, 
+        Value -> MT^2/mST^2
+      },
+
+lA  == { TeX->Subscript[l,A],  
+         ComplexParameter -> False, ParameterType->Internal, 
+         Value -> 1 + xC^2 + xT^2 - 2*xC - 2*xT - 2*xT*xC
+         },
+
+lB  == { TeX->Subscript[l,B],  
+         ComplexParameter -> False, ParameterType->Internal, 
+         Value -> -lA
+         },
+
+(* On-shell counter-terms (mST > mChi + MT) *)
+deltaCT1L == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (1/(128*xT^2*Sqrt[lA]*Pi^4))*((2*Sqrt[lA]*(xT*(-2 + 2 xC + xT) + (-(-1 + xC)^2 + xT)*Log[xC]) -  4*(-(-1 + xC)^3 + (-2 + xC + xC^2) xT + xT^2)*Log[(1 + xC + Sqrt[lA] - xT)/(2*Sqrt[xC])]))
+         },
+
+deltaCT1R == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (1/(128*xT^2*Sqrt[lA]*Pi^4))*((-1 + xC - xT)*(Sqrt[lA]*(2*xT - (-1 + xC + xT)*Log[xC]) + 2*((-2 + xC)*xC + (-1 + xT)^2)*Log[(1 + xC + Sqrt[lA] - xT)/(2*Sqrt[xC])]))
+         },
+
+deltaS1 == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (-mST/(32*Pi^4*xT^(3/2)))*( xT*(2*xC+xT-2) + (-xC^2 + 2*xC + xT - 1)*Log[xC] - 2*(-xC^3 + (3+xT)*xC^2 + (xT-3)*xC + (xT-1)^2)*Log[(xC-xT+Sqrt[lA]+1)/(2*Sqrt[xC])]/(Sqrt[lA]) )
+         },
+
+deltaSp1 == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (1/(64*Pi^4*xT^2))*( 2*xT*(xC-xT-1) + (-xC^2 + 2*xC + xT^2 - 1)*Log[xC] + 2*(xC^3 - (3+xT)*xC^2 + (xT^2+3)*xC - (xT+1)*(xT-1)^2)*Log[(xC-xT+Sqrt[lA]+1)/(2*Sqrt[xC])]/(Sqrt[lA]) )
+         },         
+
+(* Off-shell counter-terms (mST < mChi + MT) *)
+deltaCT2L == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (1/(128*xT^2*Pi^4))*(2*(xT*(-2 + 2*xC + xT) + (1/Sqrt[lB])(lB*(-1 + xC) - (-1 + xC)^3 + 2*(-1 + xC)*xT + (1 + xC) xT^2)*(-ArcTan[Sqrt[lB]/(1 + xC - xT)]) + (-(-1 + xC)^2 + xT)*Log[xC]))
+             },
+
+deltaCT2R == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (1/(128*xT^2*Pi^4))*(((2*(-(-1 + xC)^3 - (2 + lB - 2*xC)*xT + (1 + xC)*xT^2)*(-ArcTan[Sqrt[lB]/(1 + xC - xT)]))/Sqrt[lB] + (1 - xC + xT)*(-2*xT + (-1 + xC + xT)*Log[xC])))
+             },
+
+deltaS2 == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (-mST/(32*Pi^4*xT^(3/2)))*( xT*(xC-1) + xT*(xC + xT -1) - Sqrt[lB]*(xC-1)*ArcTan[Sqrt[lB]/(1 + xC - xT)] + (xC+xT-1)*(xC^2 -(2+xT)*xC - xT + 1)*ArcTan[Sqrt[lB]/(1 + xC - xT)]/Sqrt[lB] - (xC^2 - 2*xC - xT + 1)*Log[xC] )
+         },
+
+deltaSp2 == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (2/(64*Pi^4*xT^2))*( -2*xT^2 + xT*(xC+xT-1) + Sqrt[lB]*xT*ArcTan[Sqrt[lB]/(1 + xC - xT)] + (xC+xT-1)*(xC^2 -(xT+2)*xC -xT + 1)*ArcTan[Sqrt[lB]/(1 + xC - xT)]/Sqrt[lB] - (xC^2 -2*xC -xT^2 + 1)*Log[xC]/2 )
+         },               
+
+(* Use delta_1 or delta_2 depending on the mass relations *)
+
+deltaCTL == {
+             TeX->Subscript[\[Delta],L],  
+             ComplexParameter -> False, 
+             ParameterType->Internal, 
+             Value -> If[mST > mChi + MT, deltaCT1L, deltaCT2L]
+            },
+
+deltaCTR == { 
+             TeX->Subscript[\[Delta],R],  
+             ComplexParameter -> False, 
+             ParameterType->Internal, 
+             Value -> If[mST > mChi + MT, deltaCT1R, deltaCT2R]
+            },
+
+deltaS == {
+             TeX->Subscript[\[Delta],S],  
+             ComplexParameter -> False, 
+             ParameterType->Internal, 
+             Value -> If[mST > mChi + MT, deltaS1, deltaS2]
+            },
+
+deltaSp == { 
+             TeX->Subscript[\[Delta],Sp],  
+             ComplexParameter -> False, 
+             ParameterType->Internal, 
+             Value -> If[mST > mChi + MT, deltaSp1, deltaSp2]
+            },            
+
+(* EFT coefficients *)
+(* Cij = Passarino-Veltman integral C_{ij}(MT^2,s,MT^2,mChi^2,mST^2,mST^2)  *)
+(* C00ren = C_{00} - MT^2 (C_{1} + C_{11} + C_{12}) + (s/2)*(C_{11} - C_{12}) + deltaCTR *)
+(* where s = (p1+p2)^2, p1 = top momentum, p2 = anti-top momentum, MT = top mass *)
+
+  C00ren  == { TeX->Subscript[Cren,00],  ComplexParameter -> False, ParameterType->Internal, Value->1.0, Description->"C00 effective and renormalized coupling"},
+  C1  == { TeX->Subscript[C,1],  ComplexParameter -> False, ParameterType->Internal, Value->1.0, Description->"C1 loop integral"}, 
+  C11  == { TeX->Subscript[C,11],  ComplexParameter -> False, ParameterType->Internal, Value->1.0, Description->"C11 loop integral"},
+  C12  == { TeX->Subscript[C,12],  ComplexParameter -> False, ParameterType->Internal, Value->1.0, Description->"C12 loop integral"}
+};
+
+
+
+(* ************************** *)
+(* **** Particle classes **** *)
+(* ************************** *)
+M$ClassesDescription = {
+
+
+(* The dark fermion *)
+F[16] == { 
+         ClassName -> chi, 
+         SelfConjugate-> True, 
+         QuantumNumbers -> {}, 
+         Mass->{mChi,  100.0},
+         Width->{wChi,0.}, 
+         ParticleName-> "~chi", 
+         PDG->5000012, 
+         PropagatorLabel->"chi", 
+         PropagatorType->Straight, 
+         ParticleName     -> {"~chi" },
+         FullName         -> {"Dark fermion"} },
+
+(* Colored Scalar *)
+S[5] == { 
+          ClassName        -> ST,
+          Indices          -> {Index[Colour]},
+          SelfConjugate    -> False,
+          Unphysical       -> False,
+          Mass             -> {mST, 400.},
+          Width            -> {wST, 1.},
+          QuantumNumbers   -> {Q -> 2/3},
+          PropagatorLabel  -> {"ST"},
+          PropagatorType   -> ScalarDash, 
+          PDG              -> {5000002},
+          ParticleName     -> {"~ST" },
+          AntiParticleName -> {"~ST~"},
+          FullName         -> {"Colored Scalar"} }
+};
+
+
+
+
+(* ************************** *)
+(* *****   Lagrangian   ***** *)
+(* ************************** *)
+(* gauge kinetic and mass terms *)
+
+Lkin := I*chibar.Ga[mu].DC[chi, mu] - (mChi/2) chibar.chi  + DC[STbar[aa],mu] DC[ST[aa],mu] -  mST^2 STbar[aa] ST[aa];
+
+(* DM-Scalar-Top coupling *)
+LYDM := -yDM*(STbar[cc] ProjP[sp1,sp2] chibar[sp1].uq[sp2,3,cc]);
+
+A1 := itri*2*(Pi^2)*(yDM^2)*C00ren;
+A2 := itri*(-2)*(Pi^2)*(yDM^2)*(C1+C11+C12);
+A3 := itri*(Pi^2)*(gs*yDM^2)*(C12-C11);
+
+
+
+(* EFT operators - obtained from MatchMaker SMEFT_Green_Bpreserving.fr *)
+(* top_R-D_\mu(top_R) *)
+LA1 := Block[{mu,sp1,sp2,cc},
+      ExpandIndices[
+              A1*I*Ga[mu,sp1,sp2] uRbar[sp1,3,cc].DC[uR[sp2,3,cc], mu]]
+            ];
+
+(* EFT operator D_\mu(top)-D^2(top) *)
+(* It was necessary to split the derivatives in 3 terms *)
+(* in order to FeynRules to properly handle the operator *)
+
+LA2 := Block[{mu,nu,sp1,sp2,jj,cc},
+      ExpandIndices[
+          A2*I/2*(uRbar[sp1,3,cc].DC[DC[DC[uR[sp2,3,cc],nu],nu],mu]+uRbar[sp1,3,cc].DC[DC[DC[uR[sp2,3,cc],mu],nu],nu])*Ga[mu,sp1,sp2]]
+         ];
+
+(* EFT operator D_\mu(G^\mu\nu)-top-top *)
+(* It was necessary to split the derivatives in 2 terms *)
+(* in order to FeynRules to properly handle the operator *)
+
+LA3 := Block[{aa,cc1,cc2,mu,nu,sp1,sp2,cc},
+       ExpandIndices[
+               A3*T[aa,cc1,cc2] uRbar[sp1,3,cc1].uR[sp2,3,cc2]*Ga[mu,sp1,sp2] DC[FS[G,mu,nu,aa],nu]]
+             ];
+
+(* Counter-terms from on-shell renormalization *)
+(* (the counter-term for the right0-handed coupling is already added to C00ren) *)
+LCT := Block[{aa,cc1,cc2,mu,sp1,sp2,sp3},
+       ExpandIndices[
+               itri*2*yDM^2*gs*Pi^2*G[mu,aa]*T[aa,cc1,cc2]*Ga[mu,sp1,sp2]*(uqbar[sp1,3,cc1].uq[sp3,3,cc2])*(deltaCTL*ProjM[sp2,sp3])
+             ]
+            ];
+
+(* Total lagrangian *)
+(* OBS: LA2 and HC[LA2] are equal if one uses integration by parts. *)
+(* However, FeynRules complains about hermiticity if the hermitian conjugate is not added. *)
+(* Therefore we are forced to add HC[LA2], which corresponds to adding LA2 twice, hence the 1/2 factor. *)
+
+LNPnoCT := Lkin + LYDM + HC[LYDM] + LA1 + (1/2)*(LA2 + HC[LA2]) + LA3;
+LNP := Lkin + LYDM + HC[LYDM] + LA1 + (1/2)*(LA2 + HC[LA2]) + LA3 + LCT;
+
+

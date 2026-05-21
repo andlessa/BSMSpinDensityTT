@@ -1,0 +1,156 @@
+(***************************************************************)
+(***************************************************************)
+(** FeynRules model file for a simplified model          *******)
+(** with a scalar top partner and a fermion singlet (DM).  *****)
+(** Counter terms for the t-t-G vertex are included.         ***)
+(******                                                        *)
+(****** A. Lessa                                               *)
+(******                                                        *)
+(****** Feel free to use this model file!                      *)
+(***************************************************************)
+(***************************************************************)
+
+M$ModelName = "SMS-stop";
+
+M$Information = {Authors -> {"Andre Lessa"}, 
+                 Version -> "1.0",
+                 Date -> "28.08.2023"};
+
+FeynmanGauge = True;
+
+M$InteractionOrderHierarchy = {  {NP, 1}, {QCD, 2}, {QED,3} };
+
+(* ************************** *)
+(* *****   Parameters   ***** *)
+(* ************************** *)
+
+M$Parameters = {
+
+ (* New Physics (UV) Parameters *)
+  yDM  == { TeX->Subscript[y,DM],  ComplexParameter -> False, ParameterType->External, Value->1.0, InteractionOrder->{NP ,1}, Description->"Dark fermion - heavy stop - SM RH top Yukawa"},
+
+(* Counter-term parameters *)
+(* (the divergent term has been set to zero) *)
+
+xC == { TeX->Subscript[x,C],  
+        ComplexParameter -> False, 
+        ParameterType->Internal, 
+        Value -> mChi^2/mST^2
+      },
+
+xT == { TeX->Subscript[x,T],
+        ComplexParameter -> False, 
+        ParameterType->Internal, 
+        Value -> MT^2/mST^2
+      },
+
+lA  == { TeX->Subscript[l,A],  
+         ComplexParameter -> False, ParameterType->Internal, 
+         Value -> 1 + xC^2 + xT^2 - 2*xC - 2*xT - 2*xT*xC
+         },
+
+lB  == { TeX->Subscript[l,B],  
+         ComplexParameter -> False, ParameterType->Internal, 
+         Value -> -lA
+         },
+
+(* On-shell counter-terms (mST > mChi + MT) *)
+deltaCT1L == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (1/(128*xT^2*Sqrt[lA]*Pi^4))*((2*Sqrt[lA]*(xT*(-2 + 2 xC + xT) + (-(-1 + xC)^2 + xT)*Log[xC]) -  4*(-(-1 + xC)^3 + (-2 + xC + xC^2) xT + xT^2)*Log[(1 + xC + Sqrt[lA] - xT)/(2*Sqrt[xC])]))
+         },
+
+deltaCT1R == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (1/(128*xT^2*Sqrt[lA]*Pi^4))*((-1 + xC - xT)*(Sqrt[lA]*(2*xT - (-1 + xC + xT)*Log[xC]) + 2*((-2 + xC)*xC + (-1 + xT)^2)*Log[(1 + xC + Sqrt[lA] - xT)/(2*Sqrt[xC])]))
+         },
+
+(* Off-shell counter-terms (mST < mChi + MT) *)
+deltaCT2L == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (1/(128*xT^2*Pi^4))*(2*(xT*(-2 + 2*xC + xT) + (1/Sqrt[lB])(lB*(-1 + xC) - (-1 + xC)^3 + 2*(-1 + xC)*xT + (1 + xC) xT^2)*(-ArcTan[Sqrt[lB]/(1 + xC - xT)]) + (-(-1 + xC)^2 + xT)*Log[xC]))
+             },
+
+deltaCT2R == {
+              ComplexParameter -> False, 
+              ParameterType->Internal, 
+              Value -> (1/(128*xT^2*Pi^4))*(((2*(-(-1 + xC)^3 - (2 + lB - 2*xC)*xT + (1 + xC)*xT^2)*(-ArcTan[Sqrt[lB]/(1 + xC - xT)]))/Sqrt[lB] + (1 - xC + xT)*(-2*xT + (-1 + xC + xT)*Log[xC])))
+             },
+
+(* Use delta_1 or delta_2 depending on the mass relations *)
+
+deltaCTL == {
+             TeX->Subscript[\[Delta],L],  
+             ComplexParameter -> False, 
+             ParameterType->Internal, 
+             Value -> If[mST > mChi + MT, deltaCT1L, deltaCT2L]
+            },
+
+deltaCTR == { 
+             TeX->Subscript[\[Delta],R],  
+             ComplexParameter -> False, 
+             ParameterType->Internal, 
+             Value -> If[mST > mChi + MT, deltaCT1R, deltaCT2R]
+            }
+};
+
+(* ************************** *)
+(* **** Particle classes **** *)
+(* ************************** *)
+M$ClassesDescription = {
+
+
+(* The dark fermion *)
+F[16] == { 
+         ClassName -> chi, 
+         SelfConjugate-> True, 
+         QuantumNumbers -> {}, 
+         Mass->{mChi,  100.0},  
+         Width->{wChi,0.}, 
+         ParticleName-> "~chi", 
+         PDG->5000012, 
+         PropagatorLabel->"chi", 
+         PropagatorType->Straight, 
+         ParticleName     -> {"~chi" },
+         FullName         -> {"Dark fermion"} },
+
+(* Colored Scalar *)
+S[5] == { 
+          ClassName        -> ST,
+          Indices          -> {Index[Colour]},
+          SelfConjugate    -> False,
+          Unphysical       -> False,
+          Mass             -> {mST, 400.},
+          Width            -> {wST, 1.},
+          QuantumNumbers   -> {Q -> 2/3},
+          PropagatorLabel  -> {"ST"},
+          PropagatorType   -> ScalarDash, 
+          PDG              -> {5000002},
+          ParticleName     -> {"~ST" },
+          AntiParticleName -> {"~ST~"},
+          FullName         -> {"Colored Scalar"} }
+};
+
+(* ************************** *)
+(* *****   Lagrangian   ***** *)
+(* ************************** *)
+(* gauge kinetic and mass terms *)
+
+Lkin := I*chibar.Ga[mu].DC[chi, mu] - (mChi/2) chibar.chi  + DC[STbar[aa],mu] DC[ST[aa],mu] -  mST^2 STbar[aa] ST[aa];
+
+(* DM-Scalar-Top coupling *)
+LYDM := -yDM*(STbar[cc] ProjP[sp1,sp2] chibar[sp1].uq[sp2,3,cc]);
+
+(* Counter-terms from on-shell renormalization *)
+LCT := Block[{aa,cc1,cc2,mu,sp1,sp2,sp3},
+       ExpandIndices[
+               2*yDM^2*gs*Pi^2*G[mu,aa]*T[aa,cc1,cc2]*Ga[mu,sp1,sp2]*(uqbar[sp1,3,cc1].uq[sp3,3,cc2])*(deltaCTL*ProjM[sp2,sp3]+deltaCTR*ProjP[sp2,sp3])
+             ]
+            ];
+
+
+LNPnoCT := Lkin + LYDM + HC[LYDM];
+LNP :=  LNPnoCT + LCT;

@@ -1,0 +1,142 @@
+### Aloha definitions
+
+Momenta of particle N = P(mu,N)
+This includes the momenta P(x,y). The first index is the lorentz index which should be contracted, while the second index refers to the particle ordering of the vertex.
+E.g: P(-2,1)*P(-2,1) = p1(mu)*p1(mu)
+       ^
+       dummy index for sum
+Gamma(a,b,c) -> a = Lorentz index, b,c-> spinor indices
+
+The couplings matrix contracts the color with the lorentz fields:
+
+coupling = (a,b):C.GC_xx -> color[a]*lorentz[b]*C.GC_xx
+
+
+### UFO Vertices:
+Top-Top-Gluon-Gluon vertex:
+V_133 = Vertex(name = 'V_133',
+               particles = [ P.t__tilde__, P.t, P.g, P.g ],
+               color = [ 'f(-1,3,4)*T(-1,2,1)', 'T(3,-1,1)*T(4,2,-1)', 'T(3,2,-1)*T(4,-1,1)' ],
+               lorentz = [ L.FFVV1, L.FFVV3, L.FFVV4, L.FFVV5, L.FFVV6 ],
+               couplings = {(2,1):C.GC_78,(1,2):C.GC_78,(0,0):C.GC_69,(0,3):C.GC_71,(0,4):C.GC_70})
+
+#REPLACE WITH NEW EFFECTIVE VERTEX:
+
+V_133 = Vertex(name = 'V_133',
+               particles = [ P.t__tilde__, P.t, P.g, P.g ],
+               color = [ 'T(3,2,-1)*T(4,-1,1)', 'T(4,2,-1)*T(3,-1,1)' ],
+               lorentz = [ L.FFVVNP1, L.FFVVNP2, L.FFVVNP3, L.FFVVNP4, L.FFVVNP5, L.FFVVNP6, L.FFVVNP7, L.FFVVNP8, L.FFVVNP9, L.FFVVNP10, L.FFVVNP21, L.FFVVNP22, L.FFVVNP23, L.FFVVNP24, L.FFVVNP25, L.FFVVNP26, L.FFVVNP27, L.FFVVNP28, L.FFVVNP29, L.FFVVNP30 ],
+               couplings = {(0,0):C.GC_100, (0,1):C.GC_100, (0,2):C.GC_100, (0,3):C.GC_100, (0,4):C.GC_100, (1,5):C.GC_100, (1,6):C.GC_100, (1,7):C.GC_100, (1,8):C.GC_100, (1,9):C.GC_100, (0,10):C.GC_100, (0,11):C.GC_100, (0,12):C.GC_100, (0,13):C.GC_100, (0,14):C.GC_100, (1,15):C.GC_100, (1,16):C.GC_100, (1,17):C.GC_100, (1,18):C.GC_100, (1,19):C.GC_100}
+               )
+
+### ADDED NEW COUPLING:
+GC_100 = Coupling(name = 'GC_100',
+                 value = 'complex(0,1)*cmath.pi**2*G**2*yDM**2',
+                 order = {'NP':2,'QCD':2})
+
+
+t = (P(-1,3)**2 + P(-1,2)**2 + 2*P(-1,3)*P(-1,2))
+u = (P(-1,4)**2 + P(-1,2)**2 + 2*P(-1,4)*P(-1,2))
+s = (P(-1,1)**2 + P(-1,2)**2 + 2*P(-2,1)*P(-2,2))
+
+C1(s) = formFactorC1(P(-1,1)**2 + P(-1,2)**2 + 2*P(-2,1)*P(-2,2),P(-1,2)**2,P(-1,1)**2)
+
+ab(s,t) = (mST**2 - mChi**2 - t)*B0(t,mChi**2,mST**2) - A0(mST**2) + A0(mChi**2)
+ab1(s,t) = (2*deltaS*MT**2 + 4*deltaS*t + 2*deltaSp*MT*t - MT*ab(t))/(2.*(MT**2 - t)**2)
+ab2(s,t) = (2*t*(deltaSp*MT**3 + deltaS*(2*MT**2 + t)) - MT**3*ab(t))/(2.*MT*(MT**2 - t)**2*t)
+ab3(s,t) = (2*(deltaS - deltaSp*MT)*t + MT*ab(t))/(2.*MT*(MT**2 - t)*t)
+
+deltaS, deltaSp -> self-energy counter-terms (deltaS*tbar.t - (deltaS/MT)*tbar.pslash.ProjM.t + (deltaSp)*tbar.pslash.ProjP.t )
+
+
+FFVVNP1 = Lorentz(name = 'FFVVNP1',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(3,2,-1)*ProjP(-1,1) ) * (  P(4,4)*(2*(D00(t) + 2*D001(t))) + (-P(4,2))*(4*D003(t)) + (-P(4,1))*(4*(D002(t) + D003(t)))  )')
+
+FFVVNP2 = Lorentz(name = 'FFVVNP2',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(4,2,-1)*ProjP(-1,1) ) * (  P(3,4)*(2*(D00(t) + 2*D001(t))) + (-P(3,2))*(2*(D00(t) + 2*D003(t))) + (-P(3,1))*(2*(D00(t) + 2*(D002(t) + D003(t))))  )')
+
+FFVVNP3 = Lorentz(name = 'FFVVNP3',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( P(-1,4)*Gamma(-1,2,-2)*ProjP(-2,1) ) * (  Metric(3,4)*(4*D001(t)) + P(3,4)*P(4,4)*(D1(t) + 4*(D11(t) + D111(t))) + P(3,4)*(-P(4,2))*(2*(2*D113(t) + D13(t))) + P(3,4)*(-P(4,1))*(2*(2*D112(t) + 2*D113(t) + D12(t) + D13(t))) + (-P(3,2))*P(4,4)*(D1(t) + 2*(D11(t) + 2*D113(t) + D13(t))) + (-P(3,2))*(-P(4,2))*(2*(D13(t) + 2*D133(t))) + (-P(3,2))*(-P(4,1))*(2*(D12(t) + 2*D123(t) + D13(t) + 2*D133(t))) + (-P(3,1))*P(4,4)*(D1(t) + 2*(D11(t) + 2*D112(t) + 2*D113(t) + D12(t) + D13(t))) + (-P(3,1))*(-P(4,2))*(2*(2*D123(t) + D13(t) + 2*D133(t))) + (-P(3,1))*(-P(4,1))*(2*(D12(t) + 2*D122(t) + 4*D123(t) + D13(t) + 2*D133(t)))  )')
+
+FFVVNP4 = Lorentz(name = 'FFVVNP4',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( -P(-1,2)*Gamma(-1,2,-2)*ProjP(-2,1) ) * (  Metric(3,4)*(-C1(s) + 4*D003(t)) + P(3,4)*P(4,4)*(4*(D113(t) + D13(t)) + D3(t)) + P(3,4)*(-P(4,2))*(2*(2*D133(t) + D33(t))) + P(3,4)*(-P(4,1))*(2*(2*D123(t) + 2*D133(t) + D23(t) + D33(t))) + (-P(3,2))*P(4,4)*(2*D13(t) + 4*D133(t) + D3(t) + 2*D33(t)) + (-P(3,2))*(-P(4,2))*(2*(D33(t) + 2*D333(t))) + (-P(3,2))*(-P(4,1))*(2*(D23(t) + 2*D233(t) + D33(t) + 2*D333(t))) + (-P(3,1))*P(4,4)*(4*D123(t) + 2*D13(t) + 4*D133(t) + 2*D23(t) + D3(t) + 2*D33(t)) + (-P(3,1))*(-P(4,2))*(2*(2*D233(t) + D33(t) + 2*D333(t))) + (-P(3,1))*(-P(4,1))*(2*(2*D223(t) + D23(t) + 4*D233(t) + D33(t) + 2*D333(t)))  )')
+
+FFVVNP5 = Lorentz(name = 'FFVVNP5',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( -P(-1,1)*Gamma(-1,2,-2)*ProjP(-2,1) ) * (  Metric(3,4)*(C1(s) + 4*(D00(t) + D002(t) + D003(t))) + P(3,4)*P(4,4)*(D0(t) + 4*D1(t) + 4*D11(t) + 4*D112(t) + 4*D113(t) + 4*D12(t) + 4*D13(t) + D2(t) + D3(t)) + P(3,4)*(-P(4,2))*(2*(2*D123(t) + 2*D13(t) + 2*D133(t) + D23(t) + D3(t) + D33(t))) + P(3,4)*(-P(4,1))*(2*(2*D12(t) + 2*D122(t) + 4*D123(t) + 2*D13(t) + 2*D133(t) + D2(t) + D22(t) + 2*D23(t) + D3(t) + D33(t))) + (-P(3,2))*P(4,4)*(D0(t) + 2*D1(t) + 2*D12(t) + 4*D123(t) + 6*D13(t) + 4*D133(t) + D2(t) + 2*D23(t) + 3*D3(t) + 2*D33(t)) + (-P(3,2))*(-P(4,2))*(2*(D23(t) + 2*D233(t) + D3(t) + 3*D33(t) + 2*D333(t))) + (-P(3,2))*(-P(4,1))*(2*(D2(t) + D22(t) + 2*D223(t) + 4*D23(t) + 4*D233(t) + D3(t) + 3*D33(t) + 2*D333(t))) + (-P(3,1))*P(4,4)*(D0(t) + 2*D1(t) + 6*D12(t) + 4*D122(t) + 8*D123(t) + 6*D13(t) + 4*D133(t) + 3*D2(t) + 2*D22(t) + 4*D23(t) + 3*D3(t) + 2*D33(t)) + (-P(3,1))*(-P(4,2))*(2*(2*D223(t) + 3*D23(t) + 4*D233(t) + D3(t) + 3*D33(t) + 2*D333(t))) + (-P(3,1))*(-P(4,1))*(2*(D2(t) + 3*D22(t) + 2*D222(t) + 6*D223(t) + 6*D23(t) + 6*D233(t) + D3(t) + 3*D33(t) + 2*D333(t)))  )')
+
+FFVVNP6 = Lorentz(name = 'FFVVNP6',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(3,2,-1)*ProjP(-1,1) ) * (  P(4,4)*(-2*(D00(u) + 2*D001(u))) + (-P(4,2))*(-4*(D002(u) + D003(u))) + (-P(4,1))*(-4*D003(u))  )')
+
+FFVVNP7 = Lorentz(name = 'FFVVNP7',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(4,2,-1)*ProjP(-1,1) ) * (  P(3,4)*(-2*(D00(u) + 2*D001(u))) + (-P(3,2))*(-2*(D00(u) + 2*(D002(u) + D003(u)))) + (-P(3,1))*(-2*(D00(u) + 2*D003(u)))  )')
+
+FFVVNP8 = Lorentz(name = 'FFVVNP8',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( P(-1,4)*Gamma(-1,2,-2)*ProjP(-2,1) ) * (  Metric(3,4)*(-4*D001(u)) + P(3,4)*P(4,4)*(-D1(u) - 4*(D11(u) + D111(u))) + P(3,4)*(-P(4,2))*(-2*(2*D112(u) + 2*D113(u) + D12(u) + D13(u))) + P(3,4)*(-P(4,1))*(-2*(2*D113(u) + D13(u))) + (-P(3,2))*P(4,4)*(-D1(u) - 2*(D11(u) + 2*D112(u) + 2*D113(u) + D12(u) + D13(u))) + (-P(3,2))*(-P(4,2))*(-2*(D12(u) + 2*D122(u) + 4*D123(u) + D13(u) + 2*D133(u))) + (-P(3,2))*(-P(4,1))*(-2*(2*D123(u) + D13(u) + 2*D133(u))) + (-P(3,1))*P(4,4)*(-D1(u) - 2*(D11(u) + 2*D113(u) + D13(u))) + (-P(3,1))*(-P(4,2))*(-2*(D12(u) + 2*D123(u) + D13(u) + 2*D133(u))) + (-P(3,1))*(-P(4,1))*(-2*(D13(u) + 2*D133(u)))  )')
+
+FFVVNP9 = Lorentz(name = 'FFVVNP9',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( -P(-1,2)*Gamma(-1,2,-2)*ProjP(-2,1) ) * (  Metric(3,4)*(-C1(s) - 4*(D00(u) + D002(u) + D003(u))) + P(3,4)*P(4,4)*(-D0(u) - 4*D1(u) - 4*D11(u) - 4*D112(u) - 4*D113(u) - 4*D12(u) - 4*D13(u) - D2(u) - D3(u)) + P(3,4)*(-P(4,2))*(-2*(2*D12(u) + 2*D122(u) + 4*D123(u) + 2*D13(u) + 2*D133(u) + D2(u) + D22(u) + 2*D23(u) + D3(u) + D33(u))) + P(3,4)*(-P(4,1))*(-2*(2*D123(u) + 2*D13(u) + 2*D133(u) + D23(u) + D3(u) + D33(u))) + (-P(3,2))*P(4,4)*(-D0(u) - 2*D1(u) - 6*D12(u) - 4*D122(u) - 8*D123(u) - 6*D13(u) - 4*D133(u) - 3*D2(u) - 2*D22(u) - 4*D23(u) - 3*D3(u) - 2*D33(u)) + (-P(3,2))*(-P(4,2))*(-2*(D2(u) + 3*D22(u) + 2*D222(u) + 6*D223(u) + 6*D23(u) + 6*D233(u) + D3(u) + 3*D33(u) + 2*D333(u))) + (-P(3,2))*(-P(4,1))*(-2*(2*D223(u) + 3*D23(u) + 4*D233(u) + D3(u) + 3*D33(u) + 2*D333(u))) + (-P(3,1))*P(4,4)*(-D0(u) - 2*D1(u) - 2*D12(u) - 4*D123(u) - 6*D13(u) - 4*D133(u) - D2(u) - 2*D23(u) - 3*D3(u) - 2*D33(u)) + (-P(3,1))*(-P(4,2))*(-2*(D2(u) + D22(u) + 2*D223(u) + 4*D23(u) + 4*D233(u) + D3(u) + 3*D33(u) + 2*D333(u))) + (-P(3,1))*(-P(4,1))*(-2*(D23(u) + 2*D233(u) + D3(u) + 3*D33(u) + 2*D333(u)))  )')
+
+FFVVNP10 = Lorentz(name = 'FFVVNP10',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( -P(-1,1)*Gamma(-1,2,-2)*ProjP(-2,1) ) * (  Metric(3,4)*(C1(s) - 4*D003(u)) + P(3,4)*P(4,4)*(-4*(D113(u) + D13(u)) - D3(u)) + P(3,4)*(-P(4,2))*(-2*(2*D123(u) + 2*D133(u) + D23(u) + D33(u))) + P(3,4)*(-P(4,1))*(-2*(2*D133(u) + D33(u))) + (-P(3,2))*P(4,4)*(-4*D123(u) - 2*D13(u) - 4*D133(u) - 2*D23(u) - D3(u) - 2*D33(u)) + (-P(3,2))*(-P(4,2))*(-2*(2*D223(u) + D23(u) + 4*D233(u) + D33(u) + 2*D333(u))) + (-P(3,2))*(-P(4,1))*(-2*(2*D233(u) + D33(u) + 2*D333(u))) + (-P(3,1))*P(4,4)*(-2*D13(u) - 4*D133(u) - D3(u) - 2*D33(u)) + (-P(3,1))*(-P(4,2))*(-2*(D23(u) + 2*D233(u) + D33(u) + 2*D333(u))) + (-P(3,1))*(-P(4,1))*(-2*(D33(u) + 2*D333(u)))  )')
+
+
+FFVVNP21 = Lorentz(name = 'FFVVNP21',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(3,2,-1)*Gamma(4,-1,1) )*( (-ab1(s,t)))')
+
+
+FFVVNP22 = Lorentz(name = 'FFVVNP22',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(3,2,-1)*P(-2,4)*Gamma(-2,-1,-3)*Gamma(4,-3,1) )*( (-ab2(s,t)))')
+
+
+FFVVNP23 = Lorentz(name = 'FFVVNP23',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(3,2,-1)*(-P(-2,1))*Gamma(-2,-1,-3)*Gamma(4,-3,1) )*( (ab2(s,t)))')
+
+
+FFVVNP24 = Lorentz(name = 'FFVVNP24',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(3,2,-1)*P(-2,4)*Gamma(-2,-1,-3)*Gamma(4,-3,-4)*ProjP(-4,1) )*( (-ab3(s,t)))')
+
+
+FFVVNP25 = Lorentz(name = 'FFVVNP25',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(3,2,-1)*(-P(-2,1))*Gamma(-2,-1,-3)*Gamma(4,-3,-4)*ProjP(-4,1) )*( (ab3(s,t)))')
+
+
+FFVVNP26 = Lorentz(name = 'FFVVNP26',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(4,2,-1)*Gamma(3,-1,1) )*( (-ab1(s,u)))')
+
+
+FFVVNP27 = Lorentz(name = 'FFVVNP27',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(4,2,-1)*P(-2,4)*Gamma(-2,-1,-3)*Gamma(3,-3,1) )*( (ab2(s,u)))')
+
+
+FFVVNP28 = Lorentz(name = 'FFVVNP28',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(4,2,-1)*(-P(-2,2))*Gamma(-2,-1,-3)*Gamma(3,-3,1) )*( (-ab2(s,u)))')
+
+
+FFVVNP29 = Lorentz(name = 'FFVVNP29',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(4,2,-1)*P(-2,4)*Gamma(-2,-1,-3)*Gamma(3,-3,-4)*ProjP(-4,1) )*( (ab3(s,u)))')
+
+
+FFVVNP30 = Lorentz(name = 'FFVVNP30',
+                spins = [ 2, 2, 3, 3 ],
+                structure = '( Gamma(4,2,-1)*(-P(-2,2))*Gamma(-2,-1,-3)*Gamma(3,-3,-4)*ProjP(-4,1) )*( (-ab3(s,u)))')
+
+

@@ -1,0 +1,82 @@
+### Aloha definitions
+
+Momenta of particle N = P(mu,N)
+This includes the momenta P(x,y). The first index is the lorentz index which should be contracted, while the second index refers to the particle ordering of the vertex.
+E.g: P(-2,1)*P(-2,1) = p1(mu)*p1(mu)
+       ^
+       dummy index for sum
+Gamma(a,b,c) -> a = Lorentz index, b,c-> spinor indices
+
+The couplings matrix contracts the color with the lorentz fields:
+
+coupling = (a,b):C.GC_xx -> color[a]*lorentz[b]*C.GC_xx
+
+
+### C00 effective coefficient ###
+
+From the full one loop calculation (off-shell) the renormalization of the C00 integral is done by adding deltaCTR,
+so it is convenient to define an effective coupling/form factor:
+
+C00eff = C00  - deltaCTL + deltaCTR
+
+As a result, the form factor which replaces C00eff (C00effFunc) should actually return:
+
+C00effFunc = C00  - deltaCTL + deltaCTR
+
+in order to include the  (on-shell) renormalization.
+
+
+### UFO Vertices:
+Top-Top-Gluon vertex:
+V_85 = Vertex(name = 'V_85',
+              particles = [ P.t__tilde__, P.t, P.g ],
+              color = [ 'T(3,2,1)' ],
+              lorentz = [ L.FFV1, L.FFVNP1, L.FFVNP2, L.FFVNP3, L.FFVNP4 ],
+              couplings = {(0,0):C.GC_12,(0,1):C.GC_103,(0,2):C.GC_103,(0,3):C.GC_104,(0,4):C.GC_103})
+
+
+GC_12 = Coupling(name = 'GC_12',
+                 value = 'complex(0,1)*G',
+                 order = {'QCD':1})
+
+GC_103 = Coupling(name = 'GC_103',
+                 value = 'itri*complex(0,1)*cmath.pi**2*G*yDM**2',
+                 order = {'NP':2,'QCD':1})
+
+GC_104 = Coupling(name = 'GC_104',
+                 value = 'itri*complex(0,1)*cmath.pi**2*G*yDM**2*deltaCTL',
+                 order = {'NP':2,'QCD':1})
+
+# Effective vertex:
+
+Cttg = 'T(3,2,1)' * (  L.FFV1*C.GC_12 +  (L.FFVNP1 + L.FFVNP2 + L.FFVNP4)*C.GC_103 + L.FFVNP3*C.GC_104 )
+
+     = 'T(3,2,1)' * (  (I*gs)*L.FFV1 
+                     + (I*pi^2*gs*yDM^2)*(L.FFVNP1 + L.FFVNP2 + L.FFVNP4)
+                     + (I*pi^2*gs*yDM^2*deltaCTL)*L.FFVNP3
+                    )
+
+# New Vertex:
+
+FFVNP1 = Lorentz(name = 'FFVNP1',
+                spins = [ 2, 2, 3 ],
+                structure = '( -P(-1,2)*Gamma(-1,2,-2)*ProjP(-2,1) )*( (-P(3,2))*(-C1(p1sq,s,p2sq) - 2*C11(p1sq,s,p2sq))\
+                                                                     + (-P(3,1))*(C1(p1sq,s,p2sq) + 2*C12(p1sq,s,p2sq)) )')
+
+
+FFVNP2 = Lorentz(name = 'FFVNP2',
+                spins = [ 2, 2, 3 ],
+                structure = '( -P(-1,1)*Gamma(-1,2,-2)*ProjP(-2,1) )*( (-P(3,2))*(2*C12(p1sq,s,p2sq) + C2(p1sq,s,p2sq))\
+                                                                     + (-P(3,1))*(-C2(p1sq,s,p2sq) - 2*C22(p1sq,s,p2sq)) )')
+
+
+FFVNP3 = Lorentz(name = 'FFVNP3',
+                spins = [ 2, 2, 3 ],
+                structure = '( Gamma(3,2,1) )*( (-2*deltaCTL) )')
+
+
+FFVNP4 = Lorentz(name = 'FFVNP4',
+                spins = [ 2, 2, 3 ],
+                structure = '( Gamma(3,2,-1)*ProjP(-1,1) )*( (-2*C00eff(p1sq,s,p2sq)) )')
+
+                    

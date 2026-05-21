@@ -1,0 +1,241 @@
+(***************************************************************************************************************)
+(******                       This is the FeynRules mod-file for the Standard model                       ******)
+(******                                                                                                   ******)
+(******     Authors: N. Christensen, C. Duhr, B. Fuks                                                     ******)
+(******                                                                                                   ******)
+(****** Choose whether Feynman gauge is desired.                                                          ******)
+(****** If set to False, unitary gauge is assumed.                                                          ****)
+(****** Feynman gauge is especially useful for CalcHEP/CompHEP where the calculation is 10-100 times faster. ***)
+(****** Feynman gauge is not supported in MadGraph and Sherpa.                                              ****)
+(***************************************************************************************************************)
+
+(* ************************** *)
+(* *****  Information   ***** *)
+(* ************************** *)
+M$ModelName = "SMQCD";
+
+M$Information = {
+  Authors      -> {"N. Christensen", "C. Duhr", "B. Fuks", "A. Lessa"}, 
+  Version      -> "1.5",
+  Date         -> "17. 04. 2023"
+  };
+
+FeynmanGauge = True;
+
+(* ************************** *)
+(* *****  Change  log   ***** *)
+(* ************************** *)
+
+(* v1.5: QCD and quarks only.                                                *)
+(* v1.4.6: NLO variable added.                                               *)
+(* v1.4.5: Added widths for ghosts.                                          *)
+(* v1.4.4: Changed widths of goldstone bosons to be the same as for the W and Z bosons *)
+(* v1.4.3: Updated conventions for the symmetric structure constants of SU3. *)
+(* v1.4.2: Set FeynmanGauge=True as default again.                           *)
+(* v1.4: Added SU(2) representation.                                         *)
+(*       -> Modification in the field declarations (doublets are added)      *)
+(*       -> Modification in the Lagrangian (much simpler).                   *)
+(* v1.3: Added yukawa couplings for all fermions for gauge invariance.       *)
+(*       Added yukawa couplings for 1st generation fermions to Massless.rst. *)
+(*       Updated parameters to PDG 2010.                                     *)
+(* v1.2: Set FeynmanGauge=True as default.                                   *)
+(*       Set Gluonic ghosts to be included in both gauges.                   *)
+(* v1.1: Fixed yukawa couplings in Feynman gauge.                            *)
+(*       Changed yd[n] CKM[n,m] to yd[m] CKM[n,m].                           *)
+(*       Changed yu[n] Conjugate[CKM[m,n]] to yu[m] Conjugate[CKM[m,n]].     *)
+
+
+(* ************************** *)
+(* *****  Gauge groups  ***** *)
+(* ************************** *)
+M$GaugeGroups = {
+  SU3C == { 
+    Abelian           -> False, 
+    CouplingConstant  -> gs, 
+    GaugeBoson        -> G,
+    StructureConstant -> f, 
+    Representations   -> {T,Colour}, 
+    SymmetricTensor   -> dSUN
+  } 
+};
+
+
+(* ************************** *)
+(* *****    Indices     ***** *)
+(* ************************** *)
+
+IndexRange[Index[Gluon     ]] = NoUnfold[Range[8]];
+IndexRange[Index[Colour    ]] = NoUnfold[Range[3]]; 
+IndexRange[Index[Generation]] = Range[3];
+
+IndexStyle[Gluon,      a];
+IndexStyle[Colour,     m];
+IndexStyle[Generation, f];
+
+
+(* ************************** *)
+(* *** Interaction orders *** *)
+(* ***  (as used by mg5)  *** *)
+(* ************************** *)
+
+M$InteractionOrderHierarchy = {  {NP, 1}, {QCD, 2}, {QED,3} };
+
+
+(* ************************** *)
+(* **** Particle classes **** *)
+(* ************************** *)
+M$ClassesDescription = {
+
+(* Gauge bosons: physical vector fields *)
+  V[4] == {
+    ClassName        -> G,
+    SelfConjugate    -> True,
+    Indices          -> {Index[Gluon]},
+    Mass             -> 0,
+    Width            -> 0,
+    ParticleName     -> "g", 
+    PDG              -> 21,
+    PropagatorLabel  -> "G",
+    PropagatorType   -> C,
+    PropagatorArrow  -> None,
+    FullName         -> "G"
+  },
+(* Ghosts: related to physical gauge bosons *)
+  U[4] == { 
+    ClassName       -> ghG, 
+    SelfConjugate   -> False,
+    Indices         -> {Index[Gluon]},
+    Ghost           -> G,
+    PDG             -> 82,
+    QuantumNumbers  ->{GhostNumber -> 1}, 
+    Mass            -> 0,
+    Width	    -> 0,
+    PropagatorLabel -> "uG",
+    PropagatorType  -> GhostDash,
+    PropagatorArrow -> Forward
+  },
+
+(* Fermions: physical fields *)
+  F[3] == {
+    ClassName        -> uq,
+    ClassMembers     -> {u, c, t},
+    Indices          -> {Index[Generation], Index[Colour]},
+    FlavorIndex      -> Generation,
+    SelfConjugate    -> False,
+    Mass             -> {Mu, {MU, 2.55*^-3}, {MC,1.27}, {MT,173.0}},
+    Width            -> {0, 0, {WT,1.50833649}},
+    QuantumNumbers   -> {Q -> 2/3},
+    PropagatorLabel  -> {"uq", "u", "c", "t"},
+    PropagatorType   -> Straight,
+    PropagatorArrow  -> Forward,
+    PDG              -> {2, 4, 6}, 
+    ParticleName     -> {"u",  "c",  "t" },
+    AntiParticleName -> {"u~", "c~", "t~"},
+    FullName         -> {"u-quark", "c-quark", "t-quark"}
+  },
+
+  F[4] == {
+    ClassName        -> dq,
+    ClassMembers     -> {d, s, b},
+    Indices          -> {Index[Generation], Index[Colour]},
+    FlavorIndex      -> Generation,
+    SelfConjugate    -> False,
+    Mass             -> {Md, {MD,5.04*^-3}, {MS,0.101}, {MB,4.7}},
+    Width            -> 0,
+    QuantumNumbers   -> {Q -> -1/3},
+    PropagatorLabel  -> {"dq", "d", "s", "b"},
+    PropagatorType   -> Straight, 
+    PropagatorArrow  -> Forward,
+    PDG              -> {1,3,5},
+    ParticleName     -> {"d",  "s",  "b" },
+    AntiParticleName -> {"d~", "s~", "b~"},
+    FullName         -> {"d-quark", "s-quark", "b-quark"}
+  }
+
+};
+
+
+(* ************************** *)
+(* *****     Gauge      ***** *)
+(* *****   Parameters   ***** *)
+(* *****   (FeynArts)   ***** *)
+(* ************************** *)
+
+GaugeXi[ V[4]  ] = GaugeXi[G];
+GaugeXi[ U[4]  ] = GaugeXi[G];
+
+
+(* ************************** *)
+(* *****   Parameters   ***** *)
+(* ************************** *)
+M$Parameters = {
+
+  (* External parameters *)
+  aS    == { 
+    ParameterType    -> External,
+    BlockName        -> SMINPUTS,
+    OrderBlock       -> 3,
+    Value            -> 0.1184, 
+    InteractionOrder -> {QCD,2},
+    TeX              -> Subscript[\[Alpha],s],
+    Description      -> "Strong coupling constant at the Z pole"
+  },
+
+  (* Internal Parameters *)
+  gs == { 
+    ParameterType    -> Internal, 
+    Value            -> Sqrt[4 Pi aS],
+    InteractionOrder -> {QCD,1},  
+    TeX              -> Subscript[g,s], 
+    ParameterName    -> G,
+    Description      -> "Strong coupling constant at the Z pole"
+  },
+  
+  aEWM1 == { 
+    ParameterType    -> External, 
+    BlockName        -> SMINPUTS, 
+    OrderBlock       -> 1, 
+    Value            -> 127.9,
+    InteractionOrder -> {QED,-2},
+    Description      -> "Inverse of the EW coupling constant at the Z pole"
+  },
+
+  aEW == {
+    ParameterType    -> Internal,
+    Value            -> 1/aEWM1,
+    InteractionOrder -> {QED,2},
+    TeX              -> Subscript[\[Alpha], EW],
+    Description      -> "Electroweak coupling constant"
+  },
+
+  ee == { 
+    ParameterType    -> Internal, 
+    Value            -> Sqrt[4 Pi aEW], 
+    InteractionOrder -> {QED,1}, 
+    TeX              -> e,  
+    Description      -> "Electric coupling constant"
+  }
+
+};
+
+(* ************************** *)
+(* *****   Lagrangian   ***** *)
+(* ************************** *)
+
+LGauge := Block[{mu,nu,ii,aa},- 1/4 FS[G,mu,nu,aa] FS[G,mu,nu,aa]];
+
+LFermions := Block[{mu}, 
+  ExpandIndices[I*(uqbar.Ga[mu].DC[uq, mu]) + I*(dqbar.Ga[mu].DC[dq, mu]) ]
+  ];
+
+LQMass := Block[{sp,cc}, -MT uqbar[sp,3,cc].uq[sp,3,cc]];
+
+LGhost := Block[{mu},
+  (* Pure gauge piece *) 	
+  LGhs = -ghGbar.del[DC[ghG,mu],mu];
+  ExpandIndices[LGhs]];
+
+
+LSM:= LGauge + LGhost + LFermions + LQMass;
+
+
