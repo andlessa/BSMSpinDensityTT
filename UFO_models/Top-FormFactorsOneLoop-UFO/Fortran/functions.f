@@ -473,6 +473,7 @@ double complex function C00effFunc(p1sq,s,p2sq)
     double complex C00,ScalarC00ren,deltaCTR,deltaCTL
     double complex Ccoeff(0:1,0:2,0:2)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -518,6 +519,7 @@ double complex function C1Func(p1sq,s,p2sq)
     double precision deltaUV,muR2
     double complex Ccoeff(0:1,0:2,0:2)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -556,6 +558,7 @@ double complex function C1FuncB(p1sq,s,p2sq)
     double precision deltaUV,muR2
     double complex Ccoeff(0:1,0:2,0:2)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -593,6 +596,7 @@ double complex function C2Func(p1sq,s,p2sq)
     double precision c1value,deltaUV,muR2
     double complex Ccoeff(0:1,0:2,0:2),C2
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -631,6 +635,7 @@ double complex function C11Func(p1sq,s,p2sq)
     double precision c11value,deltaUV,muR2
     double complex Ccoeff(0:1,0:2,0:2)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -668,6 +673,7 @@ double complex function C22Func(p1sq,s,p2sq)
     double precision c11value,deltaUV,muR2
     double complex Ccoeff(0:1,0:2,0:2)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -707,6 +713,7 @@ double complex function C12Func(p1sq,s,p2sq)
     double complex C12
     double complex Ccoeff(0:1,0:2,0:2)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
 
     mchi2 = MDL_MCHI**2
@@ -745,6 +752,7 @@ double complex function D0(s,t)
     double complex D0c
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -782,6 +790,7 @@ double complex function D1(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -817,6 +826,7 @@ double complex function D2(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -852,6 +862,7 @@ double complex function D3(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -887,6 +898,7 @@ double complex function D00(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -922,6 +934,7 @@ double complex function D11(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -957,6 +970,7 @@ double complex function D12(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -992,6 +1006,7 @@ double complex function D13(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1027,6 +1042,7 @@ double complex function D22(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1062,6 +1078,7 @@ double complex function D23(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1097,6 +1114,7 @@ double complex function D33(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1132,6 +1150,7 @@ double complex function D001(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1167,6 +1186,7 @@ double complex function D002(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1202,6 +1222,7 @@ double complex function D003(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1237,6 +1258,7 @@ double complex function D111(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1272,6 +1294,7 @@ double complex function D112(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1307,6 +1330,7 @@ double complex function D113(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1342,6 +1366,7 @@ double complex function D122(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1377,6 +1402,7 @@ double complex function D123(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1412,6 +1438,7 @@ double complex function D133(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1447,6 +1474,7 @@ double complex function D222(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1482,6 +1510,7 @@ double complex function D223(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1517,6 +1546,7 @@ double complex function D233(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1552,6 +1582,7 @@ double complex function D333(s,t)
     double precision deltaUV,muR2
     double complex Dcoeff(0:1,0:3,0:3,0:3)
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1590,6 +1621,7 @@ double complex function ab1(s,t)
     double complex ab
     double precision sCheck
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1641,6 +1673,7 @@ double complex function ab2(s,t)
     double complex ab
     double precision sCheck
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2
@@ -1691,6 +1724,7 @@ double complex function ab3(s,t)
     double complex ab
     double precision sCheck
     include 'input.inc' ! include all external model parameter
+    include '../vector.inc' ! Required for MG >= 3.7
     include 'coupl.inc' ! include other parameters
    
     mchi2 = MDL_MCHI**2

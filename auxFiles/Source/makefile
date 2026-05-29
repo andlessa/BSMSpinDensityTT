@@ -20,10 +20,9 @@ INCLUDEF= coupl.inc genps.inc hbook.inc DECAY/decay.inc psample.inc cluster.inc 
 COMBINE = combine_events.o  rw_events.o ranmar.o  kin_functions.o open_file.o rw_routines.o alfas_functions.o setrun.o
 GENSUDGRID = gensudgrid.o is-sud.o setrun_gen.o rw_routines.o open_file.o
 
-
 # Locally compiled libraries
 
-LIBRARIES=$(LIBDIR)libdsample.$(libext) $(LIBDIR)libgeneric.$(libext)
+LIBRARIES=$(LIBDIR)libdsample.$(libext) $(LIBDIR)libgeneric.$(libext) 
 
 # Binaries
 
@@ -31,7 +30,7 @@ BINARIES = $(BINDIR)gen_ximprove $(BINDIR)gensudgrid $(BINDIR)combine_runs
 
 # Compile commands
 
-all: $(LIBRARIES) $(LIBDIR)libdhelas.$(libext) $(LIBDIR)libpdf.$(libext) $(LIBDIR)libcollier.$(libext) $(LIBDIR)libmodel.$(libext) $(LIBDIR)libcernlib.$(libext) $(LIBDIR)libbias.$(libext)
+all: $(LIBRARIES) $(LIBDIR)libdhelas.$(libext) $(LIBDIR)libpdf.$(libext) $(LIBDIR)libcollier.$(libext) $(LIBDIR)libgammaUPC.$(libext) $(LIBDIR)libmodel.$(libext) $(LIBDIR)libcernlib.$(libext) $(LIBDIR)libbias.$(libext)
 
 
 # Libraries
@@ -39,18 +38,27 @@ all: $(LIBRARIES) $(LIBDIR)libdhelas.$(libext) $(LIBDIR)libpdf.$(libext) $(LIBDI
 $(LIBDIR)libdsample.$(libext): $(DSAMPLE)
 	$(call CREATELIB, $@, $^)
 $(LIBDIR)libgeneric.$(libext): $(GENERIC)
+	rm -f $@ 2>/dev/null
 	$(call CREATELIB, $@, $^)
+	rm -f $(alfas_to_clean) 2>/dev/null
 $(LIBDIR)libdhelas.$(libext): DHELAS
-	cd DHELAS; make
-$(LIBDIR)libpdf.$(libext): PDF
-	cd PDF; make	
+	cd DHELAS; make; cd ..
+$(LIBDIR)libpdf.$(libext): PDF $(alfas_functions).o
+	cd PDF; make; cd ..
+ifneq (,$(filter edff chff, $(pdlabel1) $(pdlabel2)))
+$(LIBDIR)libgammaUPC.$(libext): PDF/gammaUPC
+	cd PDF/gammaUPC; make ; cd ../../
+else
+$(LIBDIR)libgammaUPC.$(libext): PDF/gammaUPC
+				cd PDF/gammaUPC; make -f makefile_dummy; cd ../../
+endif	
 $(LIBDIR)libcernlib.$(libext): CERNLIB
-	cd CERNLIB; make
+	cd CERNLIB; make; cd ..
 # The bias library is here the dummy by default; compilation of other ones specified in the run_card will be done by MG5aMC directly.
 $(LIBDIR)libbias.$(libext): BIAS/dummy
-	cd BIAS/dummy; make
+	cd BIAS/dummy; make; cd ../../
 
-$(LIBDIR)libmodel.$(libext): MODEL param_card.inc
+$(LIBDIR)libmodel.$(libext): MODEL param_card.inc vector.inc
 	cd MODEL; make    
 param_card.inc: ../Cards/param_card.dat
 	../bin/madevent treatcards param
@@ -60,14 +68,15 @@ param_card.inc: ../Cards/param_card.dat
 
 $(BINDIR)gen_ximprove: gen_ximprove.o ranmar.o rw_routines.o open_file.o 
 	$(FC) $(LDFLAGS) -o $@ $^
-#$(BINDIR)combine_events: $(COMBINE) $(LIBDIR)libmodel.$(libext) $(LIBDIR)libpdf.$(libext) run_card.inc $(LIBDIR)libbias.$(libext)
-#			 $(FC) -o $@ $(COMBINE) -L$(LIBDIR) -lmodel -lpdf $(llhapdf) $(LDFLAGS) -lbias
-$(BINDIR)gensudgrid: $(GENSUDGRID) $(LIBDIR)libpdf.$(libext) $(LIBDIR)libcernlib.$(libext)
-	$(FC) -o $@ $(GENSUDGRID) -L$(LIBDIR) -lmodel -lcollier -lpdf -lcernlib $(llhapdf) $(LDFLAGS)
+#$(BINDIR)combine_events: $(COMBINE) $(LIBDIR)libmodel.$(libext) $(LIBDIR)libpdf.$(libext) $(LIBDIR)libgammaUPC.$(libext) run_card.inc $(LIBDIR)libbias.$(libext)
+#			 $(FC) -o $@ $(COMBINE) -L$(LIBDIR) -lmodel -lpdf -lgammaUPC $(llhapdf) $(LDFLAGS) -lbias
+$(BINDIR)gensudgrid: $(GENSUDGRID) $(LIBDIR)libpdf.$(libext) $(LIBDIR)libgammaUPC.$(libext) $(LIBDIR)libcernlib.$(libext)
+	$(FC) -o $@ $(GENSUDGRID) -L$(LIBDIR) -lmodel -lcollier -lpdf -lgammaUPC -lcernlib $(llhapdf) $(LDFLAGS)
 
 # Dependencies
 
-dsample.o: DiscreteSampler.o dsample.f genps.inc StringCast.o
+dsample.o: DiscreteSampler.o dsample.f genps.inc StringCast.o vector.inc
+pawgraph.o: vector.inc
 DiscreteSampler.o: StringCast.o
 invarients.o: invarients.f genps.inc
 setrun.o: setrun.f nexternal.inc leshouche.inc genps.inc
@@ -75,7 +84,7 @@ gen_ximprove.o: gen_ximprove.f run_config.inc run_card.inc
 #combine_events.o: combine_events.f run_config.inc run_card.inc
 combine_runs.o: combine_runs.f run_config.inc run_card.inc
 select_events.o: select_events.f run_config.inc
-setrun.o: setrun.f nexternal.inc leshouche.inc run_card.inc run_config.inc
+setrun.o: setrun.f nexternal.inc leshouche.inc run_card.inc run_config.inc genps.inc vector.inc
 rw_events.o: rw_events.f run_config.inc
 
 run_card.inc: ../Cards/run_card.dat
@@ -84,6 +93,7 @@ run_card.inc: ../Cards/run_card.dat
 clean4pdf:
 	rm -f ../lib/libpdf.$(libext)
 	rm -f ../lib/libgeneric.$(libext)
+	rm -f ../lib/libgammaUPC.$(libext)
 
 cleanCT:
 	cd $(CUTTOOLSDIR); make clean; cd ..
@@ -114,9 +124,10 @@ $(LIBDIR)libiregi.a: $(IREGIDIR)
 	cd $(IREGIDIR); make
 	ln -sf ../Source/$(IREGIDIR)libiregi.a $(LIBDIR)libiregi.a
 
-clean:
+cleanSource: # Clean builds: fortran in this Source
 	$(RM) *.o $(LIBRARIES) $(BINARIES)
 	cd PDF; make clean; cd ..
+	cd PDF/gammaUPC; make clean; cd ../../
 	cd DHELAS; make clean; cd ..
 	cd CERNLIB; make clean; cd ..
 	cd MODEL; make clean; cd ..
@@ -125,4 +136,8 @@ clean:
 	cd BIAS/ptj_bias; make clean; cd ../..
 	if [ -d $(CUTTOOLSDIR) ]; then cd $(CUTTOOLSDIR); make clean; cd ..; fi
 	if [ -d $(IREGIDIR) ]; then cd $(IREGIDIR); make clean; cd ..; fi
+
+clean: cleanSource # Clean builds: fortran in this Source and in all P*
 	for i in `ls -d ../SubProcesses/P*`; do cd $$i; make clean; cd -; done;
+
+
