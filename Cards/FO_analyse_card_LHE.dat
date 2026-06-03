@@ -16,7 +16,7 @@
 # code, while when choosing root the 'rbook_fe8.f' and 'rbook_be8.cc'
 # are included. If 'none' is chosen, all the other entries below have
 # to be set empty.
-FO_ANALYSIS_FORMAT = HwU
+FO_ANALYSIS_FORMAT = LHE
 #
 #
 # Needed extra-libraries (FastJet is already linked):
@@ -33,7 +33,7 @@ FO_INCLUDEPATHS =
 # User's analysis (to be put in the <PROCDIR>/FixedOrderAnalysis/
 # directory). Please use .o as extension and white spaces to separate
 # files.
-FO_ANALYSE = analysis_ttbar_split_xsecs.o
+FO_ANALYSE = 
 #
 #
 ## When linking with root, the following settings are a working

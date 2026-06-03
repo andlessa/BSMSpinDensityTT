@@ -1,6 +1,8 @@
 # BSMSpinDensityTT
 Code and results for testing BSM effects on ttbar distributions using the spin density matrix
 
+For instructions about event generation with the form factor or NLO models see [Instructions](./EventGenInstructions.md)
+
 ## Folders and files
 
 Below we describe the main files and folders stored in this repository. Additional information about each folder can be found in their README files.
