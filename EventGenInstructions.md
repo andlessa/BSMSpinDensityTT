@@ -9,7 +9,7 @@ MadGraph5 and the UFO models:
 ## Event Generation with Form Factors
 
 The form factors (FF) model allows to generate "leading-order" events which already include the loop corrections.
-In order to include only the born and interference term ($|\mathcal{M}_{\rm SM}|^2 + 2 Re(\mathcal{M}_{\rm SM} \mathcal{M}_{\rm BSM}^*)$)
+In order to include only the born and interference term ($`|\mathcal{M}_{\rm SM}|^2 + 2 Re(\mathcal{M}_{\rm SM} \mathcal{M}_{\rm BSM}^*)`$)
 one must use:
 
 ```
@@ -17,7 +17,7 @@ import model UFO_models/Top-FormFactorsOneLoop-UFO
 generate p p > t t~  NP^2<=2 QCD^2<=4 QED^2==0
 ```
 
-**Every time a process folder is created, before generating any events it is required to run**:
+**Every time a process folder is created, before compiling and generating events one must first run**:
 ```
 ./fixForCollier.sh <path-to-process-folder>
 ```
