@@ -1,4 +1,8 @@
-BSMSpinDensityTT
+# BSMSpinDensityTT
+
+* *authors*: Andre Lessa, Dorival Goncalves, Kirtimaan Mohan
+
+
 Code and results for testing BSM effects on ttbar distributions using the spin density matrix
 
 For instructions about event generation with the form factor or NLO models see [Instructions](./EventGenInstructions.md)
