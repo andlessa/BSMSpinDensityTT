@@ -33,7 +33,7 @@ spinIndices[n_]:=Module[{i},
 					firstIndex = {$leftIndex};
 					lastIndex = {$rightIndex};
 					dummyIndices = Table[newDummyIndex[],{i,1,n-1}];
-					Join[firstIndex,dummyIndices,lastIndex]]
+					Join[firstIndex,dummyIndices,lastIndex]];
 
 
 (* Define conversion for the main objects*)
@@ -44,20 +44,20 @@ alohaDispatch[n_Real]:=ToString[n,InputForm];
 
 alohaDispatch[s_Symbol]:=SymbolName[Unevaluated[s]];
 
-alohaDispatch[Plus[x__]]:=StringRiffle[alohaDispatch[#]&/@{x}," + "];
+alohaDispatch[expr_Times]:= StringRiffle[alohaDispatch /@ (List @@ expr), "*"];
 
-alohaDispatch[Times[x__]]:=StringRiffle[alohaDispatch[#]&/@{x},"*"];
+alohaDispatch[expr_Plus]:= StringRiffle[alohaDispatch /@ (List @@ expr), " + "];
 
 alohaDispatch[Power[x_,n_]]:="("<>alohaDispatch[x]<>")**"<>alohaDispatch[n];
 
-alohaDispatch[Rational[a_,b_]]:="("<>ToString[a]<>"/"<>ToString[b]<>")"
+alohaDispatch[Rational[a_,b_]]:="("<>ToString[a]<>"/"<>ToString[b]<>")";
 
 alohaDispatch[SUNFIndex[i_]]:=colorIndex[i];
 
 alohaDispatch[SUNIndex[i_]]:=colorIndex[i];
 
 alohaDispatch[SUNTF[{a_},i_,j_]]:="T("<>StringRiffle[alohaDispatch[#]&/@{a,i,j},","]<>")";
-alohaDispatch[SUNTF[{a_,b_},i_,j_]]:=Module[{dummyIndex},
+alohaDispatch[SUNTF[{a_,b_},i_,j_]]:=Module[{dummyIndex,t1,t2},
 											dummyIndex = newDummyIndex[];
 											t1 = alohaDispatch[SUNTF[{a},i,dummyIndex]];
 											t2 = alohaDispatch[SUNTF[{b},dummyIndex,j]];
@@ -87,6 +87,9 @@ alohaDispatch[expr_Dot]:=Module[{factors,spins,gProduct},
 								gProduct=MapThread[alohaDispatch[#1,#2,#3]&,{factors,Most[spins],Rest[spins]}];
 								StringRiffle[gProduct,"*"]
 								];
+
+							    
+alohaDispatch[expr_[x__]] := ToString[expr]<>"( "<>StringRiffle[Map[alohaDispatch,{x}],", "]<>" )";
 
 (* External function to be used as the main translator *)
 							
@@ -132,5 +135,3 @@ alohaTranslator[expr_,OptionsPattern[]]:=Block[{$maps,$initDummyIndex,$currentDu
 																																				
 End[]
 EndPackage[]
-
-
