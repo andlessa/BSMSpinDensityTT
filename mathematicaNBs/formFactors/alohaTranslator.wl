@@ -6,6 +6,7 @@ BeginPackage["alohaTranslator`",{"FeynCalc`"}]
 alohaTranslator::usage = "Converts FeynCalc expressions to ALOHA strings.";
 alohaTranslator::badindex = "The value `1` given for `2` must be a positive integer.";
 alohaTranslator::badmap = "The map `1` contains values that are not positive integers: `2`.";
+alohaDispatch::usage = "Helper Function defined over each type of object";
 
 Options[alohaTranslator] = {
    MomentumMap -> <|$p1->1, $p2->2, $p3->3|>,
@@ -38,15 +39,21 @@ spinIndices[n_]:=Module[{i},
 
 (* Define conversion for the main objects*)
 
+alohaDispatch[I]:="complex(0,1)";
+
+alohaDispatch[Sqrt[x_]]:="cmath.sqrt("<>alohaDispatch[x]<>")";
+
+alohaDispatch[Log[x_]]:="cmath.dlog("<>alohaDispatch[x]<>")";
+
 alohaDispatch[n_Integer]:=ToString[n];
 
 alohaDispatch[n_Real]:=ToString[n,InputForm];
 
 alohaDispatch[s_Symbol]:=SymbolName[Unevaluated[s]];
 
-alohaDispatch[expr_Times]:= StringRiffle[alohaDispatch /@ (List @@ expr), "*"];
+alohaDispatch[expr_Times]:= StringRiffle[alohaDispatch /@ (List @@ Expand[expr]), "*"];
 
-alohaDispatch[expr_Plus]:= StringRiffle[alohaDispatch /@ (List @@ expr), " + "];
+alohaDispatch[expr_Plus]:= StringRiffle[alohaDispatch /@ (List @@ Expand[expr]), " + "];
 
 alohaDispatch[Power[x_,n_]]:="("<>alohaDispatch[x]<>")**"<>alohaDispatch[n];
 
