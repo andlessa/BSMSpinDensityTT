@@ -18,54 +18,57 @@
         include 'input.inc' ! include all external model parameter
         include '../vector.inc' ! Required for MG >= 3.7
         include 'coupl.inc' ! include other parameters
+        integer, parameter :: dp = kind(1.0d0) 
+        real(dp), parameter :: default_rtol = 1d-4
+        real(dp), parameter :: default_atol = 1d-12
+        double precision, parameter :: deltaUV = 0.0
         
         type :: model_pars_t
-            integer, parameter :: dp = kind(1.0d0) 
-            real(dp), parameter :: default_rtol = 1d-4
-            real(dp), parameter :: default_atol = 1d-12
-            double complex mt2 = MDL_MT**2,mst2 = MDL_MST**2,mchi2 = MDL_MCHI**2
-            double precision deltaUV = 0.0
-            double precision muR2 = MDL_MST**2 ! The counter-terms were computing under this assumption 
+            double complex mt2,mst2,mchi2
+            double precision muR2 ! The counter-terms were computing assuming muR2 = mst2
         end type model_pars_t
 
         type :: ct_cache_t
                 logical :: init = .false.
-                integer rank = 1
-                integer N = 2
+                integer :: rank = 1
+                integer :: N = 2
                 complex(dp) :: b1CT = (0d0,0d0)
                 complex(dp) :: db1CT = (0d0,0d0)
         end type ct_cache_t
 
         type :: redb1_cache_t
                 logical :: init = .false.
-                integer N = 2
-                integer rank = 2
+                integer :: N = 2
+                integer :: rank = 2
                 complex(dp) :: input(3) = (0d0,0d0)
                 complex(dp) :: redb1result = (0d0,0d0)
         end type redb1_cache_t
 
         type :: b_cache_t
                 logical :: init = .false.
-                integer N = 2
-                integer rank = 2
+                integer :: N = 2
+                integer :: rank = 2
                 complex(dp) :: input(3) = (0d0,0d0)
-                complex(dp) :: bresults(0:rank/2,0:rank) = (0d0,0d0)
+                complex(dp) :: bresults(0:1,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank)
+                complex(dp) :: bresultsUV(0:1,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank)
         end type b_cache_t
 
         type :: c_cache_t
                 logical :: init = .false.
-                integer N = 3
-                integer rank = 2
+                integer :: N = 3
+                integer :: rank = 2
                 complex(dp) :: input(6) = (0d0,0d0)
-                complex(dp) :: cresults(0:rank/2,0:rank,0:rank) = (0d0,0d0)
+                complex(dp) :: cresults(0:1,0:2,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank)
+                complex(dp) :: cresultsUV(0:1,0:2,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank)
         end type c_cache_t
 
         type :: d_cache_t
             logical :: init = .false.
-            integer N = 4
-            integer rank = 3
+            integer :: N = 4
+            integer :: rank = 3
             complex(dp) :: input(10) = (0d0,0d0)
-            complex(dp) :: dresults(0:rank/2,0:rank,0:rank,0:rank) = (0d0,0d0)
+            complex(dp) :: dresults(0:1,0:3,0:3,0:3) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank,0:rank)
+            complex(dp) :: dresultsUV(0:1,0:3,0:3,0:3) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank,0:rank)
         end type d_cache_t
 
         type(model_pars_t), save :: model_pars
@@ -76,6 +79,19 @@
         type(redb1_cache_t), save :: redb1_cache
 
       contains
+
+        subroutine set_model_pars()
+
+          ! Subroutine to initialize the model parameters
+
+          implicit none
+          
+          model_pars%mt2 = MDL_MT**2
+          model_pars%mchi2 = MDL_MCHI**2
+          model_pars%mst2 = MDL_MST**2
+          model_pars%muR2 = MDL_MST**2
+
+        end subroutine set_model_pars
 
         function set_small_to_zero(vars,vmin) result(vars_out)
 
@@ -129,12 +145,12 @@
 
       end module collier_cache_mod
 
-      function computeCT() result(ctVals)
+      subroutine computeCT(ctVals)
       ! Compute the integrals required by the counter-terms. Since these only needed to be
       ! computed once, we can always cache the result
 
       use collier
-      use collier_cache_mod, only: ct_cache
+      use collier_cache_mod, only: ct_cache,set_model_pars,model_pars
 
       implicit none
     
@@ -143,9 +159,14 @@
 
       ! Return values: ctVals(1)=b1CT, ctVals(2)=db1CT
       double precision ctVals(2)
+      double complex mt2
+      double complex Bcoll
+      double precision reDB1
 
       ! If first time compute and cache
       if (.not.ct_cache%init) then
+        call set_model_pars()
+        mt2 = model_pars%mt2 
         ct_cache%init = .true.
         ct_cache%b1CT = real(Bcoll(0,1,mt2))
         ct_cache%db1CT = real(reDB1(mt2))
@@ -154,7 +175,7 @@
       ctVals(1) = ct_cache%b1CT
       ctVals(2) = ct_cache%db1CT
 
-      end function computeCT
+      end subroutine computeCT
 
       double precision function reDB1(psq)
 
@@ -162,28 +183,25 @@
       ! and cache the result. Needed for computing the count-terms (should only be needed at psq=mt2).
 
       use collier
-      use collier_cache_mod, only: model_pars,redb1_cache,
-     &     set_small_to_zero, differs
+      use collier_cache_mod, only: model_pars,redb1_cache,set_small_to_zero, differs, set_model_pars, deltaUV
 
       implicit none
     
       double complex psq
       double precision Pi
       parameter  (Pi=3.141592653589793D0)
+      logical useCache
 
+      double complex newInput(3)
       double complex mt2,mchi2,mst2
-      double precision deltaUV
       double precision muR2
+
+      call set_model_pars()
       
       mt2 = model_pars%mt2
       mchi2 = model_pars%mchi2
       mst2 = model_pars%mst2
-      deltaUV = model_pars%deltaUV
       muR2 = model_pars%muR2
-      double complex newInput(3)
-
-      logical useCache
-
       
       ! Store new input variables
       newInput = (/ psq,mchi2,mst2 /)
@@ -195,10 +213,9 @@
 
       ! Check if the given input variables matches and
       ! if the cache has been initialized
-      if (redb1_cache%init)
-     &    .and.(.not.differs(redb1_cache%input,newInput)) then
+      if ((redb1_cache%init).and.(.not.differs(redb1_cache%input,newInput))) then
         useCache = .true.
-      else
+      else        
         useCache = .false.
         ! Store the variables for caching
         redb1_cache%input = newInput
@@ -230,7 +247,7 @@
 
       use collier
       use collier_cache_mod, only: model_pars,b_cache,
-     &     set_small_to_zero, differs
+     &     set_small_to_zero, differs, set_model_pars, deltaUV
 
       implicit none
     
@@ -240,19 +257,15 @@
       parameter  (Pi=3.141592653589793D0)
 
       double complex mt2,mchi2,mst2
-      double precision deltaUV
       double precision muR2
+      double complex newInput(3)
+      logical useCache
+      call set_model_pars()
       
       mt2 = model_pars%mt2
       mchi2 = model_pars%mchi2
       mst2 = model_pars%mst2
-      deltaUV = model_pars%deltaUV
       muR2 = model_pars%muR2
-
-      double complex newInput(3)
-
-      logical useCache
-
       
       ! Store new input variables
       newInput = (/ psq,mchi2,mst2 /)
@@ -264,8 +277,7 @@
 
       ! Check if the given input variables matches and
       ! if the cache has been initialized
-      if (b_cache%init)
-     &    .and.(.not.differs(b_cache%input,newInput)) then
+      if ((b_cache%init).and.(.not.differs(b_cache%input,newInput))) then
         useCache = .true.
       else
         useCache = .false.
@@ -283,8 +295,9 @@
         call SetMode_cll(3) 
         call SetDeltaUV_cll(deltaUV) ! Remove the divergence (MSbar)
         call SetMuUV2_cll(muR2) ! Set the renormalization scale    
-        call B_cll(b_cache%bresults,psq,mchi2,mst2,b_cache%rank)
+        call B_cll(b_cache%bresults,b_cache%bresultsUV,psq,mchi2,mst2,b_cache%rank)
         b_cache%bresults = b_cache%bresults/((2*Pi)**4)
+        b_cache%bresultsUV = b_cache%bresultsUV/((2*Pi)**4)
       endif
 
       Bcoll = b_cache%bresults(i,j)
@@ -317,7 +330,7 @@ double complex function Ccoll(i,j,k,p10,p21,p20)
 
       use collier
       use collier_cache_mod, only: model_pars,c_cache,
-     &     set_small_to_zero, differs
+     &     set_small_to_zero, differs, set_model_pars,deltaUV
 
       implicit none
     
@@ -327,19 +340,16 @@ double complex function Ccoll(i,j,k,p10,p21,p20)
       parameter  (Pi=3.141592653589793D0)
 
       double complex mt2,mchi2,mst2
-      double precision deltaUV
       double precision muR2
+      double complex newInput(6)
+      logical useCache
+
+      call set_model_pars()
       
       mt2 = model_pars%mt2
       mchi2 = model_pars%mchi2
       mst2 = model_pars%mst2
-      deltaUV = model_pars%deltaUV
       muR2 = model_pars%muR2
-
-      double complex newInput(6)
-
-      logical useCache
-
       
       ! Store new input variables
       newInput = (/ p10,p21,p20,mchi2,mst2,mst2 /)
@@ -353,8 +363,8 @@ double complex function Ccoll(i,j,k,p10,p21,p20)
 
       ! Check if the given input variables matches and
       ! if the cache has been initialized
-      if (c_cache%init)
-     &    .and.(.not.differs(c_cache%input,newInput)) then
+      if ((c_cache%init).and.
+     &    (.not.differs(c_cache%input,newInput))) then
         useCache = .true.
       else
         useCache = .false.
@@ -372,8 +382,10 @@ double complex function Ccoll(i,j,k,p10,p21,p20)
         call SetMode_cll(3) 
         call SetDeltaUV_cll(deltaUV) ! Remove the divergence (MSbar)
         call SetMuUV2_cll(muR2) ! Set the renormalization scale    
-        call C_cll(c_cache%cresults,p10,p21,p20,mchi2,mst2,c_cache%rank)
+        call C_cll(c_cache%cresults,c_cache%cresultsUV,p10,p21,p20,
+     &           mchi2,mst2,mst2,c_cache%rank)
         c_cache%cresults = c_cache%cresults/((2*Pi)**4)
+        c_cache%cresultsUV = c_cache%cresultsUV/((2*Pi)**4)
       endif
 
       Ccoll = c_cache%cresults(i,j,k)
@@ -406,8 +418,8 @@ double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
       ! and cache the result.
 
       use collier
-      use collier_cache_mod, only: model_pars,c_cache,
-     &     set_small_to_zero, differs
+      use collier_cache_mod, only: model_pars,d_cache,
+     &     set_small_to_zero, differs, set_model_pars,deltaUV
 
       implicit none
     
@@ -417,20 +429,17 @@ double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
       parameter  (Pi=3.141592653589793D0)
 
       double complex mt2,mchi2,mst2
-      double precision deltaUV
       double precision muR2
+      double complex newInput(10)
+      logical useCache
+
+      call set_model_pars()
       
       mt2 = model_pars%mt2
       mchi2 = model_pars%mchi2
       mst2 = model_pars%mst2
-      deltaUV = model_pars%deltaUV
       muR2 = model_pars%muR2
-
-      double complex newInput(10)
-
-      logical useCache
-
-      
+     
       ! Store new input variables
       newInput = (/ p10,p21,p32,p30,p20,p31,mst2,mchi2,mst2,mst2 /)
       ! Set to zero small variable values
@@ -446,8 +455,8 @@ double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
 
       ! Check if the given input variables matches and
       ! if the cache has been initialized
-      if (d_cache%init)
-     &    .and.(.not.differs(d_cache%input,newInput)) then
+      if ((d_cache%init).and.
+     &    (.not.differs(d_cache%input,newInput))) then
         useCache = .true.
       else
         useCache = .false.
@@ -465,8 +474,9 @@ double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
         call SetMode_cll(3) 
         call SetDeltaUV_cll(deltaUV) ! Remove the divergence (MSbar)
         call SetMuUV2_cll(muR2) ! Set the renormalization scale    
-        call D_cll(d_cache%dresults,p10,p21,p32,p30,p20,p31,mst2,mchi2,mst2,mst2,d_cache%rank)
+        call D_cll(d_cache%dresults,d_cache%dresultsUV,p10,p21,p32,p30,p20,p31,mst2,mchi2,mst2,mst2,d_cache%rank)
         d_cache%dresults = d_cache%dresults/((2*Pi)**4)
+        d_cache%dresultsUV = d_cache%dresultsUV/((2*Pi)**4)
       endif
 
       Dcoll = d_cache%dresults(i,j,k,l)
@@ -492,18 +502,18 @@ double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
       parameter  (Pi=3.141592653589793D0)
 
       double complex mt2,mchi2,mst2
-      double precision deltaUV
-      double precision muR2
+      double precision muR2,b1CT,db1CT
       double complex x(1)
+      double complex Bcoll
+      external computeCT
 
-           
-      mt2 = model_pars%mt2
-      ctVals = computeCT()
+      call computeCT(ctVals)     
+      mt2 = model_pars%mt2      
       b1CT = ctVals(1)
       db1CT = ctVals(2)
 
       x(1) = psq - mt2
-      x(1) = set_small_to_zero(x(1),1d-5)
+      x = set_small_to_zero(x,1d-5)
       ! if psq is very close to mt2, we can use the first order expansion of B1(psq) around mt2, which is given by db1CT
       if (abs(x(1)) < 1d-5) then
         pB1h = db1CT
@@ -528,9 +538,12 @@ double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
       double complex p10,p21,p20
       double precision Pi
       double precision ctVals(2)
+      double precision b1CT, db1CT
+      double complex Ccoll
+      external computeCT
       parameter  (Pi=3.141592653589793D0)
 
-      ctVals = computeCT()
+      call computeCT(ctVals)
       b1CT = ctVals(1)
       db1CT = ctVals(2)
 
