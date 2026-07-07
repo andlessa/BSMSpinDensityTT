@@ -169,7 +169,7 @@
         mt2 = model_pars%mt2 
         ct_cache%init = .true.
         ct_cache%b1CT = real(Bcoll(0,1,mt2))
-        ct_cache%db1CT = real(reDB1(mt2))
+        ct_cache%db1CT = reDB1(mt2)
       endif
 
       ctVals(1) = ct_cache%b1CT
@@ -550,7 +550,6 @@ double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
       C00h = Ccoll(1,0,0,p10,p21,p20) + (1d0/2d0)*b1CT
 
       end function C00h
-
 
 
     !   subroutine writedebugC(s,p1sq,p2sq,Ccoeff,header)
