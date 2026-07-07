@@ -35,13 +35,13 @@ Options[ExportUFOVertexFormFactors] = {
   "Particles" -> {"t__tilde__", "t", "g"},
   "Spins" -> {2, 2, 3},
   "FormFactorTag" -> "FFVNP",
-  "LorentzTag" -> "FFV",
+  "Header" -> "----- New entries -------",
   "AlohaOptions" -> {}
 };
 
 ExportUFOVertexFormFactors[coefficients_List, originalModelDir_String,
    newModelDir_String, opts : OptionsPattern[]] := Module[
-  {couplingOrders, particles, spins, formFactorTag, lorentzTag, translator, alohaOpts,
+  {couplingOrders, particles, spins, formFactorTag, header, translator, alohaOpts,
    ufoMap, couplingsFile, newCouplingsFile, text, couplingDefs, maxGCvar,
    maxGCname, newGCcounter, couplingTemplate, outF, name, order, value,
    blockValues, lorentzFile, newLorentzFile, lorentzDefs, maxFvar,
@@ -60,8 +60,9 @@ ExportUFOVertexFormFactors[coefficients_List, originalModelDir_String,
   particles = OptionValue["Particles"];
   spins = OptionValue["Spins"];
   formFactorTag = OptionValue["FormFactorTag"];
-  lorentzTag = OptionValue["LorentzTag"];
+  header = OptionValue["Header"];
   alohaOpts = OptionValue["AlohaOptions"];
+  
 
   translator = alohaTranslator`alohaTranslator;
 
@@ -70,7 +71,9 @@ ExportUFOVertexFormFactors[coefficients_List, originalModelDir_String,
   (* ---------------- Couplings ---------------- *)
   couplingsFile = FileNameJoin[{originalModelDir, "couplings.py"}];
   newCouplingsFile = FileNameJoin[{newModelDir, "couplings.py"}];
-  CopyFile[couplingsFile, newCouplingsFile, OverwriteTarget -> True];
+  If[ExpandFileName[couplingsFile] =!= ExpandFileName[newCouplingsFile],
+      CopyFile[couplingsFile, newCouplingsFile, OverwriteTarget -> True]
+  ];
   text = Import[couplingsFile, "Text"];
   couplingDefs = StringCases[text,
      RegularExpression[
@@ -78,14 +81,15 @@ ExportUFOVertexFormFactors[coefficients_List, originalModelDir_String,
        "$2"}];
   maxGCvar = Max[ToExpression@StringDrop[#, 3] & /@ couplingDefs[[All, 1]]];
   maxGCname = Max[ToExpression@StringDrop[#, 3] & /@ couplingDefs[[All, 2]]];
-  newGCcounter = Max[maxGCname, maxGCvar] + 1;
+  newGCcounter = Max[0,maxGCname, maxGCvar] + 1;
 
   couplingTemplate = StringTemplate[
     "`name` = Coupling(name = '`name`',\n                 value = \
 '`value`',\n                 order = `order`)\n"];
 
+  Print["Writing to file: ",newCouplingsFile];
   outF = OpenAppend[newCouplingsFile, PageWidth -> Infinity];
-  WriteString[outF, "\n#----------- New Couplings --------\n"];
+  WriteString[outF, "\n# "<>header<>"\n"];
   Do[
     name = "GC_" <> ToString[newGCcounter];
     AssociateTo[ufoMap["couplings"], ToString[couplingTerm] -> name];
@@ -105,23 +109,26 @@ ExportUFOVertexFormFactors[coefficients_List, originalModelDir_String,
   (* ---------------- Lorentz ---------------- *)
   lorentzFile = FileNameJoin[{originalModelDir, "lorentz.py"}];
   newLorentzFile = FileNameJoin[{newModelDir, "lorentz.py"}];
-  CopyFile[lorentzFile, newLorentzFile, OverwriteTarget -> True];
+  If[ExpandFileName[lorentzFile] =!= ExpandFileName[newLorentzFile],
+      CopyFile[lorentzFile, newLorentzFile, OverwriteTarget -> True]
+  ];
   text = Import[lorentzFile, "Text"];
   lorentzDefs = StringCases[text,
      RegularExpression[
-       "("<>lorentzTag<>"\\d+)\\s*=\\s*Lorentz\\(\\s*name\\s*=\\s*'([^']*)'"] :> {"$1",
+       "("<>formFactorTag<>"\\d+)\\s*=\\s*Lorentz\\(\\s*name\\s*=\\s*'([^']*)'"] :> {"$1",
        "$2"}];
-  maxFvar = Max[ToExpression@StringDrop[#, 3] & /@ lorentzDefs[[All, 1]]];
-  maxFname = Max[ToExpression@StringDrop[#, 3] & /@ lorentzDefs[[All, 2]]];
-  newFcounter = Max[maxFname, maxFvar] + 1;
-
+  maxFvar = Max[ToExpression@StringDrop[#, StringLength[formFactorTag]] & /@ lorentzDefs[[All, 1]]];
+  maxFname = Max[ToExpression@StringDrop[#, StringLength[formFactorTag]] & /@ lorentzDefs[[All, 2]]];
+  newFcounter = Max[0,maxFname, maxFvar] + 1;
+  
   lorentzTemplate = StringTemplate[
     "`name` = Lorentz(name = '`name`',\n                 spins = [ " <>
      StringRiffle[ToString /@ spins, ", "] <>
      " ],\n                 structure = '`value`')\n"];
 
+  Print["Writing to file: ",newLorentzFile];
   outF = OpenAppend[newLorentzFile, PageWidth -> Infinity];
-  WriteString[outF, "\n#----------- New Lorentz Structures --------\n"];
+  WriteString[outF, "\n# "<>header<>"\n"];
   Do[
     name = formFactorTag <> ToString[newFcounter];
     AssociateTo[ufoMap["lorentz"], ToString[c[[3]]*c[[4]]] -> name];
@@ -137,17 +144,21 @@ ExportUFOVertexFormFactors[coefficients_List, originalModelDir_String,
   Close[outF];
 
   (* ---------------- Vertex ---------------- *)
+  
   vertexFile = FileNameJoin[{originalModelDir, "vertices.py"}];
   newVertexFile = FileNameJoin[{newModelDir, "vertices.py"}];
-  CopyFile[vertexFile, newVertexFile, OverwriteTarget -> True];
+  If[ExpandFileName[vertexFile] =!= ExpandFileName[newVertexFile],
+      CopyFile[vertexFile, newVertexFile, OverwriteTarget -> True]
+  ];
   text = Import[vertexFile, "Text"];
   vertexDefs = StringCases[text,
      RegularExpression[
        "(V_\\d+)\\s*=\\s*Vertex\\(\\s*name\\s*=\\s*'([^']*)'"] :> {"$1",
        "$2"}];
+  
   maxVvar = Max[ToExpression@StringDrop[#, 2] & /@ vertexDefs[[All, 1]]];
   maxVname = Max[ToExpression@StringDrop[#, 2] & /@ vertexDefs[[All, 2]]];
-  newVcounter = Max[maxVvar, maxVname] + 1;
+  newVcounter = Max[0,maxVvar, maxVname] + 1;
   vertexName = "V_" <> ToString[newVcounter];
 
   Do[
@@ -192,8 +203,9 @@ ExportUFOVertexFormFactors[coefficients_List, originalModelDir_String,
 lorentz = [ `lorentzList` ],\n               couplings = \
 {`couplingsList`})\n"];
 
+  Print["Writing to file: ",newVertexFile];
   outF = OpenAppend[newVertexFile, PageWidth -> Infinity];
-  WriteString[outF, "\n#----------- New Vertices --------\n"];
+  WriteString[outF, "\n# "<>header<>"\n"];
   WriteString[outF, vertexTemplate[blockValues]];
   Close[outF];
 
