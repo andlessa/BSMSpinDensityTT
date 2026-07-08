@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    206967,       5230]
-NotebookOptionsPosition[    198080,       5085]
-NotebookOutlinePosition[    198599,       5104]
-CellTagsIndexPosition[    198556,       5101]
+NotebookDataLength[    198141,       5045]
+NotebookOptionsPosition[    189929,       4907]
+NotebookOutlinePosition[    190448,       4926]
+CellTagsIndexPosition[    190405,       4923]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -23,8 +23,7 @@ Cell[BoxData[
  CellChangeTimes->{{3.8890168084279547`*^9, 3.8890168092899714`*^9}, {
   3.99182699465676*^9, 3.991826996384663*^9}, {3.991827085266861*^9, 
   3.991827088050941*^9}},
- CellLabel->
-  "In[144]:=",ExpressionUUID->"48616450-5497-487e-a8ba-e7c675cd7ac0"],
+ CellLabel->"In[1]:=",ExpressionUUID->"48616450-5497-487e-a8ba-e7c675cd7ac0"],
 
 Cell[CellGroupData[{
 
@@ -61,129 +60,31 @@ Cell[BoxData[
     StyleBox["\<\"FeynCalc \"\>", "Text",
      StripOnInput->False,
      FontWeight->Bold], "\[InvisibleSpace]", 
-    StyleBox["\<\"9.3.1 (stable version). For help, use the \"\>", "Text",
+    StyleBox["\<\"10.2.1 (stable version). For help, use the \"\>", "Text",
      StripOnInput->False], "\[InvisibleSpace]", 
     StyleBox[
      TagBox[
       ButtonBox[
-       RowBox[{"documentation", " ", "center"}],
-       BaseStyle->"Link",
-       ButtonData:>"paclet:FeynCalc/",
-       ButtonNote->"paclet:FeynCalc/"],
-      DisplayForm], "Text",
-     StripOnInput->False], "\[InvisibleSpace]", 
-    StyleBox["\<\", check out the \"\>", "Text",
-     StripOnInput->False], "\[InvisibleSpace]", 
-    StyleBox[
-     TagBox[
-      ButtonBox["wiki",
+       RowBox[{
+        RowBox[{"online", " ", "documentation"}], ","}],
        BaseStyle->"Hyperlink",
        ButtonData:>{
-         URL["https://github.com/FeynCalc/feyncalc/wiki"], None},
-       ButtonNote->"https://github.com/FeynCalc/feyncalc/wiki"],
+         URL["https://feyncalc.github.io/referenceDev"], None},
+       ButtonNote->"https://feyncalc.github.io/referenceDev"],
       DisplayForm], "Text",
      StripOnInput->False], "\[InvisibleSpace]", 
-    StyleBox["\<\" or visit the \"\>", "Text",
+    StyleBox["\<\" visit the \"\>", "Text",
      StripOnInput->False], "\[InvisibleSpace]", 
     StyleBox[
      TagBox[
-      ButtonBox[
-       RowBox[{"forum", "."}],
+      ButtonBox["forum",
        BaseStyle->"Hyperlink",
        ButtonData:>{
          URL["https://github.com/FeynCalc/feyncalc/discussions"], None},
-       ButtonNote->"http://www.feyncalc.org/forum/"],
-      DisplayForm], "Text",
-     StripOnInput->False]}],
-   SequenceForm[
-    Style["FeynCalc ", "Text", Bold], 
-    Style["9.3.1 (stable version). For help, use the ", "Text"], 
-    Style[
-     DisplayForm[
-      ButtonBox[
-      "documentation center", BaseStyle -> "Link", ButtonData :> 
-       "paclet:FeynCalc/", ButtonNote -> "paclet:FeynCalc/"]], "Text"], 
-    Style[", check out the ", "Text"], 
-    Style[
-     DisplayForm[
-      ButtonBox["wiki", ButtonData :> {
-         URL["https://github.com/FeynCalc/feyncalc/wiki"], None}, BaseStyle -> 
-       "Hyperlink", ButtonNote -> 
-       "https://github.com/FeynCalc/feyncalc/wiki"]], "Text"], 
-    Style[" or visit the ", "Text"], 
-    Style[
-     DisplayForm[
-      ButtonBox["forum.", ButtonData :> {
-         URL["https://github.com/FeynCalc/feyncalc/discussions"], None}, 
-       BaseStyle -> "Hyperlink", ButtonNote -> 
-       "http://www.feyncalc.org/forum/"]], "Text"]],
-   Editable->False], TraditionalForm]], "Print",
- CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
-   3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
-   3.992329909233008*^9, 3.992331046307508*^9, 3.992331262004277*^9, 
-   3.992331506870343*^9, 3.992338000152341*^9, 3.992342231606246*^9, 
-   3.992346750039569*^9, 3.99234709944118*^9, 3.992349354416512*^9, 
-   3.99235239761078*^9, 3.992353843600462*^9, 3.992361046133253*^9, 
-   3.992361411925992*^9, 3.9923616766375237`*^9, 3.9923645408653173`*^9, 
-   3.992365284756153*^9, 3.992367952642425*^9, 3.992368906858494*^9, 
-   3.992370307545744*^9, 3.992370479811438*^9, 3.9923705575936728`*^9, 
-   3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
-   3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
-   3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.9923836824573927`*^9},
- CellLabel->
-  "During evaluation of \
-In[1]:=",ExpressionUUID->"a278889e-5497-4743-b508-ebb61398ccea"],
-
-Cell[BoxData[
- FormBox[
-  InterpretationBox[
-   RowBox[{
-    StyleBox["\<\"To save your and our time, please check our \"\>", "Text",
-     StripOnInput->False], "\[InvisibleSpace]", 
-    StyleBox[
-     TagBox[
-      ButtonBox["FAQ",
-       BaseStyle->"Hyperlink",
-       ButtonData:>{
-         URL["https://github.com/FeynCalc/feyncalc/wiki/FAQ"], None},
-       ButtonNote->"https://github.com/FeynCalc/feyncalc/wiki"],
+       ButtonNote->"https://github.com/FeynCalc/feyncalc/discussions/"],
       DisplayForm], "Text",
      StripOnInput->False], "\[InvisibleSpace]", 
-    StyleBox["\<\" for answers to some common FeynCalc questions.\"\>", "Text",
-     StripOnInput->False]}],
-   SequenceForm[
-    Style["To save your and our time, please check our ", "Text"], 
-    Style[
-     DisplayForm[
-      ButtonBox["FAQ", ButtonData :> {
-         URL["https://github.com/FeynCalc/feyncalc/wiki/FAQ"], None}, 
-       BaseStyle -> "Hyperlink", ButtonNote -> 
-       "https://github.com/FeynCalc/feyncalc/wiki"]], "Text"], 
-    Style[" for answers to some common FeynCalc questions.", "Text"]],
-   Editable->False], TraditionalForm]], "Print",
- CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
-   3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
-   3.992329909233008*^9, 3.992331046307508*^9, 3.992331262004277*^9, 
-   3.992331506870343*^9, 3.992338000152341*^9, 3.992342231606246*^9, 
-   3.992346750039569*^9, 3.99234709944118*^9, 3.992349354416512*^9, 
-   3.99235239761078*^9, 3.992353843600462*^9, 3.992361046133253*^9, 
-   3.992361411925992*^9, 3.9923616766375237`*^9, 3.9923645408653173`*^9, 
-   3.992365284756153*^9, 3.992367952642425*^9, 3.992368906858494*^9, 
-   3.992370307545744*^9, 3.992370479811438*^9, 3.9923705575936728`*^9, 
-   3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
-   3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
-   3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.992383682461651*^9},
- CellLabel->
-  "During evaluation of \
-In[1]:=",ExpressionUUID->"d68f2049-2ef1-476e-aee2-a16094b4e3cd"],
-
-Cell[BoxData[
- FormBox[
-  InterpretationBox[
-   RowBox[{
-    StyleBox["\<\"See also the supplied \"\>", "Text",
+    StyleBox["\<\" and have a look at the supplied \"\>", "Text",
      StripOnInput->False], "\[InvisibleSpace]", 
     StyleBox[
      TagBox[
@@ -196,18 +97,55 @@ Cell[BoxData[
        Method->"Preemptive"],
       DisplayForm], "Text",
      StripOnInput->False], "\[InvisibleSpace]", 
-    StyleBox["\<\" If you use FeynCalc in your research, please cite\"\>", 
+    StyleBox["\<\" The PDF-version of the manual can be downloaded \"\>", 
      "Text",
+     StripOnInput->False], "\[InvisibleSpace]", 
+    StyleBox[
+     TagBox[
+      ButtonBox[
+       RowBox[{"here", "."}],
+       BaseStyle->"Hyperlink",
+       ButtonData:>{
+         URL[
+         "https://github.com/FeynCalc/feyncalc-manual/releases/download/dev-\
+manual/FeynCalcManual.pdf"], None},
+       ButtonNote->
+        "https://github.com/FeynCalc/feyncalc-manual/releases/download/dev-\
+manual/FeynCalcManual.pdf"],
+      DisplayForm], "Text",
      StripOnInput->False]}],
    SequenceForm[
-    Style["See also the supplied ", "Text"], 
+    Style["FeynCalc ", "Text", Bold], 
+    Style["10.2.1 (stable version). For help, use the ", "Text"], 
+    Style[
+     DisplayForm[
+      ButtonBox["online documentation,", ButtonData :> {
+         URL["https://feyncalc.github.io/referenceDev"], None}, BaseStyle -> 
+       "Hyperlink", ButtonNote -> "https://feyncalc.github.io/referenceDev"]],
+      "Text"], 
+    Style[" visit the ", "Text"], 
+    Style[
+     DisplayForm[
+      ButtonBox["forum", ButtonData :> {
+         URL["https://github.com/FeynCalc/feyncalc/discussions"], None}, 
+       BaseStyle -> "Hyperlink", ButtonNote -> 
+       "https://github.com/FeynCalc/feyncalc/discussions/"]], "Text"], 
+    Style[" and have a look at the supplied ", "Text"], 
     Style[
      DisplayForm[
       ButtonBox[
       "examples.", BaseStyle -> "Hyperlink", ButtonFunction :> SystemOpen[
          FileNameJoin[{FeynCalc`$FeynCalcDirectory, "Examples"}]], Evaluator -> 
        Automatic, Method -> "Preemptive"]], "Text"], 
-    Style[" If you use FeynCalc in your research, please cite", "Text"]],
+    Style[" The PDF-version of the manual can be downloaded ", "Text"], 
+    Style[
+     DisplayForm[
+      ButtonBox["here.", ButtonData :> {
+         URL[
+         "https://github.com/FeynCalc/feyncalc-manual/releases/download/dev-\
+manual/FeynCalcManual.pdf"], None}, BaseStyle -> "Hyperlink", ButtonNote -> 
+       "https://github.com/FeynCalc/feyncalc-manual/releases/download/dev-\
+manual/FeynCalcManual.pdf"]], "Text"]],
    Editable->False], TraditionalForm]], "Print",
  CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
    3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
@@ -221,15 +159,15 @@ Cell[BoxData[
    3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
    3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
    3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.992383682463339*^9},
+   3.9923836824573927`*^9, 3.992523372484971*^9},
  CellLabel->
   "During evaluation of \
-In[1]:=",ExpressionUUID->"a2f5dbad-6129-4546-9e72-f54a4469c375"],
+In[1]:=",ExpressionUUID->"e1bd8785-b4b3-4876-9951-7e1913a5f731"],
 
 Cell[BoxData[
  FormBox[
-  StyleBox["\<\" \[Bullet] V. Shtabovenko, R. Mertig and F. Orellana, \
-Comput.Phys.Commun. 256 (2020) 107478, arXiv:2001.04407.\"\>", "Text",
+  StyleBox["\<\"If you use FeynCalc in your research, please evaluate \
+FeynCalcHowToCite[] to learn how to cite this software.\"\>", "Text",
    StripOnInput->False], TraditionalForm]], "Print",
  CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
    3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
@@ -243,16 +181,18 @@ Comput.Phys.Commun. 256 (2020) 107478, arXiv:2001.04407.\"\>", "Text",
    3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
    3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
    3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.992383682464952*^9},
+   3.9923836824573927`*^9, 3.992523372489605*^9},
  CellLabel->
   "During evaluation of \
-In[1]:=",ExpressionUUID->"110912bc-ae2f-43bf-9192-60cd69e5b535"],
+In[1]:=",ExpressionUUID->"7014264a-1d33-462b-9c1e-99056fc86a93"],
 
 Cell[BoxData[
  FormBox[
-  StyleBox["\<\" \[Bullet] V. Shtabovenko, R. Mertig and F. Orellana, \
-Comput.Phys.Commun. 207 (2016) 432-444, arXiv:1601.01167.\"\>", "Text",
-   StripOnInput->False], TraditionalForm]], "Print",
+  StyleBox["\<\"Please keep in mind that the proper academic attribution of \
+our work is crucial to ensure the future development of this package!\"\>", 
+   "Text",
+   StripOnInput->False,
+   FontSlant->Italic], TraditionalForm]], "Print",
  CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
    3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
    3.992329909233008*^9, 3.992331046307508*^9, 3.992331262004277*^9, 
@@ -265,32 +205,10 @@ Comput.Phys.Commun. 207 (2016) 432-444, arXiv:1601.01167.\"\>", "Text",
    3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
    3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
    3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.992383682466702*^9},
+   3.9923836824573927`*^9, 3.992523372491763*^9},
  CellLabel->
   "During evaluation of \
-In[1]:=",ExpressionUUID->"f5a273c2-ca39-44a5-9e83-2a54a7c73343"],
-
-Cell[BoxData[
- FormBox[
-  StyleBox["\<\" \[Bullet] R. Mertig, M. B\[ODoubleDot]hm, and A. Denner, \
-Comput. Phys. Commun. 64 (1991) 345-359.\"\>", "Text",
-   StripOnInput->False], TraditionalForm]], "Print",
- CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
-   3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
-   3.992329909233008*^9, 3.992331046307508*^9, 3.992331262004277*^9, 
-   3.992331506870343*^9, 3.992338000152341*^9, 3.992342231606246*^9, 
-   3.992346750039569*^9, 3.99234709944118*^9, 3.992349354416512*^9, 
-   3.99235239761078*^9, 3.992353843600462*^9, 3.992361046133253*^9, 
-   3.992361411925992*^9, 3.9923616766375237`*^9, 3.9923645408653173`*^9, 
-   3.992365284756153*^9, 3.992367952642425*^9, 3.992368906858494*^9, 
-   3.992370307545744*^9, 3.992370479811438*^9, 3.9923705575936728`*^9, 
-   3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
-   3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
-   3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.992383682468038*^9},
- CellLabel->
-  "During evaluation of \
-In[1]:=",ExpressionUUID->"9007b809-9a8c-4a3b-8635-a1dd1acfcb98"],
+In[1]:=",ExpressionUUID->"f2d34d33-758f-421a-97a2-5a192089869d"],
 
 Cell[BoxData[
  FormBox[
@@ -299,7 +217,7 @@ Cell[BoxData[
     StyleBox["\<\"FeynArts \"\>", "Text",
      StripOnInput->False,
      FontWeight->Bold], "\[InvisibleSpace]", 
-    StyleBox["\<\"3.11 (25 Mar 2022) patched for use with FeynCalc, for \
+    StyleBox["\<\"3.12 (27 Mar 2025) patched for use with FeynCalc, for \
 documentation see the \"\>", "Text",
      StripOnInput->False], "\[InvisibleSpace]", 
     StyleBox[
@@ -329,7 +247,7 @@ documentation see the \"\>", "Text",
    SequenceForm[
     Style["FeynArts ", "Text", Bold], 
     Style[
-    "3.11 (25 Mar 2022) patched for use with FeynCalc, for documentation see \
+    "3.12 (27 Mar 2025) patched for use with FeynCalc, for documentation see \
 the ", "Text"], 
     Style[
      DisplayForm[
@@ -358,10 +276,10 @@ the ", "Text"],
    3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
    3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
    3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.9923836825332003`*^9},
+   3.9923836824573927`*^9, 3.992523372581129*^9},
  CellLabel->
   "During evaluation of \
-In[1]:=",ExpressionUUID->"e4de642b-235d-4272-aa98-332175f0eee0"],
+In[1]:=",ExpressionUUID->"7e846471-37b6-404f-bc64-97991c6a92c4"],
 
 Cell[BoxData[
  FormBox[
@@ -379,10 +297,10 @@ Cell[BoxData[
    3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
    3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
    3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.992383682535335*^9},
+   3.9923836824573927`*^9, 3.992523372583419*^9},
  CellLabel->
   "During evaluation of \
-In[1]:=",ExpressionUUID->"98c00bb3-4ca1-4367-81ac-06b7e9facd00"],
+In[1]:=",ExpressionUUID->"4a19f60f-5241-4391-9487-1d452b36d4ad"],
 
 Cell[BoxData[
  FormBox[
@@ -401,10 +319,10 @@ Cell[BoxData[
    3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
    3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
    3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.9923836825366*^9},
+   3.9923836824573927`*^9, 3.992523372585528*^9},
  CellLabel->
   "During evaluation of \
-In[1]:=",ExpressionUUID->"0296e64a-bb32-4e1e-a212-3d3e82a10939"],
+In[1]:=",ExpressionUUID->"52f49579-01e0-402c-a814-df04c7c9deeb"],
 
 Cell[BoxData[
  FormBox[
@@ -413,55 +331,31 @@ Cell[BoxData[
     StyleBox["\<\"FeynHelpers \"\>", "Text",
      StripOnInput->False,
      FontWeight->Bold], "\[InvisibleSpace]", 
-    StyleBox["\<\"1.3.0, for more information see the accompanying \"\>", 
-     "Text",
+    StyleBox["\<\"2.0.0 (). For help, use the \"\>", "Text",
      StripOnInput->False], "\[InvisibleSpace]", 
     StyleBox[
      TagBox[
       ButtonBox[
-       RowBox[{"publication", "."}],
+       RowBox[{
+        RowBox[{"online", " ", "documentation"}], ","}],
        BaseStyle->"Hyperlink",
-       ButtonFunction:>SystemOpen[
-         FileNameJoin[{
-          FeynCalc`$FeynHelpersDirectory, "Documentation", "1611.06793.pdf"}]],
-       Evaluator->Automatic,
-       Method->"Preemptive"],
+       ButtonData:>{
+         URL["https://feyncalc.github.io/referenceFeynHelpersDev"], None},
+       ButtonNote->"https://feyncalc.github.io/referenceFeynHelpersDev"],
       DisplayForm], "Text",
-     StripOnInput->False]}],
-   SequenceForm[
-    Style["FeynHelpers ", "Text", Bold], 
-    Style["1.3.0, for more information see the accompanying ", "Text"], 
-    Style[
-     DisplayForm[
-      ButtonBox[
-      "publication.", BaseStyle -> "Hyperlink", ButtonFunction :> SystemOpen[
-         FileNameJoin[{
-          FeynCalc`$FeynHelpersDirectory, "Documentation", 
-           "1611.06793.pdf"}]], Evaluator -> Automatic, Method -> 
-       "Preemptive"]], "Text"]],
-   Editable->False], TraditionalForm]], "Print",
- CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
-   3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
-   3.992329909233008*^9, 3.992331046307508*^9, 3.992331262004277*^9, 
-   3.992331506870343*^9, 3.992338000152341*^9, 3.992342231606246*^9, 
-   3.992346750039569*^9, 3.99234709944118*^9, 3.992349354416512*^9, 
-   3.99235239761078*^9, 3.992353843600462*^9, 3.992361046133253*^9, 
-   3.992361411925992*^9, 3.9923616766375237`*^9, 3.9923645408653173`*^9, 
-   3.992365284756153*^9, 3.992367952642425*^9, 3.992368906858494*^9, 
-   3.992370307545744*^9, 3.992370479811438*^9, 3.9923705575936728`*^9, 
-   3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
-   3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
-   3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.9923836825565033`*^9},
- CellLabel->
-  "During evaluation of \
-In[1]:=",ExpressionUUID->"a147efaf-f820-4432-b68d-3aaeaf76d563"],
-
-Cell[BoxData[
- FormBox[
-  InterpretationBox[
-   RowBox[{
-    StyleBox["\<\"Have a look at the supplied \"\>", "Text",
+     StripOnInput->False], "\[InvisibleSpace]", 
+    StyleBox["\<\" visit the \"\>", "Text",
+     StripOnInput->False], "\[InvisibleSpace]", 
+    StyleBox[
+     TagBox[
+      ButtonBox["forum",
+       BaseStyle->"Hyperlink",
+       ButtonData:>{
+         URL["https://github.com/FeynCalc/feyncalc/discussions"], None},
+       ButtonNote->"https://github.com/FeynCalc/feyncalc/discussions/"],
+      DisplayForm], "Text",
+     StripOnInput->False], "\[InvisibleSpace]", 
+    StyleBox["\<\" and have a look at the supplied \"\>", "Text",
      StripOnInput->False], "\[InvisibleSpace]", 
     StyleBox[
      TagBox[
@@ -474,18 +368,56 @@ Cell[BoxData[
        Method->"Preemptive"],
       DisplayForm], "Text",
      StripOnInput->False], "\[InvisibleSpace]", 
-    StyleBox["\<\" If you use FeynHelpers in your research, please cite\"\>", 
+    StyleBox["\<\" The PDF-version of the manual can be downloaded \"\>", 
      "Text",
+     StripOnInput->False], "\[InvisibleSpace]", 
+    StyleBox[
+     TagBox[
+      ButtonBox[
+       RowBox[{"here", "."}],
+       BaseStyle->"Hyperlink",
+       ButtonData:>{
+         URL[
+         "https://github.com/FeynCalc/feynhelpers-manual/releases/download/\
+dev-manual/FeynHelpersManual.pdf"], None},
+       ButtonNote->
+        "https://github.com/FeynCalc/feynhelpers-manual/releases/download/dev-\
+manual/FeynHelpersManual.pdf"],
+      DisplayForm], "Text",
      StripOnInput->False]}],
    SequenceForm[
-    Style["Have a look at the supplied ", "Text"], 
+    Style["FeynHelpers ", "Text", Bold], 
+    Style["2.0.0 (). For help, use the ", "Text"], 
+    Style[
+     DisplayForm[
+      ButtonBox["online documentation,", ButtonData :> {
+         URL["https://feyncalc.github.io/referenceFeynHelpersDev"], None}, 
+       BaseStyle -> "Hyperlink", ButtonNote -> 
+       "https://feyncalc.github.io/referenceFeynHelpersDev"]], "Text"], 
+    Style[" visit the ", "Text"], 
+    Style[
+     DisplayForm[
+      ButtonBox["forum", ButtonData :> {
+         URL["https://github.com/FeynCalc/feyncalc/discussions"], None}, 
+       BaseStyle -> "Hyperlink", ButtonNote -> 
+       "https://github.com/FeynCalc/feyncalc/discussions/"]], "Text"], 
+    Style[" and have a look at the supplied ", "Text"], 
     Style[
      DisplayForm[
       ButtonBox[
       "examples.", BaseStyle -> "Hyperlink", ButtonFunction :> SystemOpen[
          FileNameJoin[{FeynCalc`$FeynHelpersDirectory, "Examples"}]], 
        Evaluator -> Automatic, Method -> "Preemptive"]], "Text"], 
-    Style[" If you use FeynHelpers in your research, please cite", "Text"]],
+    Style[" The PDF-version of the manual can be downloaded ", "Text"], 
+    Style[
+     DisplayForm[
+      ButtonBox["here.", ButtonData :> {
+         URL[
+         "https://github.com/FeynCalc/feynhelpers-manual/releases/download/\
+dev-manual/FeynHelpersManual.pdf"], None}, BaseStyle -> "Hyperlink", 
+       ButtonNote -> 
+       "https://github.com/FeynCalc/feynhelpers-manual/releases/download/dev-\
+manual/FeynHelpersManual.pdf"]], "Text"]],
    Editable->False], TraditionalForm]], "Print",
  CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
    3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
@@ -499,16 +431,15 @@ Cell[BoxData[
    3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
    3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
    3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.992383682560877*^9},
+   3.9923836824573927`*^9, 3.9925233726972322`*^9},
  CellLabel->
   "During evaluation of \
-In[1]:=",ExpressionUUID->"0a94e8ff-1c9a-4a7a-9c3b-d947fa1b0af2"],
+In[1]:=",ExpressionUUID->"cc7233fa-708a-4e26-a4f7-8c47a3116d4d"],
 
 Cell[BoxData[
  FormBox[
-  StyleBox["\<\" \[Bullet] V. Shtabovenko, \\\"FeynHelpers: Connecting \
-FeynCalc to FIRE and Package-X\\\", Comput. Phys. Commun., 218, 48-65, 2017, \
-arXiv:1611.06793\"\>", "Text",
+  StyleBox["\<\" If you use FeynHelpers in your research, please evaluate \
+FeynHelpersHowToCite[] to learn how to cite this work.\"\>", "Text",
    StripOnInput->False], TraditionalForm]], "Print",
  CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
    3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
@@ -522,120 +453,10 @@ arXiv:1611.06793\"\>", "Text",
    3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
    3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
    3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.9923836825625353`*^9},
+   3.9923836824573927`*^9, 3.992523372699704*^9},
  CellLabel->
   "During evaluation of \
-In[1]:=",ExpressionUUID->"f66c6729-1055-48eb-b927-990f37f0a035"],
-
-Cell[BoxData[
- FormBox[
-  StyleBox["\<\"Furthermore, remember to cite the authors of the tools that \
-you are calling from FeynHelpers, which are\"\>", "Text",
-   StripOnInput->False], TraditionalForm]], "Print",
- CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
-   3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
-   3.992329909233008*^9, 3.992331046307508*^9, 3.992331262004277*^9, 
-   3.992331506870343*^9, 3.992338000152341*^9, 3.992342231606246*^9, 
-   3.992346750039569*^9, 3.99234709944118*^9, 3.992349354416512*^9, 
-   3.99235239761078*^9, 3.992353843600462*^9, 3.992361046133253*^9, 
-   3.992361411925992*^9, 3.9923616766375237`*^9, 3.9923645408653173`*^9, 
-   3.992365284756153*^9, 3.992367952642425*^9, 3.992368906858494*^9, 
-   3.992370307545744*^9, 3.992370479811438*^9, 3.9923705575936728`*^9, 
-   3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
-   3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
-   3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.992383682563879*^9},
- CellLabel->
-  "During evaluation of \
-In[1]:=",ExpressionUUID->"9603151b-95ea-4909-873e-209a5abc0839"],
-
-Cell[BoxData[
- FormBox[
-  InterpretationBox[
-   RowBox[{"\<\" \[Bullet] \"\>", "\[InvisibleSpace]", 
-    StyleBox[
-     TagBox[
-      ButtonBox["FIRE",
-       BaseStyle->"Hyperlink",
-       ButtonData:>{
-         URL["http://science.sander.su/FIRE.htm"], None},
-       ButtonNote->"http://science.sander.su/FIRE.htm"],
-      DisplayForm], "Text",
-     StripOnInput->False], "\[InvisibleSpace]", 
-    StyleBox["\<\" by A. Smirnov, if you are using the function \
-FIREBurn.\"\>", "Text",
-     StripOnInput->False]}],
-   SequenceForm[
-    Style[" \[Bullet] "], 
-    Style[
-     DisplayForm[
-      ButtonBox["FIRE", ButtonData :> {
-         URL["http://science.sander.su/FIRE.htm"], None}, BaseStyle -> 
-       "Hyperlink", ButtonNote -> "http://science.sander.su/FIRE.htm"]], 
-     "Text"], 
-    Style[" by A. Smirnov, if you are using the function FIREBurn.", "Text"]],
-   
-   Editable->False], TraditionalForm]], "Print",
- CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
-   3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
-   3.992329909233008*^9, 3.992331046307508*^9, 3.992331262004277*^9, 
-   3.992331506870343*^9, 3.992338000152341*^9, 3.992342231606246*^9, 
-   3.992346750039569*^9, 3.99234709944118*^9, 3.992349354416512*^9, 
-   3.99235239761078*^9, 3.992353843600462*^9, 3.992361046133253*^9, 
-   3.992361411925992*^9, 3.9923616766375237`*^9, 3.9923645408653173`*^9, 
-   3.992365284756153*^9, 3.992367952642425*^9, 3.992368906858494*^9, 
-   3.992370307545744*^9, 3.992370479811438*^9, 3.9923705575936728`*^9, 
-   3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
-   3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
-   3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.9923836825658293`*^9},
- CellLabel->
-  "During evaluation of \
-In[1]:=",ExpressionUUID->"bc11888e-5445-4ca4-a51c-aa500c73bf16"],
-
-Cell[BoxData[
- FormBox[
-  InterpretationBox[
-   RowBox[{"\<\" \[Bullet] \"\>", "\[InvisibleSpace]", 
-    StyleBox[
-     TagBox[
-      ButtonBox[
-       RowBox[{"Package", "-", "X"}],
-       BaseStyle->"Hyperlink",
-       ButtonData:>{
-         URL["https://packagex.hepforge.org"], None},
-       ButtonNote->"https://packagex.hepforge.org"],
-      DisplayForm], "Text",
-     StripOnInput->False], "\[InvisibleSpace]", 
-    StyleBox["\<\" by H. Patel, if you are using the function \
-PaXEvaluate.\"\>", "Text",
-     StripOnInput->False]}],
-   SequenceForm[
-    Style[" \[Bullet] "], 
-    Style[
-     DisplayForm[
-      ButtonBox["Package-X", ButtonData :> {
-         URL["https://packagex.hepforge.org"], None}, BaseStyle -> 
-       "Hyperlink", ButtonNote -> "https://packagex.hepforge.org"]], "Text"], 
-    
-    Style[" by H. Patel, if you are using the function PaXEvaluate.", "Text"]],
-   Editable->False], TraditionalForm]], "Print",
- CellChangeTimes->{{3.992328118853777*^9, 3.992328146548099*^9}, 
-   3.9923292585329657`*^9, 3.992329311954864*^9, 3.9923297890050287`*^9, 
-   3.992329909233008*^9, 3.992331046307508*^9, 3.992331262004277*^9, 
-   3.992331506870343*^9, 3.992338000152341*^9, 3.992342231606246*^9, 
-   3.992346750039569*^9, 3.99234709944118*^9, 3.992349354416512*^9, 
-   3.99235239761078*^9, 3.992353843600462*^9, 3.992361046133253*^9, 
-   3.992361411925992*^9, 3.9923616766375237`*^9, 3.9923645408653173`*^9, 
-   3.992365284756153*^9, 3.992367952642425*^9, 3.992368906858494*^9, 
-   3.992370307545744*^9, 3.992370479811438*^9, 3.9923705575936728`*^9, 
-   3.992375656521102*^9, 3.992375909629548*^9, 3.992376384142276*^9, 
-   3.992382146981119*^9, 3.9923824059590597`*^9, 3.9923824727036057`*^9, 
-   3.992382674012082*^9, 3.992382743188311*^9, 3.992382992704761*^9, 
-   3.9923836825672617`*^9},
- CellLabel->
-  "During evaluation of \
-In[1]:=",ExpressionUUID->"5c653a7a-4233-43a8-a989-a9b9dca5643e"]
+In[1]:=",ExpressionUUID->"0ced01a4-798d-4580-a4f2-7afdbdc21445"]
 }, Open  ]]
 }, Open  ]],
 
@@ -1493,10 +1314,11 @@ f0TEkJxcZwkDkh9yKIvX9k9yYWp7XpHfj3j+ecF3JcTP4+VFetTLvKz9h8v/
   3.992370481537488*^9, 3.992370559333705*^9, 3.9923756572413588`*^9, 
   3.9923759103835773`*^9, 3.992376384922304*^9, 3.992382147829474*^9, 
   3.992382406735321*^9, 3.9923824735157137`*^9, 3.9923826747582006`*^9, 
-  3.992382743940661*^9, 3.992382993453473*^9, 3.992383683204908*^9},
+  3.992382743940661*^9, 3.992382993453473*^9, 3.992383683204908*^9, 
+  3.9925233732346077`*^9},
  CellLabel->
   "During evaluation of \
-In[13]:=",ExpressionUUID->"940207bc-82ef-4803-926f-39cd3f6f731f"]
+In[13]:=",ExpressionUUID->"f66a456a-3bba-46fa-85d7-ee12e93403a3"]
 }, Open  ]]
 }, Open  ]],
 
@@ -1522,15 +1344,15 @@ Cell[BoxData[{
         RowBox[{"SUNT", "\[Rule]", "FASUNT"}], "}"}]}], ",", 
       RowBox[{"IncomingMomenta", "\[Rule]", 
        RowBox[{"{", 
-        RowBox[{"p3", ",", "p4"}], "}"}]}], ",", 
+        RowBox[{
+         RowBox[{"-", "p3"}], ",", 
+         RowBox[{"-", "p4"}]}], "}"}]}], ",", 
       RowBox[{"LorentzIndexNames", "\[Rule]", 
        RowBox[{"{", 
         RowBox[{"\[Mu]", ",", "\[Nu]"}], "}"}]}], ",", 
       RowBox[{"OutgoingMomenta", "\[Rule]", 
        RowBox[{"{", 
-        RowBox[{
-         RowBox[{"-", "p2"}], ",", 
-         RowBox[{"-", "p1"}]}], "}"}]}], ",", 
+        RowBox[{"p2", ",", "p1"}], "}"}]}], ",", 
       RowBox[{"LoopMomenta", "\[Rule]", 
        RowBox[{"{", "q", "}"}]}], ",", 
       RowBox[{"SUNIndexNames", "\[Rule]", 
@@ -1569,7 +1391,8 @@ Cell[BoxData[{
    3.992084820818725*^9, {3.992084883476726*^9, 3.992084901989337*^9}, {
    3.99232971612951*^9, 3.9923297201115513`*^9}, {3.9923517289158087`*^9, 
    3.992351732308404*^9}, {3.992364656955619*^9, 3.992364663098728*^9}, {
-   3.992365364092038*^9, 3.992365369202817*^9}},
+   3.992365364092038*^9, 3.992365369202817*^9}, {3.99252334554335*^9, 
+   3.992523350743431*^9}},
  CellLabel->"In[15]:=",ExpressionUUID->"24523840-5705-48f0-8297-09da44c59c03"],
 
 Cell["Evaluate Loop integrals:", "Text",
@@ -2410,10 +2233,10 @@ Cell[BoxData[
    3.99237567313146*^9, 3.9923759257314672`*^9, 3.992376400012568*^9, 
    3.992382163271831*^9, 3.992382422043749*^9, 3.992382488654014*^9, 
    3.992382690019629*^9, 3.992382759074181*^9, 3.99238300867947*^9, 
-   3.992383698559126*^9},
+   3.992383698559126*^9, 3.992523387088273*^9},
  CellLabel->
-  "Out[24]//MatrixForm=",ExpressionUUID->"2156ba5c-a8b9-4828-ba23-\
-a02b17c52e20"]
+  "Out[24]//MatrixForm=",ExpressionUUID->"27e974df-ec5e-4252-ae3b-\
+5b19d698d784"]
 }, Open  ]]
 }, Open  ]],
 
@@ -2502,35 +2325,27 @@ Cell[BoxData[
     TagBox[GridBox[{
        {
         FormBox[
-         TagBox[
-          FormBox[
-           RowBox[{
-            SubscriptBox["\<\"D\"\>", "\<\"0\"\>"], "(", 
-            RowBox[{
-            "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u",
-              ",", 
-             SuperscriptBox["mST", "2"], ",", 
-             SuperscriptBox["mChi", "2"], ",", 
-             SuperscriptBox["mST", "2"], ",", 
-             SuperscriptBox["mST", "2"]}], ")"}],
-           TraditionalForm],
-          HoldForm],
+         RowBox[{
+          SubscriptBox["\<\"D\"\>", "\<\"0\"\>"], "(", 
+          RowBox[{
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
+           ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mChi", "2"], ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mST", "2"]}], ")"}],
          TraditionalForm]},
        {
         FormBox[
-         TagBox[
-          FormBox[
-           RowBox[{
-            SubscriptBox["\<\"D\"\>", "\<\"0\"\>"], "(", 
-            RowBox[{
-            "p1sq", ",", "p2sq", ",", "p4sq", ",", "p3sq", ",", "s", ",", "t",
-              ",", 
-             SuperscriptBox["mST", "2"], ",", 
-             SuperscriptBox["mChi", "2"], ",", 
-             SuperscriptBox["mST", "2"], ",", 
-             SuperscriptBox["mST", "2"]}], ")"}],
-           TraditionalForm],
-          HoldForm],
+         RowBox[{
+          SubscriptBox["\<\"D\"\>", "\<\"0\"\>"], "(", 
+          RowBox[{
+          "p1sq", ",", "p2sq", ",", "p4sq", ",", "p3sq", ",", "s", ",", "t", 
+           ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mChi", "2"], ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mST", "2"]}], ")"}],
          TraditionalForm]},
        {
         FormBox[
@@ -2544,9 +2359,18 @@ Cell[BoxData[
        {
         FormBox[
          RowBox[{
+          SubscriptBox["\<\"C\"\>", "\<\"1\"\>"], "(", 
+          RowBox[{"p2sq", ",", "s", ",", "p1sq", ",", 
+           SuperscriptBox["mChi", "2"], ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mST", "2"]}], ")"}],
+         TraditionalForm]},
+       {
+        FormBox[
+         RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"1\"\>"], "(", 
           RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2558,7 +2382,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"1\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p1sq", ",", "p2sq", ",", "p4sq", ",", "p3sq", ",", "s", ",", "t", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2568,8 +2392,23 @@ Cell[BoxData[
        {
         FormBox[
          RowBox[{
-          SubscriptBox["\<\"C\"\>", "\<\"2\"\>"], "(", 
-          RowBox[{"p1sq", ",", "s", ",", "p2sq", ",", 
+          SubscriptBox["\<\"D\"\>", "\<\"2\"\>"], "(", 
+          RowBox[{
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
+           ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mChi", "2"], ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mST", "2"]}], ")"}],
+         TraditionalForm]},
+       {
+        FormBox[
+         RowBox[{
+          SubscriptBox["\<\"D\"\>", "\<\"2\"\>"], "(", 
+          RowBox[{
+          "p1sq", ",", "t", ",", "p4sq", ",", "s", ",", "p3sq", ",", "p2sq", 
+           ",", 
+           SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mST", "2"]}], ")"}],
@@ -2591,31 +2430,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"2\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
-           ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mChi", "2"], ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mST", "2"]}], ")"}],
-         TraditionalForm]},
-       {
-        FormBox[
-         RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"3\"\>"], "(", 
-          RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
-           ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mChi", "2"], ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mST", "2"]}], ")"}],
-         TraditionalForm]},
-       {
-        FormBox[
-         RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"3\"\>"], "(", 
-          RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p2sq", ",", "p1sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "t", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2627,7 +2442,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"00\"\>"], "(", 
           RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2639,7 +2454,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"00\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p1sq", ",", "p2sq", ",", "p4sq", ",", "p3sq", ",", "s", ",", "t", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2651,7 +2466,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"11\"\>"], "(", 
           RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2663,7 +2478,31 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"11\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p1sq", ",", "p2sq", ",", "p4sq", ",", "p3sq", ",", "s", ",", "t", 
+           ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mChi", "2"], ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mST", "2"]}], ")"}],
+         TraditionalForm]},
+       {
+        FormBox[
+         RowBox[{
+          SubscriptBox["\<\"D\"\>", "\<\"12\"\>"], "(", 
+          RowBox[{
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
+           ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mChi", "2"], ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mST", "2"]}], ")"}],
+         TraditionalForm]},
+       {
+        FormBox[
+         RowBox[{
+          SubscriptBox["\<\"D\"\>", "\<\"12\"\>"], "(", 
+          RowBox[{
+          "p1sq", ",", "t", ",", "p4sq", ",", "s", ",", "p3sq", ",", "p2sq", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2687,7 +2526,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"12\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p2sq", ",", "p1sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "t", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2697,9 +2536,9 @@ Cell[BoxData[
        {
         FormBox[
          RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"13\"\>"], "(", 
+          SubscriptBox["\<\"D\"\>", "\<\"22\"\>"], "(", 
           RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2709,9 +2548,9 @@ Cell[BoxData[
        {
         FormBox[
          RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"13\"\>"], "(", 
+          SubscriptBox["\<\"D\"\>", "\<\"22\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p1sq", ",", "t", ",", "p4sq", ",", "s", ",", "p3sq", ",", "p2sq", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2735,7 +2574,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"22\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p2sq", ",", "p1sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "t", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2747,7 +2586,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"23\"\>"], "(", 
           RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2759,31 +2598,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"23\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
-           ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mChi", "2"], ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mST", "2"]}], ")"}],
-         TraditionalForm]},
-       {
-        FormBox[
-         RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"33\"\>"], "(", 
-          RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
-           ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mChi", "2"], ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mST", "2"]}], ")"}],
-         TraditionalForm]},
-       {
-        FormBox[
-         RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"33\"\>"], "(", 
-          RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p2sq", ",", "p1sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "t", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2795,7 +2610,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"001\"\>"], "(", 
           RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2807,7 +2622,31 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"001\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p1sq", ",", "p2sq", ",", "p4sq", ",", "p3sq", ",", "s", ",", "t", 
+           ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mChi", "2"], ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mST", "2"]}], ")"}],
+         TraditionalForm]},
+       {
+        FormBox[
+         RowBox[{
+          SubscriptBox["\<\"D\"\>", "\<\"002\"\>"], "(", 
+          RowBox[{
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
+           ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mChi", "2"], ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mST", "2"]}], ")"}],
+         TraditionalForm]},
+       {
+        FormBox[
+         RowBox[{
+          SubscriptBox["\<\"D\"\>", "\<\"002\"\>"], "(", 
+          RowBox[{
+          "p1sq", ",", "t", ",", "p4sq", ",", "s", ",", "p3sq", ",", "p2sq", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2831,31 +2670,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"002\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
-           ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mChi", "2"], ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mST", "2"]}], ")"}],
-         TraditionalForm]},
-       {
-        FormBox[
-         RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"003\"\>"], "(", 
-          RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
-           ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mChi", "2"], ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mST", "2"]}], ")"}],
-         TraditionalForm]},
-       {
-        FormBox[
-         RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"003\"\>"], "(", 
-          RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p2sq", ",", "p1sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "t", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2867,7 +2682,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"111\"\>"], "(", 
           RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2879,7 +2694,31 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"111\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p1sq", ",", "p2sq", ",", "p4sq", ",", "p3sq", ",", "s", ",", "t", 
+           ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mChi", "2"], ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mST", "2"]}], ")"}],
+         TraditionalForm]},
+       {
+        FormBox[
+         RowBox[{
+          SubscriptBox["\<\"D\"\>", "\<\"112\"\>"], "(", 
+          RowBox[{
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
+           ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mChi", "2"], ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mST", "2"]}], ")"}],
+         TraditionalForm]},
+       {
+        FormBox[
+         RowBox[{
+          SubscriptBox["\<\"D\"\>", "\<\"112\"\>"], "(", 
+          RowBox[{
+          "p1sq", ",", "t", ",", "p4sq", ",", "s", ",", "p3sq", ",", "p2sq", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2903,7 +2742,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"112\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p2sq", ",", "p1sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "t", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2913,9 +2752,9 @@ Cell[BoxData[
        {
         FormBox[
          RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"113\"\>"], "(", 
+          SubscriptBox["\<\"D\"\>", "\<\"122\"\>"], "(", 
           RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2925,9 +2764,9 @@ Cell[BoxData[
        {
         FormBox[
          RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"113\"\>"], "(", 
+          SubscriptBox["\<\"D\"\>", "\<\"122\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p1sq", ",", "t", ",", "p4sq", ",", "s", ",", "p3sq", ",", "p2sq", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2951,7 +2790,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"122\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p2sq", ",", "p1sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "t", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2963,7 +2802,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"123\"\>"], "(", 
           RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2975,7 +2814,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"123\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p2sq", ",", "p1sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "t", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2985,9 +2824,9 @@ Cell[BoxData[
        {
         FormBox[
          RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"133\"\>"], "(", 
+          SubscriptBox["\<\"D\"\>", "\<\"222\"\>"], "(", 
           RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -2997,9 +2836,9 @@ Cell[BoxData[
        {
         FormBox[
          RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"133\"\>"], "(", 
+          SubscriptBox["\<\"D\"\>", "\<\"222\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p1sq", ",", "t", ",", "p4sq", ",", "s", ",", "p3sq", ",", "p2sq", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -3023,7 +2862,19 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"222\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p2sq", ",", "p1sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "t", 
+           ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mChi", "2"], ",", 
+           SuperscriptBox["mST", "2"], ",", 
+           SuperscriptBox["mST", "2"]}], ")"}],
+         TraditionalForm]},
+       {
+        FormBox[
+         RowBox[{
+          SubscriptBox["\<\"D\"\>", "\<\"223\"\>"], "(", 
+          RowBox[{
+          "p1sq", ",", "p2sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "u", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -3047,7 +2898,7 @@ Cell[BoxData[
          RowBox[{
           SubscriptBox["\<\"D\"\>", "\<\"223\"\>"], "(", 
           RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
+          "p2sq", ",", "p1sq", ",", "p3sq", ",", "p4sq", ",", "s", ",", "t", 
            ",", 
            SuperscriptBox["mST", "2"], ",", 
            SuperscriptBox["mChi", "2"], ",", 
@@ -3057,43 +2908,7 @@ Cell[BoxData[
        {
         FormBox[
          RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"233\"\>"], "(", 
-          RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
-           ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mChi", "2"], ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mST", "2"]}], ")"}],
-         TraditionalForm]},
-       {
-        FormBox[
-         RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"233\"\>"], "(", 
-          RowBox[{
-          "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
-           ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mChi", "2"], ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mST", "2"]}], ")"}],
-         TraditionalForm]},
-       {
-        FormBox[
-         RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"333\"\>"], "(", 
-          RowBox[{
-          "p1sq", ",", "u", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p2sq", 
-           ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mChi", "2"], ",", 
-           SuperscriptBox["mST", "2"], ",", 
-           SuperscriptBox["mST", "2"]}], ")"}],
-         TraditionalForm]},
-       {
-        FormBox[
-         RowBox[{
-          SubscriptBox["\<\"D\"\>", "\<\"333\"\>"], "(", 
+          SubscriptBox["\<\"D\"\>", "\<\"223\"\>"], "(", 
           RowBox[{
           "p2sq", ",", "t", ",", "p3sq", ",", "s", ",", "p4sq", ",", "p1sq", 
            ",", 
@@ -3125,10 +2940,11 @@ Cell[BoxData[
    3.992370327830003*^9, 3.992370590399231*^9, 3.992375677744925*^9, 
    3.992375930332389*^9, 3.992376404536784*^9, 3.99238216788571*^9, 
    3.992382426566368*^9, 3.992382493148715*^9, 3.9923826945733757`*^9, 
-   3.992382763602377*^9, 3.9923830133217783`*^9, 3.99238370309527*^9},
+   3.992382763602377*^9, 3.9923830133217783`*^9, 3.99238370309527*^9, 
+   3.9925233911203003`*^9},
  CellLabel->
-  "Out[30]//MatrixForm=",ExpressionUUID->"497b821e-dfac-4195-9e1b-\
-0f07f6e8e9a7"]
+  "Out[30]//MatrixForm=",ExpressionUUID->"f09f32ac-9755-44ec-91fa-\
+3da9ee2426c7"]
 }, Open  ]]
 }, Open  ]],
 
@@ -3340,8 +3156,8 @@ Cell[BoxData[
    3.992375678534326*^9, 3.9923759310930758`*^9, 3.9923764052930307`*^9, 
    3.992382168653715*^9, 3.992382427335011*^9, 3.992382493910335*^9, 
    3.992382695337719*^9, 3.992382764358987*^9, 3.9923830140821667`*^9, 
-   3.99238370387992*^9},
- CellLabel->"Out[34]=",ExpressionUUID->"e823f508-4cc5-494f-a685-12583671fd64"],
+   3.99238370387992*^9, 3.9925233917350397`*^9},
+ CellLabel->"Out[34]=",ExpressionUUID->"a2e83d99-9e6b-4571-87c1-f92b7af99c8d"],
 
 Cell[BoxData[
  FormBox[
@@ -3423,8 +3239,8 @@ Cell[BoxData[
    3.992375678534326*^9, 3.9923759310930758`*^9, 3.9923764052930307`*^9, 
    3.992382168653715*^9, 3.992382427335011*^9, 3.992382493910335*^9, 
    3.992382695337719*^9, 3.992382764358987*^9, 3.9923830140821667`*^9, 
-   3.992383703885344*^9},
- CellLabel->"Out[36]=",ExpressionUUID->"23cbc331-5514-4df6-a954-16f9958c00e6"],
+   3.99238370387992*^9, 3.9925233917406282`*^9},
+ CellLabel->"Out[36]=",ExpressionUUID->"8431c266-88c3-425a-aa29-0aac4069bd7e"],
 
 Cell[BoxData[
  FormBox[
@@ -3484,8 +3300,8 @@ Cell[BoxData[
    3.992375678534326*^9, 3.9923759310930758`*^9, 3.9923764052930307`*^9, 
    3.992382168653715*^9, 3.992382427335011*^9, 3.992382493910335*^9, 
    3.992382695337719*^9, 3.992382764358987*^9, 3.9923830140821667`*^9, 
-   3.9923837038918343`*^9},
- CellLabel->"Out[37]=",ExpressionUUID->"fac772c1-39c2-49e8-9331-0ef3f4757133"]
+   3.99238370387992*^9, 3.992523391744974*^9},
+ CellLabel->"Out[37]=",ExpressionUUID->"93b1f1d9-82cf-4495-879e-47d175e7cb30"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3673,8 +3489,8 @@ Cell[BoxData[
    3.9923705939905777`*^9, 3.99237567994313*^9, 3.992375932481139*^9, 
    3.992376406705103*^9, 3.992382170076605*^9, 3.992382428735469*^9, 
    3.992382495302926*^9, 3.9923826967408752`*^9, 3.992382765739109*^9, 
-   3.992383015490305*^9, 3.992383705293486*^9},
- CellLabel->"Out[44]=",ExpressionUUID->"17688128-f2aa-49a3-8ad3-4c27964c038e"]
+   3.992383015490305*^9, 3.992383705293486*^9, 3.992523392820035*^9},
+ CellLabel->"Out[44]=",ExpressionUUID->"a660c4f4-1160-460e-9cb7-75323f9d07eb"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -4034,111 +3850,98 @@ Cell[BoxData[
         TraditionalForm],
        TraditionalForm]]}], ",", 
     RowBox[{
-     RowBox[{"Dcoll", "(", 
-      RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", 
-       SuperscriptBox[
-        FormBox[
-         FormBox["p1",
-          TraditionalForm],
-         TraditionalForm], "2"], ",", 
-       SuperscriptBox[
-        FormBox[
-         FormBox["p2",
-          TraditionalForm],
-         TraditionalForm], "2"], ",", 
-       SuperscriptBox[
-        FormBox[
-         FormBox["p3",
-          TraditionalForm],
-         TraditionalForm], "2"], ",", 
-       SuperscriptBox[
-        FormBox[
-         FormBox["p4",
-          TraditionalForm],
-         TraditionalForm], "2"], ",", 
-       RowBox[{
+     RowBox[{"-", 
+      RowBox[{"Dcoll", "(", 
+       RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p1",
            TraditionalForm],
-          TraditionalForm], "2"], "+", 
-        RowBox[{"2", " ", 
-         RowBox[{"(", 
-          RowBox[{
-           FormBox[
-            FormBox["p1",
-             TraditionalForm],
-            TraditionalForm], 
-           FormBox["\<\"\[CenterDot]\"\>",
-            TraditionalForm], 
-           FormBox[
-            FormBox["p2",
-             TraditionalForm],
-            TraditionalForm]}], ")"}]}], "+", 
+          TraditionalForm], "2"], ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p2",
            TraditionalForm],
-          TraditionalForm], "2"]}], ",", 
-       RowBox[{
+          TraditionalForm], "2"], ",", 
         SuperscriptBox[
          FormBox[
-          FormBox["p1",
+          FormBox["p3",
            TraditionalForm],
-          TraditionalForm], "2"], "+", 
-        RowBox[{"2", " ", 
-         RowBox[{"(", 
-          RowBox[{
-           FormBox[
-            FormBox["p1",
-             TraditionalForm],
-            TraditionalForm], 
-           FormBox["\<\"\[CenterDot]\"\>",
-            TraditionalForm], 
-           FormBox[
-            FormBox["p4",
-             TraditionalForm],
-            TraditionalForm]}], ")"}]}], "+", 
+          TraditionalForm], "2"], ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p4",
            TraditionalForm],
-          TraditionalForm], "2"]}]}], ")"}], "+", 
+          TraditionalForm], "2"], ",", 
+        RowBox[{
+         SuperscriptBox[
+          FormBox[
+           FormBox["p1",
+            TraditionalForm],
+           TraditionalForm], "2"], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            FormBox[
+             FormBox["p1",
+              TraditionalForm],
+             TraditionalForm], 
+            FormBox["\<\"\[CenterDot]\"\>",
+             TraditionalForm], 
+            FormBox[
+             FormBox["p2",
+              TraditionalForm],
+             TraditionalForm]}], ")"}]}], "+", 
+         SuperscriptBox[
+          FormBox[
+           FormBox["p2",
+            TraditionalForm],
+           TraditionalForm], "2"]}], ",", 
+        RowBox[{
+         SuperscriptBox[
+          FormBox[
+           FormBox["p1",
+            TraditionalForm],
+           TraditionalForm], "2"], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            FormBox[
+             FormBox["p1",
+              TraditionalForm],
+             TraditionalForm], 
+            FormBox["\<\"\[CenterDot]\"\>",
+             TraditionalForm], 
+            FormBox[
+             FormBox["p4",
+              TraditionalForm],
+             TraditionalForm]}], ")"}]}], "+", 
+         SuperscriptBox[
+          FormBox[
+           FormBox["p4",
+            TraditionalForm],
+           TraditionalForm], "2"]}]}], ")"}]}], "-", 
      RowBox[{"3", " ", 
       RowBox[{"Dcoll", "(", 
-       RowBox[{"0", ",", "0", ",", "0", ",", "1", ",", 
+       RowBox[{"0", ",", "0", ",", "1", ",", "0", ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p1",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
-        RowBox[{
-         SuperscriptBox[
-          FormBox[
-           FormBox["p1",
-            TraditionalForm],
-           TraditionalForm], "2"], "+", 
-         RowBox[{"2", " ", 
-          RowBox[{"(", 
-           RowBox[{
-            FormBox[
-             FormBox["p1",
-              TraditionalForm],
-             TraditionalForm], 
-            FormBox["\<\"\[CenterDot]\"\>",
-             TraditionalForm], 
-            FormBox[
-             FormBox["p4",
-              TraditionalForm],
-             TraditionalForm]}], ")"}]}], "+", 
-         SuperscriptBox[
-          FormBox[
-           FormBox["p4",
-            TraditionalForm],
-           TraditionalForm], "2"]}], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p2",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p3",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p4",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
         RowBox[{
@@ -4165,24 +3968,6 @@ Cell[BoxData[
            FormBox["p2",
             TraditionalForm],
            TraditionalForm], "2"]}], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p4",
-           TraditionalForm],
-          TraditionalForm], "2"], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p2",
-           TraditionalForm],
-          TraditionalForm], "2"]}], ")"}]}], "+", 
-     RowBox[{"2", " ", 
-      RowBox[{"Dcoll", "(", 
-       RowBox[{"0", ",", "0", ",", "0", ",", "2", ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p1",
-           TraditionalForm],
-          TraditionalForm], "2"], ",", 
         RowBox[{
          SuperscriptBox[
           FormBox[
@@ -4206,46 +3991,7 @@ Cell[BoxData[
           FormBox[
            FormBox["p4",
             TraditionalForm],
-           TraditionalForm], "2"]}], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p3",
-           TraditionalForm],
-          TraditionalForm], "2"], ",", 
-        RowBox[{
-         SuperscriptBox[
-          FormBox[
-           FormBox["p1",
-            TraditionalForm],
-           TraditionalForm], "2"], "+", 
-         RowBox[{"2", " ", 
-          RowBox[{"(", 
-           RowBox[{
-            FormBox[
-             FormBox["p1",
-              TraditionalForm],
-             TraditionalForm], 
-            FormBox["\<\"\[CenterDot]\"\>",
-             TraditionalForm], 
-            FormBox[
-             FormBox["p2",
-              TraditionalForm],
-             TraditionalForm]}], ")"}]}], "+", 
-         SuperscriptBox[
-          FormBox[
-           FormBox["p2",
-            TraditionalForm],
-           TraditionalForm], "2"]}], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p4",
-           TraditionalForm],
-          TraditionalForm], "2"], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p2",
-           TraditionalForm],
-          TraditionalForm], "2"]}], ")"}]}], "+", 
+           TraditionalForm], "2"]}]}], ")"}]}], "-", 
      RowBox[{"2", " ", 
       RowBox[{"Dcoll", "(", 
        RowBox[{"0", ",", "0", ",", "1", ",", "0", ",", 
@@ -4316,7 +4062,7 @@ Cell[BoxData[
          FormBox[
           FormBox["p2",
            TraditionalForm],
-          TraditionalForm], "2"]}], ")"}]}], "+", 
+          TraditionalForm], "2"]}], ")"}]}], "-", 
      RowBox[{"6", " ", 
       RowBox[{"Dcoll", "(", 
        RowBox[{"0", ",", "0", ",", "1", ",", "1", ",", 
@@ -4325,33 +4071,19 @@ Cell[BoxData[
           FormBox["p1",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
-        RowBox[{
-         SuperscriptBox[
-          FormBox[
-           FormBox["p1",
-            TraditionalForm],
-           TraditionalForm], "2"], "+", 
-         RowBox[{"2", " ", 
-          RowBox[{"(", 
-           RowBox[{
-            FormBox[
-             FormBox["p1",
-              TraditionalForm],
-             TraditionalForm], 
-            FormBox["\<\"\[CenterDot]\"\>",
-             TraditionalForm], 
-            FormBox[
-             FormBox["p4",
-              TraditionalForm],
-             TraditionalForm]}], ")"}]}], "+", 
-         SuperscriptBox[
-          FormBox[
-           FormBox["p4",
-            TraditionalForm],
-           TraditionalForm], "2"]}], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p2",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p3",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p4",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
         RowBox[{
@@ -4378,51 +4110,51 @@ Cell[BoxData[
            FormBox["p2",
             TraditionalForm],
            TraditionalForm], "2"]}], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p4",
-           TraditionalForm],
-          TraditionalForm], "2"], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p2",
-           TraditionalForm],
-          TraditionalForm], "2"]}], ")"}]}], "+", 
-     RowBox[{"4", " ", 
+        RowBox[{
+         SuperscriptBox[
+          FormBox[
+           FormBox["p1",
+            TraditionalForm],
+           TraditionalForm], "2"], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            FormBox[
+             FormBox["p1",
+              TraditionalForm],
+             TraditionalForm], 
+            FormBox["\<\"\[CenterDot]\"\>",
+             TraditionalForm], 
+            FormBox[
+             FormBox["p4",
+              TraditionalForm],
+             TraditionalForm]}], ")"}]}], "+", 
+         SuperscriptBox[
+          FormBox[
+           FormBox["p4",
+            TraditionalForm],
+           TraditionalForm], "2"]}]}], ")"}]}], "-", 
+     RowBox[{"2", " ", 
       RowBox[{"Dcoll", "(", 
-       RowBox[{"0", ",", "0", ",", "1", ",", "2", ",", 
+       RowBox[{"0", ",", "0", ",", "2", ",", "0", ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p1",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
-        RowBox[{
-         SuperscriptBox[
-          FormBox[
-           FormBox["p1",
-            TraditionalForm],
-           TraditionalForm], "2"], "+", 
-         RowBox[{"2", " ", 
-          RowBox[{"(", 
-           RowBox[{
-            FormBox[
-             FormBox["p1",
-              TraditionalForm],
-             TraditionalForm], 
-            FormBox["\<\"\[CenterDot]\"\>",
-             TraditionalForm], 
-            FormBox[
-             FormBox["p4",
-              TraditionalForm],
-             TraditionalForm]}], ")"}]}], "+", 
-         SuperscriptBox[
-          FormBox[
-           FormBox["p4",
-            TraditionalForm],
-           TraditionalForm], "2"]}], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p2",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p3",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p4",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
         RowBox[{
@@ -4449,16 +4181,101 @@ Cell[BoxData[
            FormBox["p2",
             TraditionalForm],
            TraditionalForm], "2"]}], ",", 
+        RowBox[{
+         SuperscriptBox[
+          FormBox[
+           FormBox["p1",
+            TraditionalForm],
+           TraditionalForm], "2"], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            FormBox[
+             FormBox["p1",
+              TraditionalForm],
+             TraditionalForm], 
+            FormBox["\<\"\[CenterDot]\"\>",
+             TraditionalForm], 
+            FormBox[
+             FormBox["p4",
+              TraditionalForm],
+             TraditionalForm]}], ")"}]}], "+", 
+         SuperscriptBox[
+          FormBox[
+           FormBox["p4",
+            TraditionalForm],
+           TraditionalForm], "2"]}]}], ")"}]}], "-", 
+     RowBox[{"4", " ", 
+      RowBox[{"Dcoll", "(", 
+       RowBox[{"0", ",", "0", ",", "2", ",", "1", ",", 
         SuperscriptBox[
          FormBox[
-          FormBox["p4",
+          FormBox["p1",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p2",
            TraditionalForm],
-          TraditionalForm], "2"]}], ")"}]}], "+", 
+          TraditionalForm], "2"], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p3",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p4",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
+        RowBox[{
+         SuperscriptBox[
+          FormBox[
+           FormBox["p1",
+            TraditionalForm],
+           TraditionalForm], "2"], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            FormBox[
+             FormBox["p1",
+              TraditionalForm],
+             TraditionalForm], 
+            FormBox["\<\"\[CenterDot]\"\>",
+             TraditionalForm], 
+            FormBox[
+             FormBox["p2",
+              TraditionalForm],
+             TraditionalForm]}], ")"}]}], "+", 
+         SuperscriptBox[
+          FormBox[
+           FormBox["p2",
+            TraditionalForm],
+           TraditionalForm], "2"]}], ",", 
+        RowBox[{
+         SuperscriptBox[
+          FormBox[
+           FormBox["p1",
+            TraditionalForm],
+           TraditionalForm], "2"], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            FormBox[
+             FormBox["p1",
+              TraditionalForm],
+             TraditionalForm], 
+            FormBox["\<\"\[CenterDot]\"\>",
+             TraditionalForm], 
+            FormBox[
+             FormBox["p4",
+              TraditionalForm],
+             TraditionalForm]}], ")"}]}], "+", 
+         SuperscriptBox[
+          FormBox[
+           FormBox["p4",
+            TraditionalForm],
+           TraditionalForm], "2"]}]}], ")"}]}], "-", 
      RowBox[{"3", " ", 
       RowBox[{"Dcoll", "(", 
        RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", 
@@ -4467,33 +4284,19 @@ Cell[BoxData[
           FormBox["p1",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
-        RowBox[{
-         SuperscriptBox[
-          FormBox[
-           FormBox["p1",
-            TraditionalForm],
-           TraditionalForm], "2"], "+", 
-         RowBox[{"2", " ", 
-          RowBox[{"(", 
-           RowBox[{
-            FormBox[
-             FormBox["p1",
-              TraditionalForm],
-             TraditionalForm], 
-            FormBox["\<\"\[CenterDot]\"\>",
-             TraditionalForm], 
-            FormBox[
-             FormBox["p4",
-              TraditionalForm],
-             TraditionalForm]}], ")"}]}], "+", 
-         SuperscriptBox[
-          FormBox[
-           FormBox["p4",
-            TraditionalForm],
-           TraditionalForm], "2"]}], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p2",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p3",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p4",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
         RowBox[{
@@ -4520,51 +4323,51 @@ Cell[BoxData[
            FormBox["p2",
             TraditionalForm],
            TraditionalForm], "2"]}], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p4",
-           TraditionalForm],
-          TraditionalForm], "2"], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p2",
-           TraditionalForm],
-          TraditionalForm], "2"]}], ")"}]}], "+", 
+        RowBox[{
+         SuperscriptBox[
+          FormBox[
+           FormBox["p1",
+            TraditionalForm],
+           TraditionalForm], "2"], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            FormBox[
+             FormBox["p1",
+              TraditionalForm],
+             TraditionalForm], 
+            FormBox["\<\"\[CenterDot]\"\>",
+             TraditionalForm], 
+            FormBox[
+             FormBox["p4",
+              TraditionalForm],
+             TraditionalForm]}], ")"}]}], "+", 
+         SuperscriptBox[
+          FormBox[
+           FormBox["p4",
+            TraditionalForm],
+           TraditionalForm], "2"]}]}], ")"}]}], "-", 
      RowBox[{"4", " ", 
       RowBox[{"Dcoll", "(", 
-       RowBox[{"0", ",", "1", ",", "0", ",", "1", ",", 
+       RowBox[{"0", ",", "1", ",", "1", ",", "0", ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p1",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
-        RowBox[{
-         SuperscriptBox[
-          FormBox[
-           FormBox["p1",
-            TraditionalForm],
-           TraditionalForm], "2"], "+", 
-         RowBox[{"2", " ", 
-          RowBox[{"(", 
-           RowBox[{
-            FormBox[
-             FormBox["p1",
-              TraditionalForm],
-             TraditionalForm], 
-            FormBox["\<\"\[CenterDot]\"\>",
-             TraditionalForm], 
-            FormBox[
-             FormBox["p4",
-              TraditionalForm],
-             TraditionalForm]}], ")"}]}], "+", 
-         SuperscriptBox[
-          FormBox[
-           FormBox["p4",
-            TraditionalForm],
-           TraditionalForm], "2"]}], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p2",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p3",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p4",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
         RowBox[{
@@ -4591,16 +4394,30 @@ Cell[BoxData[
            FormBox["p2",
             TraditionalForm],
            TraditionalForm], "2"]}], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p4",
-           TraditionalForm],
-          TraditionalForm], "2"], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p2",
-           TraditionalForm],
-          TraditionalForm], "2"]}], ")"}]}], "+", 
+        RowBox[{
+         SuperscriptBox[
+          FormBox[
+           FormBox["p1",
+            TraditionalForm],
+           TraditionalForm], "2"], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            FormBox[
+             FormBox["p1",
+              TraditionalForm],
+             TraditionalForm], 
+            FormBox["\<\"\[CenterDot]\"\>",
+             TraditionalForm], 
+            FormBox[
+             FormBox["p4",
+              TraditionalForm],
+             TraditionalForm]}], ")"}]}], "+", 
+         SuperscriptBox[
+          FormBox[
+           FormBox["p4",
+            TraditionalForm],
+           TraditionalForm], "2"]}]}], ")"}]}], "-", 
      RowBox[{"6", " ", 
       RowBox[{"Dcoll", "(", 
        RowBox[{"0", ",", "1", ",", "1", ",", "0", ",", 
@@ -4671,7 +4488,7 @@ Cell[BoxData[
          FormBox[
           FormBox["p2",
            TraditionalForm],
-          TraditionalForm], "2"]}], ")"}]}], "+", 
+          TraditionalForm], "2"]}], ")"}]}], "-", 
      RowBox[{"8", " ", 
       RowBox[{"Dcoll", "(", 
        RowBox[{"0", ",", "1", ",", "1", ",", "1", ",", 
@@ -4680,33 +4497,19 @@ Cell[BoxData[
           FormBox["p1",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
-        RowBox[{
-         SuperscriptBox[
-          FormBox[
-           FormBox["p1",
-            TraditionalForm],
-           TraditionalForm], "2"], "+", 
-         RowBox[{"2", " ", 
-          RowBox[{"(", 
-           RowBox[{
-            FormBox[
-             FormBox["p1",
-              TraditionalForm],
-             TraditionalForm], 
-            FormBox["\<\"\[CenterDot]\"\>",
-             TraditionalForm], 
-            FormBox[
-             FormBox["p4",
-              TraditionalForm],
-             TraditionalForm]}], ")"}]}], "+", 
-         SuperscriptBox[
-          FormBox[
-           FormBox["p4",
-            TraditionalForm],
-           TraditionalForm], "2"]}], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p2",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p3",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p4",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
         RowBox[{
@@ -4733,16 +4536,30 @@ Cell[BoxData[
            FormBox["p2",
             TraditionalForm],
            TraditionalForm], "2"]}], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p4",
-           TraditionalForm],
-          TraditionalForm], "2"], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p2",
-           TraditionalForm],
-          TraditionalForm], "2"]}], ")"}]}], "+", 
+        RowBox[{
+         SuperscriptBox[
+          FormBox[
+           FormBox["p1",
+            TraditionalForm],
+           TraditionalForm], "2"], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            FormBox[
+             FormBox["p1",
+              TraditionalForm],
+             TraditionalForm], 
+            FormBox["\<\"\[CenterDot]\"\>",
+             TraditionalForm], 
+            FormBox[
+             FormBox["p4",
+              TraditionalForm],
+             TraditionalForm]}], ")"}]}], "+", 
+         SuperscriptBox[
+          FormBox[
+           FormBox["p4",
+            TraditionalForm],
+           TraditionalForm], "2"]}]}], ")"}]}], "-", 
      RowBox[{"2", " ", 
       RowBox[{"Dcoll", "(", 
        RowBox[{"0", ",", "2", ",", "0", ",", "0", ",", 
@@ -4751,33 +4568,19 @@ Cell[BoxData[
           FormBox["p1",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
-        RowBox[{
-         SuperscriptBox[
-          FormBox[
-           FormBox["p1",
-            TraditionalForm],
-           TraditionalForm], "2"], "+", 
-         RowBox[{"2", " ", 
-          RowBox[{"(", 
-           RowBox[{
-            FormBox[
-             FormBox["p1",
-              TraditionalForm],
-             TraditionalForm], 
-            FormBox["\<\"\[CenterDot]\"\>",
-             TraditionalForm], 
-            FormBox[
-             FormBox["p4",
-              TraditionalForm],
-             TraditionalForm]}], ")"}]}], "+", 
-         SuperscriptBox[
-          FormBox[
-           FormBox["p4",
-            TraditionalForm],
-           TraditionalForm], "2"]}], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p2",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
         SuperscriptBox[
          FormBox[
           FormBox["p3",
+           TraditionalForm],
+          TraditionalForm], "2"], ",", 
+        SuperscriptBox[
+         FormBox[
+          FormBox["p4",
            TraditionalForm],
           TraditionalForm], "2"], ",", 
         RowBox[{
@@ -4804,16 +4607,30 @@ Cell[BoxData[
            FormBox["p2",
             TraditionalForm],
            TraditionalForm], "2"]}], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p4",
-           TraditionalForm],
-          TraditionalForm], "2"], ",", 
-        SuperscriptBox[
-         FormBox[
-          FormBox["p2",
-           TraditionalForm],
-          TraditionalForm], "2"]}], ")"}]}], "+", 
+        RowBox[{
+         SuperscriptBox[
+          FormBox[
+           FormBox["p1",
+            TraditionalForm],
+           TraditionalForm], "2"], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            FormBox[
+             FormBox["p1",
+              TraditionalForm],
+             TraditionalForm], 
+            FormBox["\<\"\[CenterDot]\"\>",
+             TraditionalForm], 
+            FormBox[
+             FormBox["p4",
+              TraditionalForm],
+             TraditionalForm]}], ")"}]}], "+", 
+         SuperscriptBox[
+          FormBox[
+           FormBox["p4",
+            TraditionalForm],
+           TraditionalForm], "2"]}]}], ")"}]}], "-", 
      RowBox[{"4", " ", 
       RowBox[{"Dcoll", "(", 
        RowBox[{"0", ",", "2", ",", "1", ",", "0", ",", 
@@ -4889,8 +4706,9 @@ Cell[BoxData[
  CellChangeTimes->{
   3.992368987159707*^9, {3.992369881887629*^9, 3.992369900921109*^9}, 
    3.992370329787033*^9, 3.992370594511939*^9, 3.992375680313542*^9, 
-   3.992375932835495*^9, 3.992376407216462*^9, 3.992383725677833*^9},
- CellLabel->"Out[66]=",ExpressionUUID->"22e69e5e-36cf-4392-8387-eceed926f603"],
+   3.992375932835495*^9, 3.992376407216462*^9, 3.992383725677833*^9, 
+   3.992523393092677*^9},
+ CellLabel->"Out[66]=",ExpressionUUID->"2f6f8e75-a234-465c-a421-8ac94df13fb4"],
 
 Cell[BoxData[
  FormBox[
@@ -4898,50 +4716,54 @@ Cell[BoxData[
    RowBox[{"\<\"complex(0,1)*(G)**2*(cmath.pi)**2*(yDM)**2\"\>", 
     ",", "\<\"T(3,2,-1)*T(4,-1,1)\"\>", 
     ",", "\<\"P(-2,1)*Gamma(-2,2,-1)*ProjP(-1,1)*P(3,1)*P(4,4)\"\>", 
-    ",", "\<\"Dcoll( 0, 0, 0, 0, P(-1,1)*P(-1,1), P(-2,2)*P(-2,2), \
+    ",", "\<\"-1*Dcoll( 0, 0, 0, 0, P(-1,1)*P(-1,1), P(-2,2)*P(-2,2), \
 P(-3,3)*P(-3,3), P(-4,4)*P(-4,4), P(-5,1)*P(-5,1) + 2*P(-6,1)*P(-6,2) + \
 P(-7,2)*P(-7,2), P(-8,1)*P(-8,1) + 2*P(-9,1)*P(-9,4) + P(-10,4)*P(-10,4) ) + \
-3*Dcoll( 0, 0, 0, 1, P(-11,1)*P(-11,1), P(-12,1)*P(-12,1) + \
-2*P(-13,1)*P(-13,4) + P(-14,4)*P(-14,4), P(-15,3)*P(-15,3), P(-16,1)*P(-16,1) \
-+ 2*P(-17,1)*P(-17,2) + P(-18,2)*P(-18,2), P(-19,4)*P(-19,4), \
-P(-20,2)*P(-20,2) ) + 2*Dcoll( 0, 0, 0, 2, P(-21,1)*P(-21,1), \
+-3*Dcoll( 0, 0, 1, 0, P(-11,1)*P(-11,1), P(-12,2)*P(-12,2), \
+P(-13,3)*P(-13,3), P(-14,4)*P(-14,4), P(-15,1)*P(-15,1) + 2*P(-16,1)*P(-16,2) \
++ P(-17,2)*P(-17,2), P(-18,1)*P(-18,1) + 2*P(-19,1)*P(-19,4) + \
+P(-20,4)*P(-20,4) ) + -2*Dcoll( 0, 0, 1, 0, P(-21,1)*P(-21,1), \
 P(-22,1)*P(-22,1) + 2*P(-23,1)*P(-23,4) + P(-24,4)*P(-24,4), \
 P(-25,3)*P(-25,3), P(-26,1)*P(-26,1) + 2*P(-27,1)*P(-27,2) + \
-P(-28,2)*P(-28,2), P(-29,4)*P(-29,4), P(-30,2)*P(-30,2) ) + 2*Dcoll( 0, 0, 1, \
-0, P(-31,1)*P(-31,1), P(-32,1)*P(-32,1) + 2*P(-33,1)*P(-33,4) + \
-P(-34,4)*P(-34,4), P(-35,3)*P(-35,3), P(-36,1)*P(-36,1) + 2*P(-37,1)*P(-37,2) \
-+ P(-38,2)*P(-38,2), P(-39,4)*P(-39,4), P(-40,2)*P(-40,2) ) + 6*Dcoll( 0, 0, \
-1, 1, P(-41,1)*P(-41,1), P(-42,1)*P(-42,1) + 2*P(-43,1)*P(-43,4) + \
-P(-44,4)*P(-44,4), P(-45,3)*P(-45,3), P(-46,1)*P(-46,1) + 2*P(-47,1)*P(-47,2) \
-+ P(-48,2)*P(-48,2), P(-49,4)*P(-49,4), P(-50,2)*P(-50,2) ) + 4*Dcoll( 0, 0, \
-1, 2, P(-51,1)*P(-51,1), P(-52,1)*P(-52,1) + 2*P(-53,1)*P(-53,4) + \
-P(-54,4)*P(-54,4), P(-55,3)*P(-55,3), P(-56,1)*P(-56,1) + 2*P(-57,1)*P(-57,2) \
-+ P(-58,2)*P(-58,2), P(-59,4)*P(-59,4), P(-60,2)*P(-60,2) ) + 3*Dcoll( 0, 1, \
-0, 0, P(-61,1)*P(-61,1), P(-62,1)*P(-62,1) + 2*P(-63,1)*P(-63,4) + \
-P(-64,4)*P(-64,4), P(-65,3)*P(-65,3), P(-66,1)*P(-66,1) + 2*P(-67,1)*P(-67,2) \
-+ P(-68,2)*P(-68,2), P(-69,4)*P(-69,4), P(-70,2)*P(-70,2) ) + 4*Dcoll( 0, 1, \
-0, 1, P(-71,1)*P(-71,1), P(-72,1)*P(-72,1) + 2*P(-73,1)*P(-73,4) + \
-P(-74,4)*P(-74,4), P(-75,3)*P(-75,3), P(-76,1)*P(-76,1) + 2*P(-77,1)*P(-77,2) \
-+ P(-78,2)*P(-78,2), P(-79,4)*P(-79,4), P(-80,2)*P(-80,2) ) + 6*Dcoll( 0, 1, \
-1, 0, P(-81,1)*P(-81,1), P(-82,1)*P(-82,1) + 2*P(-83,1)*P(-83,4) + \
+P(-28,2)*P(-28,2), P(-29,4)*P(-29,4), P(-30,2)*P(-30,2) ) + -6*Dcoll( 0, 0, \
+1, 1, P(-31,1)*P(-31,1), P(-32,2)*P(-32,2), P(-33,3)*P(-33,3), \
+P(-34,4)*P(-34,4), P(-35,1)*P(-35,1) + 2*P(-36,1)*P(-36,2) + \
+P(-37,2)*P(-37,2), P(-38,1)*P(-38,1) + 2*P(-39,1)*P(-39,4) + \
+P(-40,4)*P(-40,4) ) + -2*Dcoll( 0, 0, 2, 0, P(-41,1)*P(-41,1), \
+P(-42,2)*P(-42,2), P(-43,3)*P(-43,3), P(-44,4)*P(-44,4), P(-45,1)*P(-45,1) + \
+2*P(-46,1)*P(-46,2) + P(-47,2)*P(-47,2), P(-48,1)*P(-48,1) + \
+2*P(-49,1)*P(-49,4) + P(-50,4)*P(-50,4) ) + -4*Dcoll( 0, 0, 2, 1, \
+P(-51,1)*P(-51,1), P(-52,2)*P(-52,2), P(-53,3)*P(-53,3), P(-54,4)*P(-54,4), \
+P(-55,1)*P(-55,1) + 2*P(-56,1)*P(-56,2) + P(-57,2)*P(-57,2), \
+P(-58,1)*P(-58,1) + 2*P(-59,1)*P(-59,4) + P(-60,4)*P(-60,4) ) + -3*Dcoll( 0, \
+1, 0, 0, P(-61,1)*P(-61,1), P(-62,2)*P(-62,2), P(-63,3)*P(-63,3), \
+P(-64,4)*P(-64,4), P(-65,1)*P(-65,1) + 2*P(-66,1)*P(-66,2) + \
+P(-67,2)*P(-67,2), P(-68,1)*P(-68,1) + 2*P(-69,1)*P(-69,4) + \
+P(-70,4)*P(-70,4) ) + -4*Dcoll( 0, 1, 1, 0, P(-71,1)*P(-71,1), \
+P(-72,2)*P(-72,2), P(-73,3)*P(-73,3), P(-74,4)*P(-74,4), P(-75,1)*P(-75,1) + \
+2*P(-76,1)*P(-76,2) + P(-77,2)*P(-77,2), P(-78,1)*P(-78,1) + \
+2*P(-79,1)*P(-79,4) + P(-80,4)*P(-80,4) ) + -6*Dcoll( 0, 1, 1, 0, \
+P(-81,1)*P(-81,1), P(-82,1)*P(-82,1) + 2*P(-83,1)*P(-83,4) + \
 P(-84,4)*P(-84,4), P(-85,3)*P(-85,3), P(-86,1)*P(-86,1) + 2*P(-87,1)*P(-87,2) \
-+ P(-88,2)*P(-88,2), P(-89,4)*P(-89,4), P(-90,2)*P(-90,2) ) + 8*Dcoll( 0, 1, \
-1, 1, P(-91,1)*P(-91,1), P(-92,1)*P(-92,1) + 2*P(-93,1)*P(-93,4) + \
-P(-94,4)*P(-94,4), P(-95,3)*P(-95,3), P(-96,1)*P(-96,1) + 2*P(-97,1)*P(-97,2) \
-+ P(-98,2)*P(-98,2), P(-99,4)*P(-99,4), P(-100,2)*P(-100,2) ) + 2*Dcoll( 0, \
-2, 0, 0, P(-101,1)*P(-101,1), P(-102,1)*P(-102,1) + 2*P(-103,1)*P(-103,4) + \
-P(-104,4)*P(-104,4), P(-105,3)*P(-105,3), P(-106,1)*P(-106,1) + \
-2*P(-107,1)*P(-107,2) + P(-108,2)*P(-108,2), P(-109,4)*P(-109,4), \
-P(-110,2)*P(-110,2) ) + 4*Dcoll( 0, 2, 1, 0, P(-111,1)*P(-111,1), \
-P(-112,1)*P(-112,1) + 2*P(-113,1)*P(-113,4) + P(-114,4)*P(-114,4), \
-P(-115,3)*P(-115,3), P(-116,1)*P(-116,1) + 2*P(-117,1)*P(-117,2) + \
-P(-118,2)*P(-118,2), P(-119,4)*P(-119,4), P(-120,2)*P(-120,2) )\"\>"}], "}"}],
-   TraditionalForm]], "Output",
++ P(-88,2)*P(-88,2), P(-89,4)*P(-89,4), P(-90,2)*P(-90,2) ) + -8*Dcoll( 0, 1, \
+1, 1, P(-91,1)*P(-91,1), P(-92,2)*P(-92,2), P(-93,3)*P(-93,3), \
+P(-94,4)*P(-94,4), P(-95,1)*P(-95,1) + 2*P(-96,1)*P(-96,2) + \
+P(-97,2)*P(-97,2), P(-98,1)*P(-98,1) + 2*P(-99,1)*P(-99,4) + \
+P(-100,4)*P(-100,4) ) + -2*Dcoll( 0, 2, 0, 0, P(-101,1)*P(-101,1), \
+P(-102,2)*P(-102,2), P(-103,3)*P(-103,3), P(-104,4)*P(-104,4), \
+P(-105,1)*P(-105,1) + 2*P(-106,1)*P(-106,2) + P(-107,2)*P(-107,2), \
+P(-108,1)*P(-108,1) + 2*P(-109,1)*P(-109,4) + P(-110,4)*P(-110,4) ) + \
+-4*Dcoll( 0, 2, 1, 0, P(-111,1)*P(-111,1), P(-112,1)*P(-112,1) + \
+2*P(-113,1)*P(-113,4) + P(-114,4)*P(-114,4), P(-115,3)*P(-115,3), \
+P(-116,1)*P(-116,1) + 2*P(-117,1)*P(-117,2) + P(-118,2)*P(-118,2), \
+P(-119,4)*P(-119,4), P(-120,2)*P(-120,2) )\"\>"}], "}"}], 
+  TraditionalForm]], "Output",
  CellChangeTimes->{
   3.992368987159707*^9, {3.992369881887629*^9, 3.992369900921109*^9}, 
    3.992370329787033*^9, 3.992370594511939*^9, 3.992375680313542*^9, 
-   3.992375932835495*^9, 3.992376407216462*^9, 3.992383725732946*^9},
- CellLabel->"Out[67]=",ExpressionUUID->"86cff984-2e25-4f93-ac1b-a7db0c36e622"]
+   3.992375932835495*^9, 3.992376407216462*^9, 3.992383725677833*^9, 
+   3.992523393118471*^9},
+ CellLabel->"Out[67]=",ExpressionUUID->"151ef184-8c0d-4bf7-848e-555d496f3706"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -5034,10 +4856,10 @@ Cell[BoxData[
     "../../UFO_models/SMS-stop_FormFactors-UFO/couplings.py"],
    Editable->False], TraditionalForm]], "Print",
  CellChangeTimes->{3.99237568049667*^9, 3.992375933013393*^9, 
-  3.99237640741693*^9, 3.99238373658563*^9},
+  3.99237640741693*^9, 3.99238373658563*^9, 3.992523393170973*^9},
  CellLabel->
   "During evaluation of \
-In[77]:=",ExpressionUUID->"f57d1c4c-0825-448f-883a-6ebd31141671"],
+In[77]:=",ExpressionUUID->"e43c1b0b-d3a8-4650-9946-39c6a15e60c8"],
 
 Cell[BoxData[
  FormBox[
@@ -5050,10 +4872,10 @@ Cell[BoxData[
     "../../UFO_models/SMS-stop_FormFactors-UFO/lorentz.py"],
    Editable->False], TraditionalForm]], "Print",
  CellChangeTimes->{3.99237568049667*^9, 3.992375933013393*^9, 
-  3.99237640741693*^9, 3.992383736589048*^9},
+  3.99237640741693*^9, 3.99238373658563*^9, 3.992523393175377*^9},
  CellLabel->
   "During evaluation of \
-In[77]:=",ExpressionUUID->"96bc99c8-c012-4b23-9f76-11ed6441c01d"],
+In[77]:=",ExpressionUUID->"f2b4ad0c-9c08-419b-9769-8b89963d4e9c"],
 
 Cell[BoxData[
  FormBox[
@@ -5066,10 +4888,10 @@ Cell[BoxData[
     "../../UFO_models/SMS-stop_FormFactors-UFO/vertices.py"],
    Editable->False], TraditionalForm]], "Print",
  CellChangeTimes->{3.99237568049667*^9, 3.992375933013393*^9, 
-  3.99237640741693*^9, 3.992383736918374*^9},
+  3.99237640741693*^9, 3.99238373658563*^9, 3.99252339346202*^9},
  CellLabel->
   "During evaluation of \
-In[77]:=",ExpressionUUID->"0f0b0861-a9de-4609-958b-fb808dfcba19"]
+In[77]:=",ExpressionUUID->"723ff71a-ad9a-4dbd-8678-9204d129cd6a"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -5078,13 +4900,13 @@ Cell[BoxData[
   3.9923615750574017`*^9, 3.992361900886561*^9, {3.992370084225895*^9, 
    3.9923701022222958`*^9}, 3.992370330365353*^9, 3.992370595167946*^9, 
    3.992375680785438*^9, 3.9923759332801723`*^9, 3.992376407709876*^9, 
-   3.992383736920375*^9},
- CellLabel->"Out[77]=",ExpressionUUID->"8e3c2f9c-a96f-4ce0-88bf-dc3692503c89"]
+   3.992383736920375*^9, 3.9925233934652147`*^9},
+ CellLabel->"Out[77]=",ExpressionUUID->"a434f087-d345-4b65-bac8-6eb0cad20092"]
 }, Open  ]]
 }, Open  ]]
 },
 WindowSize->{1390.5, 758.25},
-WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
 TaggingRules->{
  "WelcomeScreenSettings" -> {"FEStarting" -> False}, "TryRealOnly" -> False},
 Magnification:>1.25 Inherited,
@@ -5103,133 +4925,126 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 302, 6, 36, "Input",ExpressionUUID->"48616450-5497-487e-a8ba-e7c675cd7ac0"],
+Cell[558, 20, 297, 5, 36, "Input",ExpressionUUID->"48616450-5497-487e-a8ba-e7c675cd7ac0"],
 Cell[CellGroupData[{
-Cell[885, 30, 176, 3, 83, "Section",ExpressionUUID->"03189a63-4229-47eb-be5d-8e9fa113893f"],
+Cell[880, 29, 176, 3, 83, "Section",ExpressionUUID->"03189a63-4229-47eb-be5d-8e9fa113893f"],
 Cell[CellGroupData[{
-Cell[1086, 37, 801, 15, 89, "Input",ExpressionUUID->"cc692862-b396-4aa3-ac6d-c6686b9db2f7"],
+Cell[1081, 36, 801, 15, 89, "Input",ExpressionUUID->"cc692862-b396-4aa3-ac6d-c6686b9db2f7"],
 Cell[CellGroupData[{
-Cell[1912, 56, 3293, 79, 37, "Print",ExpressionUUID->"a278889e-5497-4743-b508-ebb61398ccea"],
-Cell[5208, 137, 2039, 42, 37, "Print",ExpressionUUID->"d68f2049-2ef1-476e-aee2-a16094b4e3cd"],
-Cell[7250, 181, 2045, 45, 37, "Print",ExpressionUUID->"a2f5dbad-6129-4546-9e72-f54a4469c375"],
-Cell[9298, 228, 1197, 20, 33, "Print",ExpressionUUID->"110912bc-ae2f-43bf-9192-60cd69e5b535"],
-Cell[10498, 250, 1198, 20, 33, "Print",ExpressionUUID->"f5a273c2-ca39-44a5-9e83-2a54a7c73343"],
-Cell[11699, 272, 1185, 20, 33, "Print",ExpressionUUID->"9007b809-9a8c-4a3b-8635-a1dd1acfcb98"],
-Cell[12887, 294, 2848, 69, 37, "Print",ExpressionUUID->"e4de642b-235d-4272-aa98-332175f0eee0"],
-Cell[15738, 365, 1134, 19, 33, "Print",ExpressionUUID->"98c00bb3-4ca1-4367-81ac-06b7e9facd00"],
-Cell[16875, 386, 1168, 20, 33, "Print",ExpressionUUID->"0296e64a-bb32-4e1e-a212-3d3e82a10939"],
-Cell[18046, 408, 2146, 49, 37, "Print",ExpressionUUID->"a147efaf-f820-4432-b68d-3aaeaf76d563"],
-Cell[20195, 459, 2069, 45, 37, "Print",ExpressionUUID->"0a94e8ff-1c9a-4a7a-9c3b-d947fa1b0af2"],
-Cell[22267, 506, 1239, 21, 33, "Print",ExpressionUUID->"f66c6729-1055-48eb-b927-990f37f0a035"],
-Cell[23509, 529, 1190, 20, 33, "Print",ExpressionUUID->"9603151b-95ea-4909-873e-209a5abc0839"],
-Cell[24702, 551, 1900, 42, 37, "Print",ExpressionUUID->"bc11888e-5445-4ca4-a51c-aa500c73bf16"],
-Cell[26605, 595, 1917, 42, 37, "Print",ExpressionUUID->"5c653a7a-4233-43a8-a989-a9b9dca5643e"]
+Cell[1907, 55, 4597, 109, 68, "Print",ExpressionUUID->"e1bd8785-b4b3-4876-9951-7e1913a5f731"],
+Cell[6507, 166, 1220, 20, 33, "Print",ExpressionUUID->"7014264a-1d33-462b-9c1e-99056fc86a93"],
+Cell[7730, 188, 1266, 22, 33, "Print",ExpressionUUID->"f2d34d33-758f-421a-97a2-5a192089869d"],
+Cell[8999, 212, 2870, 69, 37, "Print",ExpressionUUID->"7e846471-37b6-404f-bc64-97991c6a92c4"],
+Cell[11872, 283, 1158, 19, 33, "Print",ExpressionUUID->"4a19f60f-5241-4391-9487-1d452b36d4ad"],
+Cell[13033, 304, 1194, 20, 33, "Print",ExpressionUUID->"52f49579-01e0-402c-a814-df04c7c9deeb"],
+Cell[14230, 326, 4659, 110, 68, "Print",ExpressionUUID->"cc7233fa-708a-4e26-a4f7-8c47a3116d4d"],
+Cell[18892, 438, 1223, 20, 33, "Print",ExpressionUUID->"0ced01a4-798d-4580-a4f2-7afdbdc21445"]
 }, Open  ]]
 }, Open  ]],
-Cell[28549, 641, 267, 5, 36, "Input",ExpressionUUID->"0b5acc3f-2e48-48de-8886-00ed821e648b"],
-Cell[28819, 648, 2586, 51, 227, "Input",ExpressionUUID->"f76926b5-8ffd-42d1-b9ab-5d7b7e01ede3"]
+Cell[20142, 462, 267, 5, 36, "Input",ExpressionUUID->"0b5acc3f-2e48-48de-8886-00ed821e648b"],
+Cell[20412, 469, 2586, 51, 227, "Input",ExpressionUUID->"f76926b5-8ffd-42d1-b9ab-5d7b7e01ede3"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[31442, 704, 366, 6, 83, "Section",ExpressionUUID->"516730a2-1924-46fd-a7e9-4e7d160046e0"],
-Cell[31811, 712, 541, 11, 130, "Text",ExpressionUUID->"43fcab20-cb48-4462-afb2-5f0fa692775d"],
-Cell[32355, 725, 2405, 50, 98, "Input",ExpressionUUID->"845cf21f-4cf7-4403-a4bd-5d42f44d9f5b"],
+Cell[23035, 525, 366, 6, 83, "Section",ExpressionUUID->"516730a2-1924-46fd-a7e9-4e7d160046e0"],
+Cell[23404, 533, 541, 11, 130, "Text",ExpressionUUID->"43fcab20-cb48-4462-afb2-5f0fa692775d"],
+Cell[23948, 546, 2405, 50, 98, "Input",ExpressionUUID->"845cf21f-4cf7-4403-a4bd-5d42f44d9f5b"],
 Cell[CellGroupData[{
-Cell[34785, 779, 1128, 23, 66, "Input",ExpressionUUID->"3927d7e3-b192-42e7-a1cc-69d0c8ac8ec7"],
-Cell[35916, 804, 34035, 694, 197, "Print",ExpressionUUID->"940207bc-82ef-4803-926f-39cd3f6f731f"]
+Cell[26378, 600, 1128, 23, 66, "Input",ExpressionUUID->"3927d7e3-b192-42e7-a1cc-69d0c8ac8ec7"],
+Cell[27509, 625, 34062, 695, 197, "Print",ExpressionUUID->"f66a456a-3bba-46fa-85d7-ee12e93403a3"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[70000, 1504, 162, 3, 83, "Section",ExpressionUUID->"daa04c7f-fee8-492c-ae83-752662a6b344"],
-Cell[70165, 1509, 2911, 63, 147, "Input",ExpressionUUID->"24523840-5705-48f0-8297-09da44c59c03"],
-Cell[73079, 1574, 166, 3, 43, "Text",ExpressionUUID->"77304165-b8a7-41f0-97d5-eaf58d302eda"],
-Cell[73248, 1579, 1776, 32, 98, "Input",ExpressionUUID->"06a8e269-5cb2-4b62-a697-d170ac6d7257"],
-Cell[75027, 1613, 545, 14, 36, "Input",ExpressionUUID->"79208518-990d-4f08-b5e3-5140dd9cca40"],
-Cell[75575, 1629, 356, 7, 43, "Text",ExpressionUUID->"dfa6d15e-ceb1-4d6a-b20b-02761bdbfe00"],
-Cell[75934, 1638, 560, 13, 67, "Input",ExpressionUUID->"648f42b0-75b0-457f-b51f-55803e00d934"],
-Cell[76497, 1653, 1229, 22, 40, "Input",ExpressionUUID->"ce53ed0d-1a31-458e-b8c0-46cee70d56b4"]
+Cell[61620, 1326, 162, 3, 83, "Section",ExpressionUUID->"daa04c7f-fee8-492c-ae83-752662a6b344"],
+Cell[61785, 1331, 2960, 64, 147, "Input",ExpressionUUID->"24523840-5705-48f0-8297-09da44c59c03"],
+Cell[64748, 1397, 166, 3, 43, "Text",ExpressionUUID->"77304165-b8a7-41f0-97d5-eaf58d302eda"],
+Cell[64917, 1402, 1776, 32, 98, "Input",ExpressionUUID->"06a8e269-5cb2-4b62-a697-d170ac6d7257"],
+Cell[66696, 1436, 545, 14, 36, "Input",ExpressionUUID->"79208518-990d-4f08-b5e3-5140dd9cca40"],
+Cell[67244, 1452, 356, 7, 43, "Text",ExpressionUUID->"dfa6d15e-ceb1-4d6a-b20b-02761bdbfe00"],
+Cell[67603, 1461, 560, 13, 67, "Input",ExpressionUUID->"648f42b0-75b0-457f-b51f-55803e00d934"],
+Cell[68166, 1476, 1229, 22, 40, "Input",ExpressionUUID->"ce53ed0d-1a31-458e-b8c0-46cee70d56b4"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[77763, 1680, 265, 4, 83, "Section",ExpressionUUID->"de079e0b-827a-4ef1-bb9b-9eee785d5b3a"],
+Cell[69432, 1503, 265, 4, 83, "Section",ExpressionUUID->"de079e0b-827a-4ef1-bb9b-9eee785d5b3a"],
 Cell[CellGroupData[{
-Cell[78053, 1688, 1738, 37, 123, "Input",ExpressionUUID->"ed09f297-6335-4e77-b04d-ae975ca45b31"],
-Cell[79794, 1727, 25411, 688, 1348, "Output",ExpressionUUID->"2156ba5c-a8b9-4828-ba23-a02b17c52e20"]
+Cell[69722, 1511, 1738, 37, 123, "Input",ExpressionUUID->"ed09f297-6335-4e77-b04d-ae975ca45b31"],
+Cell[71463, 1550, 25433, 688, 1348, "Output",ExpressionUUID->"27e974df-ec5e-4252-ae3b-5b19d698d784"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[105254, 2421, 209, 4, 83, "Section",ExpressionUUID->"a0e2ade0-be93-4eed-a8a0-188bad5ca4de"],
-Cell[105466, 2427, 694, 13, 36, "Input",ExpressionUUID->"217c45a3-be68-4d63-8699-de24858b0b80"],
+Cell[96945, 2244, 209, 4, 83, "Section",ExpressionUUID->"a0e2ade0-be93-4eed-a8a0-188bad5ca4de"],
+Cell[97157, 2250, 694, 13, 36, "Input",ExpressionUUID->"217c45a3-be68-4d63-8699-de24858b0b80"],
 Cell[CellGroupData[{
-Cell[106185, 2444, 266, 4, 67, "Subsection",ExpressionUUID->"a76e0c53-5d13-4491-8ea3-a2e1470d39f4"],
+Cell[97876, 2267, 266, 4, 67, "Subsection",ExpressionUUID->"a76e0c53-5d13-4491-8ea3-a2e1470d39f4"],
 Cell[CellGroupData[{
-Cell[106476, 2452, 1767, 43, 141, "Input",ExpressionUUID->"b20215ce-4306-40bd-98b8-f66755d5adae"],
-Cell[108246, 2497, 22801, 633, 1348, "Output",ExpressionUUID->"497b821e-dfac-4195-9e1b-0f07f6e8e9a7"]
+Cell[98167, 2275, 1767, 43, 141, "Input",ExpressionUUID->"b20215ce-4306-40bd-98b8-f66755d5adae"],
+Cell[99937, 2320, 22621, 626, 1348, "Output",ExpressionUUID->"f09f32ac-9755-44ec-91fa-3da9ee2426c7"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[131096, 3136, 273, 4, 67, "Subsection",ExpressionUUID->"09c557b8-9dc4-47f3-b557-ecb1c1048ad7"],
-Cell[131372, 3142, 1783, 28, 63, "Input",ExpressionUUID->"536962fc-d6de-4e12-bbd7-0b5f11c544cc"]
+Cell[122607, 2952, 273, 4, 67, "Subsection",ExpressionUUID->"09c557b8-9dc4-47f3-b557-ecb1c1048ad7"],
+Cell[122883, 2958, 1783, 28, 63, "Input",ExpressionUUID->"536962fc-d6de-4e12-bbd7-0b5f11c544cc"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[133204, 3176, 242, 4, 83, "Section",ExpressionUUID->"7e929d7a-3337-40ec-b17f-db336d000d0e"],
-Cell[133449, 3182, 199, 3, 43, "Text",ExpressionUUID->"86f72c4b-7595-44f3-a242-064cae77ea4b"],
+Cell[124715, 2992, 242, 4, 83, "Section",ExpressionUUID->"7e929d7a-3337-40ec-b17f-db336d000d0e"],
+Cell[124960, 2998, 199, 3, 43, "Text",ExpressionUUID->"86f72c4b-7595-44f3-a242-064cae77ea4b"],
 Cell[CellGroupData[{
-Cell[133673, 3189, 3366, 82, 193, "Input",ExpressionUUID->"746ab5fd-3219-47e7-89b3-6d616b62da84"],
-Cell[137042, 3273, 2384, 70, 42, "Output",ExpressionUUID->"e823f508-4cc5-494f-a685-12583671fd64"],
-Cell[139429, 3345, 2412, 81, 49, "Output",ExpressionUUID->"23cbc331-5514-4df6-a954-16f9958c00e6"],
-Cell[141844, 3428, 1961, 59, 49, "Output",ExpressionUUID->"fac772c1-39c2-49e8-9331-0ef3f4757133"]
+Cell[125184, 3005, 3366, 82, 193, "Input",ExpressionUUID->"746ab5fd-3219-47e7-89b3-6d616b62da84"],
+Cell[128553, 3089, 2408, 70, 42, "Output",ExpressionUUID->"a2e83d99-9e6b-4571-87c1-f92b7af99c8d"],
+Cell[130964, 3161, 2435, 81, 49, "Output",ExpressionUUID->"8431c266-88c3-425a-aa29-0aac4069bd7e"],
+Cell[133402, 3244, 1980, 59, 49, "Output",ExpressionUUID->"93b1f1d9-82cf-4495-879e-47d175e7cb30"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[143842, 3492, 309, 7, 67, "Subsection",ExpressionUUID->"e00bec8d-5405-4b3a-98ed-d6a595947869"],
-Cell[144154, 3501, 399, 9, 36, "Input",ExpressionUUID->"061848a5-3a66-43e4-b661-4dbcd867a512"],
-Cell[144556, 3512, 5056, 118, 431, "Input",ExpressionUUID->"44024cfb-ab87-40ad-9293-1bf6cd4b6ca3"],
-Cell[149615, 3632, 201, 3, 43, "Text",ExpressionUUID->"6523b530-c7e8-49ca-88ca-db5a83385014"],
+Cell[135419, 3308, 309, 7, 67, "Subsection",ExpressionUUID->"e00bec8d-5405-4b3a-98ed-d6a595947869"],
+Cell[135731, 3317, 399, 9, 36, "Input",ExpressionUUID->"061848a5-3a66-43e4-b661-4dbcd867a512"],
+Cell[136133, 3328, 5056, 118, 431, "Input",ExpressionUUID->"44024cfb-ab87-40ad-9293-1bf6cd4b6ca3"],
+Cell[141192, 3448, 201, 3, 43, "Text",ExpressionUUID->"6523b530-c7e8-49ca-88ca-db5a83385014"],
 Cell[CellGroupData[{
-Cell[149841, 3639, 803, 17, 63, "Input",ExpressionUUID->"14321581-7549-407d-8f59-e25235a1919f"],
-Cell[150647, 3658, 1247, 18, 59, "Output",ExpressionUUID->"17688128-f2aa-49a3-8ad3-4c27964c038e"]
+Cell[141418, 3455, 803, 17, 63, "Input",ExpressionUUID->"14321581-7549-407d-8f59-e25235a1919f"],
+Cell[142224, 3474, 1269, 18, 40, "Output",ExpressionUUID->"a660c4f4-1160-460e-9cb7-75323f9d07eb"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[151955, 3683, 297, 5, 83, "Section",ExpressionUUID->"5fc0cf35-cb42-48a1-8dde-ea21b9983ee2"],
-Cell[152255, 3690, 160, 2, 36, "Input",ExpressionUUID->"e2728601-4058-4ecd-baff-cb9472767554"],
-Cell[152418, 3694, 1367, 24, 216, "Text",ExpressionUUID->"f2b4454b-4ed2-45b8-ba46-4b3a38e9dde2"],
+Cell[143554, 3499, 297, 5, 83, "Section",ExpressionUUID->"5fc0cf35-cb42-48a1-8dde-ea21b9983ee2"],
+Cell[143854, 3506, 160, 2, 36, "Input",ExpressionUUID->"e2728601-4058-4ecd-baff-cb9472767554"],
+Cell[144017, 3510, 1367, 24, 216, "Text",ExpressionUUID->"f2b4454b-4ed2-45b8-ba46-4b3a38e9dde2"],
 Cell[CellGroupData[{
-Cell[153810, 3722, 204, 3, 67, "Subsection",ExpressionUUID->"3b40e4e2-f5d6-4934-90aa-0e64bf1f0c1f"],
-Cell[154017, 3727, 2298, 55, 297, "Input",ExpressionUUID->"74225db6-7ef3-4264-9bd8-9326f3d9015b"],
-Cell[156318, 3784, 244, 4, 43, "Text",ExpressionUUID->"710c17c3-d284-42f8-a144-ab47226e3143"],
-Cell[156565, 3790, 448, 11, 63, "Input",ExpressionUUID->"b48802b9-8e62-4d3d-89f0-e0480afb3d4e"]
+Cell[145409, 3538, 204, 3, 67, "Subsection",ExpressionUUID->"3b40e4e2-f5d6-4934-90aa-0e64bf1f0c1f"],
+Cell[145616, 3543, 2298, 55, 297, "Input",ExpressionUUID->"74225db6-7ef3-4264-9bd8-9326f3d9015b"],
+Cell[147917, 3600, 244, 4, 43, "Text",ExpressionUUID->"710c17c3-d284-42f8-a144-ab47226e3143"],
+Cell[148164, 3606, 448, 11, 63, "Input",ExpressionUUID->"b48802b9-8e62-4d3d-89f0-e0480afb3d4e"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[157050, 3806, 372, 8, 100, "Subsection",ExpressionUUID->"7327931b-a8d8-4a7b-8aae-44429c7ab326"],
-Cell[157425, 3816, 1668, 36, 115, "Input",ExpressionUUID->"cc4a8781-d08a-4465-9429-5ab93169058b"]
+Cell[148649, 3622, 372, 8, 100, "Subsection",ExpressionUUID->"7327931b-a8d8-4a7b-8aae-44429c7ab326"],
+Cell[149024, 3632, 1668, 36, 115, "Input",ExpressionUUID->"cc4a8781-d08a-4465-9429-5ab93169058b"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[159130, 3857, 300, 4, 67, "Subsection",ExpressionUUID->"aba87e5c-0888-4efd-bb6c-43fab5607eb0"],
-Cell[159433, 3863, 2663, 71, 173, "Input",ExpressionUUID->"719b827c-70f0-4474-b9cd-c537e897391b"]
+Cell[150729, 3673, 300, 4, 67, "Subsection",ExpressionUUID->"aba87e5c-0888-4efd-bb6c-43fab5607eb0"],
+Cell[151032, 3679, 2663, 71, 173, "Input",ExpressionUUID->"719b827c-70f0-4474-b9cd-c537e897391b"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[162133, 3939, 208, 4, 67, "Subsection",ExpressionUUID->"f1a63a78-0748-46a3-82ae-0cc90722910d"],
-Cell[162344, 3945, 739, 18, 36, "Input",ExpressionUUID->"62b307de-32e9-4d8e-a453-e486b7b11821"],
+Cell[153732, 3755, 208, 4, 67, "Subsection",ExpressionUUID->"f1a63a78-0748-46a3-82ae-0cc90722910d"],
+Cell[153943, 3761, 739, 18, 36, "Input",ExpressionUUID->"62b307de-32e9-4d8e-a453-e486b7b11821"],
 Cell[CellGroupData[{
-Cell[163108, 3967, 384, 7, 63, "Input",ExpressionUUID->"203141b4-c58c-475f-af1b-eea1cec745e6"],
-Cell[163495, 3976, 26094, 916, 209, "Output",ExpressionUUID->"22e69e5e-36cf-4392-8387-eceed926f603"],
-Cell[189592, 4894, 3345, 49, 458, "Output",ExpressionUUID->"86cff984-2e25-4f93-ac1b-a7db0c36e622"]
+Cell[154707, 3783, 384, 7, 63, "Input",ExpressionUUID->"203141b4-c58c-475f-af1b-eea1cec745e6"],
+Cell[155094, 3792, 26211, 918, 209, "Output",ExpressionUUID->"2f6f8e75-a234-465c-a421-8ac94df13fb4"],
+Cell[181308, 4712, 3391, 53, 458, "Output",ExpressionUUID->"151ef184-8c0d-4bf7-848e-555d496f3706"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[192998, 4950, 231, 4, 83, "Section",ExpressionUUID->"857df7ab-cf84-41a5-99c5-3788f68f0f83"],
-Cell[193232, 4956, 229, 3, 36, "Input",ExpressionUUID->"f55d5c25-b2ee-477b-b6c7-1c2da23d79ae"],
-Cell[193464, 4961, 1719, 44, 225, "Input",ExpressionUUID->"d5d95284-17b6-4384-bcc0-382b8955f36b"],
+Cell[184760, 4772, 231, 4, 83, "Section",ExpressionUUID->"857df7ab-cf84-41a5-99c5-3788f68f0f83"],
+Cell[184994, 4778, 229, 3, 36, "Input",ExpressionUUID->"f55d5c25-b2ee-477b-b6c7-1c2da23d79ae"],
+Cell[185226, 4783, 1719, 44, 225, "Input",ExpressionUUID->"d5d95284-17b6-4384-bcc0-382b8955f36b"],
 Cell[CellGroupData[{
-Cell[195208, 5009, 751, 12, 63, "Input",ExpressionUUID->"50bea55f-1e17-4a44-b0d3-c990d4bf41e6"],
+Cell[186970, 4831, 751, 12, 63, "Input",ExpressionUUID->"50bea55f-1e17-4a44-b0d3-c990d4bf41e6"],
 Cell[CellGroupData[{
-Cell[195984, 5025, 547, 14, 27, "Print",ExpressionUUID->"f57d1c4c-0825-448f-883a-6ebd31141671"],
-Cell[196534, 5041, 544, 14, 27, "Print",ExpressionUUID->"96bc99c8-c012-4b23-9f76-11ed6441c01d"],
-Cell[197081, 5057, 546, 14, 27, "Print",ExpressionUUID->"0f0b0861-a9de-4609-958b-fb808dfcba19"]
+Cell[187746, 4847, 569, 14, 27, "Print",ExpressionUUID->"e43c1b0b-d3a8-4650-9946-39c6a15e60c8"],
+Cell[188318, 4863, 565, 14, 27, "Print",ExpressionUUID->"f2b4ad0c-9c08-419b-9769-8b89963d4e9c"],
+Cell[188886, 4879, 566, 14, 27, "Print",ExpressionUUID->"723ff71a-ad9a-4dbd-8678-9204d129cd6a"]
 }, Open  ]],
-Cell[197642, 5074, 410, 7, 59, "Output",ExpressionUUID->"8e3c2f9c-a96f-4ce0-88bf-dc3692503c89"]
+Cell[189467, 4896, 434, 7, 59, "Output",ExpressionUUID->"a434f087-d345-4b65-bac8-6eb0cad20092"]
 }, Open  ]]
 }, Open  ]]
 }
