@@ -5,7 +5,7 @@ homeDIR="$( pwd )"
 
 cd $homeDIR
 
-madgraph="MG5_aMC_v3.7.1.tar.gz"
+madgraph="MG5_aMC_v3.7.2.tar.gz"
 URL=https://launchpad.net/mg5amcnlo/3.0/3.7.x/+download/$madgraph
 #madgraph="MG5_aMC_v3.4.2_fix.tar.gz"
 echo -n "Install MadGraph (y/n)? "
