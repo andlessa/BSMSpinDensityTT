@@ -19,56 +19,65 @@
         include '../vector.inc' ! Required for MG >= 3.7
         include 'coupl.inc' ! include other parameters
         integer, parameter :: dp = kind(1.0d0) 
+        integer, parameter :: cache_size = 10
         real(dp), parameter :: default_rtol = 1d-4
         real(dp), parameter :: default_atol = 1d-12
         double precision, parameter :: deltaUV = 0.0
         
         type :: model_pars_t
-            double complex mt2,mst2,mchi2
-            double precision muR2 ! The counter-terms were computing assuming muR2 = mst2
+          double complex mt2,mst2,mchi2
+          double precision muR2 ! The counter-terms were computing assuming muR2 = mst2
         end type model_pars_t
 
         type :: ct_cache_t
-                logical :: init = .false.
-                integer :: rank = 1
-                integer :: N = 2
-                complex(dp) :: b1CT = (0d0,0d0)
-                complex(dp) :: db1CT = (0d0,0d0)
+          logical :: init = .false.
+          integer :: rank = 1
+          integer :: N = 2
+          complex(dp) :: b1CT = (0d0,0d0)
+          complex(dp) :: db1CT = (0d0,0d0)
         end type ct_cache_t
 
         type :: redb1_cache_t
-                logical :: init = .false.
-                integer :: N = 2
-                integer :: rank = 2
-                complex(dp) :: input(3) = (0d0,0d0)
-                complex(dp) :: redb1result = (0d0,0d0)
+          logical :: init = .false.
+          integer :: N = 2
+          integer :: rank = 2
+          integer :: n_used = 0
+          integer :: next_slot = 1
+          complex(dp) :: input(cache_size,3) = (0d0,0d0)
+          complex(dp) :: redb1result(cache_size) = (0d0,0d0)
         end type redb1_cache_t
 
         type :: b_cache_t
-                logical :: init = .false.
-                integer :: N = 2
-                integer :: rank = 2
-                complex(dp) :: input(3) = (0d0,0d0)
-                complex(dp) :: bresults(0:1,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank)
-                complex(dp) :: bresultsUV(0:1,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank)
+          logical :: init = .false.
+          integer :: N = 2
+          integer :: rank = 2
+          integer :: n_used = 0
+          integer :: next_slot = 1
+          complex(dp) :: input(cache_size,3) = (0d0,0d0)
+          complex(dp) :: bresults(cache_size,0:1,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank)
+          complex(dp) :: bresultsUV(cache_size,0:1,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank)
         end type b_cache_t
 
         type :: c_cache_t
-                logical :: init = .false.
-                integer :: N = 3
-                integer :: rank = 2
-                complex(dp) :: input(6) = (0d0,0d0)
-                complex(dp) :: cresults(0:1,0:2,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank)
-                complex(dp) :: cresultsUV(0:1,0:2,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank)
+          logical :: init = .false.
+          integer :: N = 3
+          integer :: rank = 2
+          integer :: n_used = 0
+          integer :: next_slot = 1
+          complex(dp) :: input(cache_size,6) = (0d0,0d0)
+          complex(dp) :: cresults(cache_size,0:1,0:2,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank)
+          complex(dp) :: cresultsUV(cache_size,0:1,0:2,0:2) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank)
         end type c_cache_t
 
         type :: d_cache_t
-            logical :: init = .false.
-            integer :: N = 4
-            integer :: rank = 3
-            complex(dp) :: input(10) = (0d0,0d0)
-            complex(dp) :: dresults(0:1,0:3,0:3,0:3) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank,0:rank)
-            complex(dp) :: dresultsUV(0:1,0:3,0:3,0:3) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank,0:rank)
+          logical :: init = .false.
+          integer :: N = 4
+          integer :: rank = 3
+          integer :: n_used = 0
+          integer :: next_slot = 1
+          complex(dp) :: input(cache_size,10) = (0d0,0d0)
+          complex(dp) :: dresults(cache_size,0:1,0:3,0:3,0:3) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank,0:rank)
+          complex(dp) :: dresultsUV(cache_size,0:1,0:3,0:3,0:3) = (0d0,0d0) ! the dimensions should match (0:rank/2,0:rank,0:rank,0:rank)
         end type d_cache_t
 
         type(model_pars_t), save :: model_pars
@@ -134,8 +143,7 @@
             differs = .false.
             do ii=1,size(oldVars)
                 scale = max(abs(oldVars(ii)),abs(newVars(ii)))
-                if (abs(oldVars(ii)-newVars(ii))
-     &              > (tol_abs + tol_rel*scale)) then
+                if (abs(oldVars(ii)-newVars(ii)) > (tol_abs + tol_rel*scale)) then
                     differs = .true.
                     exit
                 endif
@@ -183,7 +191,8 @@
       ! and cache the result. Needed for computing the count-terms (should only be needed at psq=mt2).
 
       use collier
-      use collier_cache_mod, only: model_pars,redb1_cache,set_small_to_zero, differs, set_model_pars, deltaUV
+      use collier_cache_mod, only: model_pars,redb1_cache,set_small_to_zero,
+         &     differs, set_model_pars, deltaUV, cache_size
 
       implicit none
     
@@ -191,6 +200,7 @@
       double precision Pi
       parameter  (Pi=3.141592653589793D0)
       logical useCache
+      integer slot,hitSlot
 
       double complex newInput(3)
       double complex mt2,mchi2,mst2
@@ -211,31 +221,40 @@
       mchi2 = newInput(2)
       mst2 = newInput(3)
 
-      ! Check if the given input variables matches and
-      ! if the cache has been initialized
-      if ((redb1_cache%init).and.(.not.differs(redb1_cache%input,newInput))) then
-        useCache = .true.
-      else        
-        useCache = .false.
-        ! Store the variables for caching
-        redb1_cache%input = newInput
+      ! Check if the given input variables match one of the cached slots
+      useCache = .false.
+      hitSlot = 0
+      if (redb1_cache%init) then
+        do slot=1,redb1_cache%n_used
+          if (.not.differs(redb1_cache%input(slot,:),newInput)) then
+            useCache = .true.
+            hitSlot = slot
+            exit
+          endif
+        enddo
       endif
     
       ! If useCache = .false., we need to compute it and cache
       if (.not.useCache) then
+        hitSlot = redb1_cache%next_slot
+        redb1_cache%input(hitSlot,:) = newInput
         redb1_cache%init = .true.
-        useCache = .true.
         call Init_cll(redb1_cache%N,redb1_cache%rank,'',.true.)
         call InitEvent_cll
         ! Using mode=3 computes with the DD and COLI branches and return the most precise results
         call SetMode_cll(3) 
         call SetDeltaUV_cll(deltaUV) ! Remove the divergence (MSbar)
         call SetMuUV2_cll(muR2) ! Set the renormalization scale    
-        call DB1_cll(redb1_cache%redb1result,psq,mchi2,mst2)
-        redb1_cache%redb1result = real(redb1_cache%redb1result/((2*Pi)**4))
+        call DB1_cll(redb1_cache%redb1result(hitSlot),psq,mchi2,mst2)
+        redb1_cache%redb1result(hitSlot)
+     &      = real(redb1_cache%redb1result(hitSlot)/((2*Pi)**4))
+        if (redb1_cache%n_used < cache_size) then
+          redb1_cache%n_used = redb1_cache%n_used + 1
+        endif
+        redb1_cache%next_slot = mod(hitSlot,cache_size) + 1
       endif
 
-      reDB1 = redb1_cache%redb1result
+      reDB1 = redb1_cache%redb1result(hitSlot)
 
       end function reDB1
 
@@ -247,7 +266,8 @@
 
       use collier
       use collier_cache_mod, only: model_pars,b_cache,
-     &     set_small_to_zero, differs, set_model_pars, deltaUV
+         &     set_small_to_zero, differs, set_model_pars, deltaUV,
+         &     cache_size
 
       implicit none
     
@@ -260,7 +280,9 @@
       double complex mt2,mchi2,mst2
       double precision muR2
       double complex newInput(3)
+      double complex bresultsTmp(0:1,0:2),bresultsUVTmp(0:1,0:2)
       logical useCache
+      integer slot,hitSlot
       call set_model_pars()
 
       i = int(ii)
@@ -279,32 +301,40 @@
       mchi2 = newInput(2)
       mst2 = newInput(3)
 
-      ! Check if the given input variables matches and
-      ! if the cache has been initialized
-      if ((b_cache%init).and.(.not.differs(b_cache%input,newInput))) then
-        useCache = .true.
-      else
-        useCache = .false.
-        ! Store the variables for caching
-        b_cache%input = newInput
+      ! Check if the given input variables match one of the cached slots
+      useCache = .false.
+      hitSlot = 0
+      if (b_cache%init) then
+        do slot=1,b_cache%n_used
+          if (.not.differs(b_cache%input(slot,:),newInput)) then
+            useCache = .true.
+            hitSlot = slot
+            exit
+          endif
+        enddo
       endif
     
       ! If useCache = .false., we need to compute it and cache
       if (.not.useCache) then
+        hitSlot = b_cache%next_slot
+        b_cache%input(hitSlot,:) = newInput
         b_cache%init = .true.
-        useCache = .true.
         call Init_cll(b_cache%N,b_cache%rank,'',.true.)
         call InitEvent_cll
         ! Using mode=3 computes with the DD and COLI branches and return the most precise results
         call SetMode_cll(3) 
         call SetDeltaUV_cll(deltaUV) ! Remove the divergence (MSbar)
         call SetMuUV2_cll(muR2) ! Set the renormalization scale    
-        call B_cll(b_cache%bresults,b_cache%bresultsUV,psq,mchi2,mst2,b_cache%rank)
-        b_cache%bresults = b_cache%bresults/((2*Pi)**4)
-        b_cache%bresultsUV = b_cache%bresultsUV/((2*Pi)**4)
+        call B_cll(bresultsTmp,bresultsUVTmp,psq,mchi2,mst2,b_cache%rank)
+        b_cache%bresults(hitSlot,:,:) = bresultsTmp/((2*Pi)**4)
+        b_cache%bresultsUV(hitSlot,:,:) = bresultsUVTmp/((2*Pi)**4)
+        if (b_cache%n_used < cache_size) then
+          b_cache%n_used = b_cache%n_used + 1
+        endif
+        b_cache%next_slot = mod(hitSlot,cache_size) + 1
       endif
 
-      Bcoll = b_cache%bresults(i,j)
+      Bcoll = b_cache%bresults(hitSlot,i,j)
 
       end function Bcoll
 
@@ -334,7 +364,8 @@ double complex function Ccoll(ii,jj,kk,p10,p21,p20)
 
       use collier
       use collier_cache_mod, only: model_pars,c_cache,
-     &     set_small_to_zero, differs, set_model_pars,deltaUV
+         &     set_small_to_zero, differs, set_model_pars,deltaUV,
+         &     cache_size
 
       implicit none
 
@@ -347,7 +378,10 @@ double complex function Ccoll(ii,jj,kk,p10,p21,p20)
       double complex mt2,mchi2,mst2
       double precision muR2
       double complex newInput(6)
+      double complex cresultsTmp(0:1,0:2,0:2)
+      double complex cresultsUVTmp(0:1,0:2,0:2)
       logical useCache
+      integer slot,hitSlot
 
       call set_model_pars()
       
@@ -369,34 +403,41 @@ double complex function Ccoll(ii,jj,kk,p10,p21,p20)
       mchi2 = newInput(4)
       mst2 = newInput(5)
 
-      ! Check if the given input variables matches and
-      ! if the cache has been initialized
-      if ((c_cache%init).and.
-     &    (.not.differs(c_cache%input,newInput))) then
-        useCache = .true.
-      else
-        useCache = .false.
-        ! Store the variables for caching
-        c_cache%input = newInput
+      ! Check if the given input variables match one of the cached slots
+      useCache = .false.
+      hitSlot = 0
+      if (c_cache%init) then
+        do slot=1,c_cache%n_used
+          if (.not.differs(c_cache%input(slot,:),newInput)) then
+            useCache = .true.
+            hitSlot = slot
+            exit
+          endif
+        enddo
       endif
     
       ! If useCache = .false., we need to compute it and cache
       if (.not.useCache) then
+        hitSlot = c_cache%next_slot
+        c_cache%input(hitSlot,:) = newInput
         c_cache%init = .true.
-        useCache = .true.
         call Init_cll(c_cache%N,c_cache%rank,'',.true.)
         call InitEvent_cll
         ! Using mode=3 computes with the DD and COLI branches and return the most precise results
         call SetMode_cll(3) 
         call SetDeltaUV_cll(deltaUV) ! Remove the divergence (MSbar)
         call SetMuUV2_cll(muR2) ! Set the renormalization scale    
-        call C_cll(c_cache%cresults,c_cache%cresultsUV,p10,p21,p20,
+        call C_cll(cresultsTmp,cresultsUVTmp,p10,p21,p20,
      &           mchi2,mst2,mst2,c_cache%rank)
-        c_cache%cresults = c_cache%cresults/((2*Pi)**4)
-        c_cache%cresultsUV = c_cache%cresultsUV/((2*Pi)**4)
+        c_cache%cresults(hitSlot,:,:,:) = cresultsTmp/((2*Pi)**4)
+        c_cache%cresultsUV(hitSlot,:,:,:) = cresultsUVTmp/((2*Pi)**4)
+        if (c_cache%n_used < cache_size) then
+          c_cache%n_used = c_cache%n_used + 1
+        endif
+        c_cache%next_slot = mod(hitSlot,cache_size) + 1
       endif
 
-      Ccoll = c_cache%cresults(i,j,k)
+      Ccoll = c_cache%cresults(hitSlot,i,j,k)
 
       end function Ccoll
 
@@ -427,7 +468,8 @@ double complex function Dcoll(ii,jj,kk,ll,p10,p21,p32,p30,p20,p31)
 
       use collier
       use collier_cache_mod, only: model_pars,d_cache,
-     &     set_small_to_zero, differs, set_model_pars,deltaUV
+         &     set_small_to_zero, differs, set_model_pars,deltaUV,
+         &     cache_size
 
       implicit none
     
@@ -440,7 +482,10 @@ double complex function Dcoll(ii,jj,kk,ll,p10,p21,p32,p30,p20,p31)
       double complex mt2,mchi2,mst2
       double precision muR2
       double complex newInput(10)
+      double complex dresultsTmp(0:1,0:3,0:3,0:3)
+      double complex dresultsUVTmp(0:1,0:3,0:3,0:3)
       logical useCache
+      integer slot,hitSlot
 
       call set_model_pars()
 
@@ -467,33 +512,41 @@ double complex function Dcoll(ii,jj,kk,ll,p10,p21,p32,p30,p20,p31)
       mst2 = newInput(7)
       mchi2 = newInput(8)
 
-      ! Check if the given input variables matches and
-      ! if the cache has been initialized
-      if ((d_cache%init).and.
-     &    (.not.differs(d_cache%input,newInput))) then
-        useCache = .true.
-      else
-        useCache = .false.
-        ! Store the variables for caching
-        d_cache%input = newInput
+      ! Check if the given input variables match one of the cached slots
+      useCache = .false.
+      hitSlot = 0
+      if (d_cache%init) then
+        do slot=1,d_cache%n_used
+          if (.not.differs(d_cache%input(slot,:),newInput)) then
+            useCache = .true.
+            hitSlot = slot
+            exit
+          endif
+        enddo
       endif
     
       ! If useCache = .false., we need to compute it and cache
       if (.not.useCache) then
+        hitSlot = d_cache%next_slot
+        d_cache%input(hitSlot,:) = newInput
         d_cache%init = .true.
-        useCache = .true.
         call Init_cll(d_cache%N,d_cache%rank,'',.true.)
         call InitEvent_cll
         ! Using mode=3 computes with the DD and COLI branches and return the most precise results
         call SetMode_cll(3) 
         call SetDeltaUV_cll(deltaUV) ! Remove the divergence (MSbar)
         call SetMuUV2_cll(muR2) ! Set the renormalization scale    
-        call D_cll(d_cache%dresults,d_cache%dresultsUV,p10,p21,p32,p30,p20,p31,mst2,mchi2,mst2,mst2,d_cache%rank)
-        d_cache%dresults = d_cache%dresults/((2*Pi)**4)
-        d_cache%dresultsUV = d_cache%dresultsUV/((2*Pi)**4)
+        call D_cll(dresultsTmp,dresultsUVTmp,p10,p21,p32,p30,p20,p31,
+     &       mst2,mchi2,mst2,mst2,d_cache%rank)
+        d_cache%dresults(hitSlot,:,:,:,:) = dresultsTmp/((2*Pi)**4)
+        d_cache%dresultsUV(hitSlot,:,:,:,:) = dresultsUVTmp/((2*Pi)**4)
+        if (d_cache%n_used < cache_size) then
+          d_cache%n_used = d_cache%n_used + 1
+        endif
+        d_cache%next_slot = mod(hitSlot,cache_size) + 1
       endif
 
-      Dcoll = d_cache%dresults(i,j,k,l)
+      Dcoll = d_cache%dresults(hitSlot,i,j,k,l)
 
       end function Dcoll
 
