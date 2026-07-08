@@ -192,7 +192,7 @@
 
       use collier
       use collier_cache_mod, only: model_pars,redb1_cache,set_small_to_zero,
-         &     differs, set_model_pars, deltaUV, cache_size
+     &     differs, set_model_pars, deltaUV, cache_size
 
       implicit none
     
@@ -266,8 +266,8 @@
 
       use collier
       use collier_cache_mod, only: model_pars,b_cache,
-         &     set_small_to_zero, differs, set_model_pars, deltaUV,
-         &     cache_size
+     &     set_small_to_zero, differs, set_model_pars, deltaUV,
+     &     cache_size
 
       implicit none
     
@@ -364,8 +364,8 @@ double complex function Ccoll(ii,jj,kk,p10,p21,p20)
 
       use collier
       use collier_cache_mod, only: model_pars,c_cache,
-         &     set_small_to_zero, differs, set_model_pars,deltaUV,
-         &     cache_size
+     &     set_small_to_zero, differs, set_model_pars,deltaUV,
+     &     cache_size
 
       implicit none
 
@@ -468,8 +468,8 @@ double complex function Dcoll(ii,jj,kk,ll,p10,p21,p32,p30,p20,p31)
 
       use collier
       use collier_cache_mod, only: model_pars,d_cache,
-         &     set_small_to_zero, differs, set_model_pars,deltaUV,
-         &     cache_size
+     &     set_small_to_zero, differs, set_model_pars,deltaUV,
+     &     cache_size
 
       implicit none
     
