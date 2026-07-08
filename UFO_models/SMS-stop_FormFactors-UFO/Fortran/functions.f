@@ -168,7 +168,7 @@
         call set_model_pars()
         mt2 = model_pars%mt2 
         ct_cache%init = .true.
-        ct_cache%b1CT = real(Bcoll(0,1,mt2))
+        ct_cache%b1CT = real(Bcoll((0d0,0d0),(1d0,0d0),mt2))
         ct_cache%db1CT = reDB1(mt2)
       endif
 
@@ -240,7 +240,7 @@
       end function reDB1
 
       
-      double complex function Bcoll(i,j,psq)
+      double complex function Bcoll(ii,jj,psq)
 
       ! Compute the B integrals with respect to the external momentum squared (psq)
       ! and cache the result.
@@ -251,6 +251,7 @@
 
       implicit none
     
+      double complex ii,jj
       integer i,j
       double complex psq
       double precision Pi
@@ -261,6 +262,9 @@
       double complex newInput(3)
       logical useCache
       call set_model_pars()
+
+      i = int(ii)
+      j = int(jj)
       
       mt2 = model_pars%mt2
       mchi2 = model_pars%mchi2
@@ -323,7 +327,7 @@
 ! p10 = p1^2, p20 = p2^2, p21 = p3^2 = s 
 
 
-double complex function Ccoll(i,j,k,p10,p21,p20)
+double complex function Ccoll(ii,jj,kk,p10,p21,p20)
 
       ! Compute the B integrals with respect to the external momentum squared (psq)
       ! and cache the result.
@@ -333,7 +337,8 @@ double complex function Ccoll(i,j,k,p10,p21,p20)
      &     set_small_to_zero, differs, set_model_pars,deltaUV
 
       implicit none
-    
+
+      double complex ii,jj,kk
       integer i,j,k
       double complex p10,p21,p20
       double precision Pi
@@ -346,6 +351,9 @@ double complex function Ccoll(i,j,k,p10,p21,p20)
 
       call set_model_pars()
       
+      i = int(ii)
+      j = int(jj)
+      k = int(kk)
       mt2 = model_pars%mt2
       mchi2 = model_pars%mchi2
       mst2 = model_pars%mst2
@@ -412,7 +420,7 @@ double complex function Ccoll(i,j,k,p10,p21,p20)
 
 
 
-double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
+double complex function Dcoll(ii,jj,kk,ll,p10,p21,p32,p30,p20,p31)
 
       ! Compute the B integrals with respect to the external momentum squared (psq)
       ! and cache the result.
@@ -423,6 +431,7 @@ double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
 
       implicit none
     
+      double complex ii,jj,kk,ll
       integer i,j,k,l
       double complex p10,p21,p32,p30,p20,p31
       double precision Pi
@@ -434,6 +443,11 @@ double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
       logical useCache
 
       call set_model_pars()
+
+      i = int(ii)
+      j = int(jj)
+      k = int(kk)
+      l = int(ll)
       
       mt2 = model_pars%mt2
       mchi2 = model_pars%mchi2
@@ -518,7 +532,7 @@ double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
       if (abs(x(1)) < 1d-5) then
         pB1h = db1CT
       else
-        pB1h = (Bcoll(0,1,psq)-b1CT)/x(1)
+        pB1h = (Bcoll((0d0,0d0),(1d0,0d0),psq)-b1CT)/x(1)
       endif
 
       end function pB1h
@@ -547,7 +561,7 @@ double complex function Dcoll(i,j,k,l,p10,p21,p32,p30,p20,p31)
       b1CT = ctVals(1)
       db1CT = ctVals(2)
 
-      C00h = Ccoll(1,0,0,p10,p21,p20) + (1d0/2d0)*b1CT
+      C00h = Ccoll((1d0,0d0),(0d0,0d0),(0d0,0d0),p10,p21,p20)+ (1d0/2d0)*b1CT
 
       end function C00h
 
