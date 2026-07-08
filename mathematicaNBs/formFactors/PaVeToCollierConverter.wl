@@ -104,7 +104,7 @@ PaVeToCollier[loopIntegral_, OptionsPattern[]] :=Module[{masses,momenta,collMom,
 			n0=Count[indices,0]/2;
 			ns=Table[Count[indices,k],{k,1,order}];
 			collIndices=StringRiffle[Prepend[ns,n0],","]];
-		collMom=StringRiffle[Table[ToString[mom],{mom,momenta}],","];
+		collMom=StringRiffle[Table[ToString[InputForm[mom]],{mom,momenta}],","];
 		collFunc=ToExpression[type<>"coll["<>collIndices<>","<>collMom<>"]"]
 ]
 
