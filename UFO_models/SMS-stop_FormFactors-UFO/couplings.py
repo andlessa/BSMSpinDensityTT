@@ -290,8 +290,3 @@ GC_69 = Coupling(name = 'GC_69',
 GC_70 = Coupling(name = 'GC_70',
                  value = 'complex(0,1)*G*(cmath.pi)**2*(yDM)**2',
                  order = {'NP':2,'QCD':1})
-
-# ----------- New entries for t-t-G-G (box) coupling --------
-GC_71 = Coupling(name = 'GC_71',
-                 value = 'complex(0,1)*(G)**2*(cmath.pi)**2*(yDM)**2',
-                 order = {'NP':2,'QCD':2})
