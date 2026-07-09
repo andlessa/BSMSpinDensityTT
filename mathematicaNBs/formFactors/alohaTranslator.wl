@@ -38,8 +38,7 @@ spinIndices[n_]:=Module[{i},
 
 
 (* Define conversion for the main objects*)
-
-alohaDispatch[I]:="complex(0,1)";
+alohaDispatch[Complex[a_,b_]]:="complex("<>alohaDispatch[a]<>","<>alohaDispatch[b]<>")";
 
 alohaDispatch[Sqrt[x_]]:="cmath.sqrt("<>alohaDispatch[x]<>")";
 

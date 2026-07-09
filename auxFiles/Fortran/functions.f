@@ -29,7 +29,7 @@
           double precision muR2 ! The counter-terms were computing assuming muR2 = mst2
         end type model_pars_t
 
-        type :: b1_cache_t
+        type :: db1_cache_t
            logical :: init = .false.
            integer :: N = 2
            integer :: rank = 2
@@ -37,7 +37,7 @@
            integer :: next_slot = 1
            complex(dp) :: input(cache_size,3) = (0d0,0d0)
            complex(dp) :: db1result(cache_size) = (0d0,0d0)
-        end type b1_cache_t
+        end type db1_cache_t
 
 
         type :: ct_cache_t
@@ -87,7 +87,7 @@
         type(b_cache_t), save :: b_cache
         type(c_cache_t), save :: c_cache
         type(d_cache_t), save :: d_cache
-        type(b1_cache_t), save :: b1_cache
+        type(db1_cache_t), save :: db1_cache
 
       contains
 
@@ -167,8 +167,8 @@
       double precision Pi
       parameter  (Pi=3.141592653589793D0)
 
-      ! Return values: ctVals(1)=b1CT, ctVals(2)=db1CT, ctVals(3)=ddb1CT
-      double precision ctVals(3)
+      ! Return values: ctVals(1)=b1CT, ctVals(2)=db1CT
+      double precision ctVals(2)
       double complex mt2
       double complex Bcoll
       double complex DB1,dx
@@ -182,12 +182,11 @@
         ct_cache%init = .true.
         ct_cache%b1CT = real(Bcoll((0d0,0d0),(1d0,0d0),mt2))
         ct_cache%db1CT = real(DB1(mt2))
-        ct_cache%ddb1CT = (DB1(mt2+dx)-DB1(mt2-dx))/(2d0*dx)
+        ct_cache%ddb1CT = (DB1(mt2+dx)-DB1(mt2-dx))/(2d0*dx) ! The second derivative can be imaginary
       endif
 
       ctVals(1) = ct_cache%b1CT
       ctVals(2) = ct_cache%db1CT
-      ctVals(3) = ct_cache%ddb1CT
 
       end subroutine computeCT
 
@@ -198,7 +197,7 @@
 
       use collier
       use collier_cache_mod, only: model_pars,set_small_to_zero,
-     &     differs, set_model_pars, deltaUV
+     &     differs, set_model_pars, deltaUV, db1_cache,cache_size
 
       implicit none
     
@@ -230,9 +229,9 @@
       ! Check if the given input variables match one of the cached slots
       useCache = .false.
       hitSlot = 0
-      if (b1_cache%init) then
-        do slot=1,b1_cache%n_used
-          if (.not.differs(b1_cache%input(slot,:),newInput)) then
+      if (db1_cache%init) then
+        do slot=1,db1_cache%n_used
+          if (.not.differs(db1_cache%input(slot,:),newInput)) then
             useCache = .true.
             hitSlot = slot
             exit
@@ -242,27 +241,41 @@
     
       ! If useCache = .false., we need to compute it and cache
       if (.not.useCache) then
-        hitSlot = b1_cache%next_slot
-        b1_cache%input(hitSlot,:) = newInput
-        b1_cache%init = .true.
-        call Init_cll(b1_cache%N,b1_cache%rank,'',.true.)
+        hitSlot = db1_cache%next_slot
+        db1_cache%input(hitSlot,:) = newInput
+        db1_cache%init = .true.
+        call Init_cll(db1_cache%N,db1_cache%rank,'',.true.)
         call InitEvent_cll
         ! Using mode=3 computes with the DD and COLI branches and return the most precise results
         call SetMode_cll(3) 
         call SetDeltaUV_cll(deltaUV) ! Remove the divergence (MSbar)
         call SetMuUV2_cll(muR2) ! Set the renormalization scale    
-        call DB1_cll(b1_cache%b1result(hitSlot),psq,mchi2,mst2)
-        b1_cache%b1result(hitSlot)
-     &      = real(b1_cache%b1result(hitSlot)/((2*Pi)**4))
-        if (b1_cache%n_used < cache_size) then
-          b1_cache%n_used = b1_cache%n_used + 1
+        call DB1_cll(db1_cache%db1result(hitSlot),psq,mchi2,mst2)
+        db1_cache%db1result(hitSlot)
+     &      = db1_cache%db1result(hitSlot)/((2*Pi)**4)
+        if (db1_cache%n_used < cache_size) then
+          db1_cache%n_used = db1_cache%n_used + 1
         endif
-        b1_cache%next_slot = mod(hitSlot,cache_size) + 1
+        db1_cache%next_slot = mod(hitSlot,cache_size) + 1
       endif
 
-      DB1 = b1_cache%b1result(hitSlot)
+      DB1 = db1_cache%db1result(hitSlot)
 
       end function DB1
+
+      double precision function reDB1(psq)
+
+      ! Dummy function to return the real part of the derivative of B1. 
+      ! Only needed once for computing the count-terms at psq=mt2.
+
+      implicit none
+    
+      double complex psq
+      double complex DB1
+      
+      reDB1 = real(DB1(psq))
+
+      end function reDB1
 
       
       double complex function Bcoll(ii,jj,psq)
@@ -571,7 +584,7 @@ double complex function Dcoll(ii,jj,kk,ll,p10,p21,p32,p30,p20,p31)
       integer i,j
       double complex psq
       double precision Pi
-      double precision ctVals(3)
+      double precision ctVals(2)
       parameter  (Pi=3.141592653589793D0)
 
       double complex mt2,mchi2,mst2
@@ -602,30 +615,29 @@ double complex function Dcoll(ii,jj,kk,ll,p10,p21,p32,p30,p20,p31)
       ! and cache the result.
 
       use collier
-      use collier_cache_mod, only: model_pars,set_small_to_zero
+      use collier_cache_mod, only: model_pars,set_small_to_zero,ct_cache
 
       implicit none
     
       integer i,j
       double complex psq
       double precision Pi
-      double precision ctVals(3)
+      double precision ctVals(2)
       parameter  (Pi=3.141592653589793D0)
 
       double complex mt2,mchi2,mst2
-      double precision muR2,b1CT,db1CT
+      double precision muR2,ddb1CT
       double complex x(1)
-      double complex Bcoll
+      double complex pb1h_psq,pb1h_mt2
+      double complex pB1h
       external computeCT
 
-      call computeCT(ctVals)  
-      mt2 = model_pars%mt2      
-      b1CT = ctVals(1)
-      db1CT = ctVals(2)
-      ddb1CT = ctVals(3)
+      call computeCT(ctVals) ! Make sure the CTs have been computed and cached 
+      mt2 = model_pars%mt2
+      ddb1CT = ct_cache%ddb1CT
 
-      pb1h = pB1h(psq)
-      pb1h0 = pB1h(mt2)
+      pb1h_psq = pB1h(psq)
+      pb1h_mt2 = pB1h(mt2)
 
       x(1) = psq - mt2
       x = set_small_to_zero(x,1d-5)
@@ -633,7 +645,7 @@ double complex function Dcoll(ii,jj,kk,ll,p10,p21,p32,p30,p20,p31)
       if (abs(x(1)) < 1d-5) then
         p2B1h = ddb1CT/2d0
       else
-        p2B1h = (pb1h-pb1h0)/x(1)
+        p2B1h = (pb1h_psq-pb1h_mt2)/x(1)
       endif
 
       end function p2B1h
