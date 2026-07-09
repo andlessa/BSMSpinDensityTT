@@ -185,7 +185,7 @@
 
       end subroutine computeCT
 
-      double precision function reDB1(psq)
+      double precision function DB1(psq)
 
       ! Compute the the real part of the derivative of B1
       ! and cache the result. Needed for computing the count-terms (should only be needed at psq=mt2).
@@ -256,7 +256,7 @@
 
       reDB1 = redb1_cache%redb1result(hitSlot)
 
-      end function reDB1
+      end function DB1
 
       
       double complex function Bcoll(ii,jj,psq)
