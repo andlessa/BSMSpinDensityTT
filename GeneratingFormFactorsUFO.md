@@ -60,4 +60,4 @@ a few changes to the process folder makefiles need to be made. This can be done 
 ./fixForCollier.sh <process-folder>
 ```
 
-
+*It might also be needed to set `False	= hel_splitamp` in the run_card.dat for generating events!*
