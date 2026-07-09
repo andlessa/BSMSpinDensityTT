@@ -173,12 +173,13 @@
       double complex Bcoll
       double complex DB1,dx
 
-      dx = (1d-5,0d0) ! small step for computing the second derivative
+      
 
       ! If first time compute and cache
       if (.not.ct_cache%init) then
         call set_model_pars()
         mt2 = model_pars%mt2 
+        dx = 1d-5*mt2 ! small step for computing the second derivative
         ct_cache%init = .true.
         ct_cache%b1CT = real(Bcoll((0d0,0d0),(1d0,0d0),mt2))
         ct_cache%db1CT = real(DB1(mt2))
