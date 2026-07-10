@@ -1649,7 +1649,7 @@ double complex function ab1(s,t)
     ! Compute the relevant combination of A0 and B0 integrals:
     call getABIntegral(ab,s,t,mt2,mchi2,mst2,muR2,deltaUV)
     ! Compute the coefficient including the counter-terms
-    ab1 = mt*(2*deltaS*mt + 2*deltaSp*t - ab)/(2*(mt2-t)**2)
+    ab1 = -mt*(2*deltaS*mt + 2*deltaSp*t - ab)/(2*(mt2-t)**2)
 
     if (MDL_IDEBUG > 0d0) then
         call writedebugAB(s,t,mst2,mchi2,mt2,ab,ab1,'ab1')
