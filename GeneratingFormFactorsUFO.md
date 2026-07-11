@@ -35,7 +35,7 @@ Also, form factors for distinct operators (distinct particles) should be compute
 
 The calculation takes place through the following steps:
 
- * Generation of the relevant Feynman diagrams including the counter-terms (see [ttG_FormFactor.nb](./mathematicaNBs/formFactors/ttG_FormFactor.nb))
+ * Generation of the relevant Feynman diagrams including the counter-terms (see [ttG_FormFactor.nb](./mathematicaNBs/formFactors/ttG_FormFactor.nb), [ttGGBox_FormFactor.nb](./mathematicaNBs/formFactors/ttGGBox_FormFactor.nb) and [ttGGSelf_FormFactor.nb](./mathematicaNBs/formFactors/ttGGSelf_FormFactor.nb))
  * Possible simplifications and calculation of the loop integrals
  * Check that the UV divergences are indeed cancelled by the counter-terms
  * Group the loop amplitude according to its color and tensor structure
