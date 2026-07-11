@@ -36,7 +36,7 @@ or
 generate p p > t t~ QCD<=2 NP<=2, (t > l+ vl b), (t~ > l- vl~ b~)
 ```
 
-When generate events, however, the following options must be set in the run_card (see [Cards/run_card_FormFactors.dat](Cards/run_card_FormFactors.dat))
+When generating events, the following options must be set in the run_card (see [Cards/run_card_FormFactors.dat](Cards/run_card_FormFactors.dat))
 ```
 1	= nhel
 False	= hel_splitamp
