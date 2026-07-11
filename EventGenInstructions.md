@@ -3,7 +3,7 @@
 The following steps are needed to generate $p p \to t(\to l^+ + \nu + b) \bar{t}(\to l^- \bar{\nu} + \bar{b})$ events with
 MadGraph5 and the UFO models:
 
- 1. [UFO_models/Top-FormFactorsOneLoop-UFO](./UFO_models/Top-FormFactorsOneLoop-UFO): model containing form factors parametrizing the BSM NLO effects in $p p \to t \bar{t}$ production
+ 1. [UFO_models/SMS-stop_FormFactors-UFO](./UFO_models/SMS-stop_FormFactors-UFO): model containing form factors parametrizing the BSM NLO effects in $p p \to t \bar{t}$ production (including the possibility of off-shell tops)
  2. [UFO_models/SMS-stop_NLO-UFO](./UFO_models/SMS-stop_NLO-UFO): model containing NLO counter-terms for the QCD and the BSM NLO effects in $p p \to t \bar{t}$ production.
  
 ## Event Generation with Form Factors
@@ -13,7 +13,7 @@ In order to include only the born and interference term ($`|\mathcal{M}_{\rm SM}
 one must use:
 
 ```
-import model UFO_models/Top-FormFactorsOneLoop-UFO
+import model UFO_models/SMS-stop_FormFactors-UFO
 generate p p > t t~  NP^2<=2 QCD^2<=4 QED^2==0
 ```
 
@@ -25,7 +25,7 @@ in order to replace the required files for compilation with Collier (for the eva
 
 ### Including decays
 
-Although it is possible to generate the diagrams using:
+It is possible to generate the diagrams using:
 
 ```
 generate p p >  l+ vl b l- vl~ b~ / a Z b  u u~ c c~ s s~ b~ d d~ NP^2<=2 QCD^2<=4
@@ -36,8 +36,12 @@ or
 generate p p > t t~ QCD<=2 NP<=2, (t > l+ vl b), (t~ > l- vl~ b~)
 ```
 
-the event generation fails when evaluating the loop functions. This happens probably because the loop functions can be evaluated for internal top momenta slightly off-shell, while it has been implicitly assumed that the tops are always on-shell.
-Therefore the only option is to decay the events using MadSpin.
+When generate events, however, the following options must be set in the run_card (see [Cards/run_card_FormFactors.dat](Cards/run_card_FormFactors.dat))
+```
+1	= nhel
+False	= hel_splitamp
+```
+in order to generate off-shell events using the full Form Factor expressions.
 
 
 
@@ -80,7 +84,7 @@ In addition in order to generate LHE events, the FO_analyse_card must be replace
 
  ### Including decays
 
- Once again it is not possible to generate a NLO process including the top decays directly.
+ In this case it is not possible to generate a NLO process including the top decays directly.
  Both:
  * `generate p p >  t t~ [QCD NP], (t > l+ vl b), (t~ > l- vl~ b~)` and
  * `generate p p >  l+ vl b l- vl~ b~ / a Z b  u u~ c c~ s s~ b~ d d~ [QCD NP]`
