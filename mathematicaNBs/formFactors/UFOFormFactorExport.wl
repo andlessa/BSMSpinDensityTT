@@ -43,7 +43,7 @@ ExportUFOVertexFormFactors[coefficients_List, originalModelDir_String,
    newModelDir_String, opts : OptionsPattern[]] := Module[
   {couplingOrders, particles, spins, formFactorTag, header, translator, alohaOpts,
    ufoMap, couplingsFile, newCouplingsFile, text, couplingDefs, maxGCvar,
-   maxGCname, newGCcounter, couplingTemplate, outF, name, order, value,
+   maxGCname, newGCcounter, couplingTemplate, outF,mapKey, name, order, value,
    blockValues, lorentzFile, newLorentzFile, lorentzDefs, maxFvar,
    maxFname, newFcounter, lorentzTemplate, vertexFile, newVertexFile,
    vertexDefs, maxVvar, maxVname, newVcounter, vertexName, colorList,
@@ -92,7 +92,10 @@ ExportUFOVertexFormFactors[coefficients_List, originalModelDir_String,
   WriteString[outF, "\n# "<>header<>"\n"];
   Do[
     name = "GC_" <> ToString[newGCcounter];
-    AssociateTo[ufoMap["couplings"], ToString[couplingTerm] -> name];
+    mapKey =  ToString[couplingTerm];
+    (* Skip repeated/redundant definitions *)
+    If[KeyExistsQ[ufoMap["couplings"],mapKey],Continue[]];
+    AssociateTo[ufoMap["couplings"], mapKey -> name];
     newGCcounter++;
     order = "{" <> StringRiffle[
         Table[
@@ -131,7 +134,10 @@ ExportUFOVertexFormFactors[coefficients_List, originalModelDir_String,
   WriteString[outF, "\n# "<>header<>"\n"];
   Do[
     name = formFactorTag <> ToString[newFcounter];
-    AssociateTo[ufoMap["lorentz"], ToString[c[[3]]*c[[4]]] -> name];
+    mapKey =  ToString[c[[3]]*c[[4]]];
+    (* Skip repeated/redundant definitions *)
+    If[KeyExistsQ[ufoMap["lorentz"],mapKey],Continue[]];
+    AssociateTo[ufoMap["lorentz"], mapKey -> name];
     newFcounter++;
     (* Translate each piece individually instead of expanding the product,
        to keep the resulting expression shorter *)
