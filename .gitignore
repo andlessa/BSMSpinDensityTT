@@ -3,6 +3,7 @@ __pycache__/
 *.py[codz]
 *$py.class
 MG5*
+py3_model.pkl
 
 # C extensions
 *.so

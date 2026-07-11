@@ -29,23 +29,25 @@
           double precision muR2 ! The counter-terms were computing assuming muR2 = mst2
         end type model_pars_t
 
+        type :: db1_cache_t
+           logical :: init = .false.
+           integer :: N = 2
+           integer :: rank = 2
+           integer :: n_used = 0
+           integer :: next_slot = 1
+           complex(dp) :: input(cache_size,3) = (0d0,0d0)
+           complex(dp) :: db1result(cache_size) = (0d0,0d0)
+        end type db1_cache_t
+
+
         type :: ct_cache_t
           logical :: init = .false.
           integer :: rank = 1
           integer :: N = 2
           complex(dp) :: b1CT = (0d0,0d0)
           complex(dp) :: db1CT = (0d0,0d0)
+          complex(dp) :: ddb1CT = (0d0,0d0)
         end type ct_cache_t
-
-        type :: redb1_cache_t
-          logical :: init = .false.
-          integer :: N = 2
-          integer :: rank = 2
-          integer :: n_used = 0
-          integer :: next_slot = 1
-          complex(dp) :: input(cache_size,3) = (0d0,0d0)
-          complex(dp) :: redb1result(cache_size) = (0d0,0d0)
-        end type redb1_cache_t
 
         type :: b_cache_t
           logical :: init = .false.
@@ -85,7 +87,7 @@
         type(b_cache_t), save :: b_cache
         type(c_cache_t), save :: c_cache
         type(d_cache_t), save :: d_cache
-        type(redb1_cache_t), save :: redb1_cache
+        type(db1_cache_t), save :: db1_cache
 
       contains
 
@@ -169,15 +171,19 @@
       double precision ctVals(2)
       double complex mt2
       double complex Bcoll
-      double precision reDB1
+      double complex DB1,dx
+
+      
 
       ! If first time compute and cache
       if (.not.ct_cache%init) then
         call set_model_pars()
         mt2 = model_pars%mt2 
+        dx = 1d-5*mt2 ! small step for computing the second derivative
         ct_cache%init = .true.
         ct_cache%b1CT = real(Bcoll((0d0,0d0),(1d0,0d0),mt2))
-        ct_cache%db1CT = reDB1(mt2)
+        ct_cache%db1CT = real(DB1(mt2))
+        ct_cache%ddb1CT = (DB1(mt2+dx)-DB1(mt2-dx))/(2d0*dx) ! The second derivative can be imaginary
       endif
 
       ctVals(1) = ct_cache%b1CT
@@ -185,14 +191,14 @@
 
       end subroutine computeCT
 
-      double precision function DB1(psq)
+      double complex function DB1(psq)
 
-      ! Compute the the real part of the derivative of B1
-      ! and cache the result. Needed for computing the count-terms (should only be needed at psq=mt2).
+      ! Compute the derivative of B1. Only needed once for computing the count-terms (should only be needed at psq=mt2
+      ! and around psq=mt2 to compute the second derivative of B1.
 
       use collier
-      use collier_cache_mod, only: model_pars,redb1_cache,set_small_to_zero,
-     &     differs, set_model_pars, deltaUV, cache_size
+      use collier_cache_mod, only: model_pars,set_small_to_zero,
+     &     differs, set_model_pars, deltaUV, db1_cache,cache_size
 
       implicit none
     
@@ -224,9 +230,9 @@
       ! Check if the given input variables match one of the cached slots
       useCache = .false.
       hitSlot = 0
-      if (redb1_cache%init) then
-        do slot=1,redb1_cache%n_used
-          if (.not.differs(redb1_cache%input(slot,:),newInput)) then
+      if (db1_cache%init) then
+        do slot=1,db1_cache%n_used
+          if (.not.differs(db1_cache%input(slot,:),newInput)) then
             useCache = .true.
             hitSlot = slot
             exit
@@ -236,27 +242,41 @@
     
       ! If useCache = .false., we need to compute it and cache
       if (.not.useCache) then
-        hitSlot = redb1_cache%next_slot
-        redb1_cache%input(hitSlot,:) = newInput
-        redb1_cache%init = .true.
-        call Init_cll(redb1_cache%N,redb1_cache%rank,'',.true.)
+        hitSlot = db1_cache%next_slot
+        db1_cache%input(hitSlot,:) = newInput
+        db1_cache%init = .true.
+        call Init_cll(db1_cache%N,db1_cache%rank,'',.true.)
         call InitEvent_cll
         ! Using mode=3 computes with the DD and COLI branches and return the most precise results
         call SetMode_cll(3) 
         call SetDeltaUV_cll(deltaUV) ! Remove the divergence (MSbar)
         call SetMuUV2_cll(muR2) ! Set the renormalization scale    
-        call DB1_cll(redb1_cache%redb1result(hitSlot),psq,mchi2,mst2)
-        redb1_cache%redb1result(hitSlot)
-     &      = real(redb1_cache%redb1result(hitSlot)/((2*Pi)**4))
-        if (redb1_cache%n_used < cache_size) then
-          redb1_cache%n_used = redb1_cache%n_used + 1
+        call DB1_cll(db1_cache%db1result(hitSlot),psq,mchi2,mst2)
+        db1_cache%db1result(hitSlot)
+     &      = db1_cache%db1result(hitSlot)/((2*Pi)**4)
+        if (db1_cache%n_used < cache_size) then
+          db1_cache%n_used = db1_cache%n_used + 1
         endif
-        redb1_cache%next_slot = mod(hitSlot,cache_size) + 1
+        db1_cache%next_slot = mod(hitSlot,cache_size) + 1
       endif
 
-      reDB1 = redb1_cache%redb1result(hitSlot)
+      DB1 = db1_cache%db1result(hitSlot)
 
       end function DB1
+
+      double precision function reDB1(psq)
+
+      ! Dummy function to return the real part of the derivative of B1. 
+      ! Only needed once for computing the count-terms at psq=mt2.
+
+      implicit none
+    
+      double complex psq
+      double complex DB1
+      
+      reDB1 = real(DB1(psq))
+
+      end function reDB1
 
       
       double complex function Bcoll(ii,jj,psq)
@@ -574,7 +594,7 @@ double complex function Dcoll(ii,jj,kk,ll,p10,p21,p32,p30,p20,p31)
       double complex Bcoll
       external computeCT
 
-      call computeCT(ctVals)     
+      call computeCT(ctVals)  
       mt2 = model_pars%mt2      
       b1CT = ctVals(1)
       db1CT = ctVals(2)
@@ -589,6 +609,47 @@ double complex function Dcoll(ii,jj,kk,ll,p10,p21,p32,p30,p20,p31)
       endif
 
       end function pB1h
+
+    double complex function p2B1h(psq)
+      
+      ! Compute the renormalized B1 integral defined as: p2B1h(psq) = (pB1h(psq,mChi^2,mST^2)-pB1h(MT^2,mChi^2,mST^2))/(psq-MT^2)
+      ! and cache the result.
+
+      use collier
+      use collier_cache_mod, only: model_pars,set_small_to_zero,ct_cache
+
+      implicit none
+    
+      integer i,j
+      double complex psq
+      double precision Pi
+      double precision ctVals(2)
+      parameter  (Pi=3.141592653589793D0)
+
+      double complex mt2,mchi2,mst2
+      double precision muR2,ddb1CT
+      double complex x(1)
+      double complex pb1h_psq,pb1h_mt2
+      double complex pB1h
+      external computeCT
+
+      call computeCT(ctVals) ! Make sure the CTs have been computed and cached 
+      mt2 = model_pars%mt2
+      ddb1CT = ct_cache%ddb1CT
+
+      pb1h_psq = pB1h(psq)
+      pb1h_mt2 = pB1h(mt2)
+
+      x(1) = psq - mt2
+      x = set_small_to_zero(x,1d-5)
+      ! if psq is very close to mt2, we can use the first order expansion of pB1h(psq) around mt2, which is given by ddb1CT/2
+      if (abs(x(1)) < 1d-5) then
+        p2B1h = ddb1CT/2d0
+      else
+        p2B1h = (pb1h_psq-pb1h_mt2)/x(1)
+      endif
+
+      end function p2B1h
 
 
     double complex function C00h(p10,p21,p20)

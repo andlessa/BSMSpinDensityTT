@@ -291,7 +291,14 @@ GC_70 = Coupling(name = 'GC_70',
                  value = 'complex(0,1)*G*(cmath.pi)**2*(yDM)**2',
                  order = {'NP':2,'QCD':1})
 
-# ----------- New entries for t-t-G-G (box) coupling --------
+# ----------- New entries for t-t-G-G (self-energy) coupling.
+# Note that the contribution is multiplied by -1 in order to cancel the double counting
+# of the self-energy loops coming from the self-energy corrections to the t-t-G vertex. --------
 GC_71 = Coupling(name = 'GC_71',
+                 value = 'complex(0,-1)*(G)**2*(cmath.pi)**2*(yDM)**2',
+                 order = {'NP':2,'QCD':2})
+
+# ----------- New entries for t-t-G-G (box) coupling --------
+GC_72 = Coupling(name = 'GC_72',
                  value = 'complex(0,1)*(G)**2*(cmath.pi)**2*(yDM)**2',
                  order = {'NP':2,'QCD':2})

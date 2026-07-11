@@ -1649,7 +1649,11 @@ double complex function ab1(s,t)
     ! Compute the relevant combination of A0 and B0 integrals:
     call getABIntegral(ab,s,t,mt2,mchi2,mst2,muR2,deltaUV)
     ! Compute the coefficient including the counter-terms
-    ab1 = -mt*(2*deltaS*mt + 2*deltaSp*t - ab)/(2*(mt2-t)**2)
+    ! (There is an overall minus sign missing in the expression below,
+    ! however the form factor was generated with the wrong top-anti-top ordering
+    ! and the wrong sign for the external momenta. Both these mistakes lead
+    ! to the correct result if we define ab1 with the wrong sign as done below)
+    ab1 = mt*(2*deltaS*mt + 2*deltaSp*t - ab)/(2*(mt2-t)**2)
 
     if (MDL_IDEBUG > 0d0) then
         call writedebugAB(s,t,mst2,mchi2,mt2,ab,ab1,'ab1')
