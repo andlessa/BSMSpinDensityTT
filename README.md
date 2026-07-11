@@ -5,7 +5,9 @@
 
 Code and results for testing BSM effects on ttbar distributions using the spin density matrix
 
-For instructions about event generation with the form factor or NLO models see [Instructions](./EventGenInstructions.md)
+For instructions about event generation with the form factor or NLO models see [Instructions](./EventGenInstructions.md).
+
+For instructions about creating an UFO model with form factors see [Generating UFO with Form Factors](./GeneratingFormFactorsUFO.md).
 
 ## Folders and files
 
@@ -18,6 +20,6 @@ Below we describe the main files and folders stored in this repository. Addition
  * [feynrules_models](./feynrules_models): stores the FeynRules files for the models
  * [UFO_models](./UFO_models): stores the UFO and FeynArts output for the models
  ---
-  * [Top-FormFactorsOneLoop-UFO](./UFO_models/Top-FormFactorsOneLoop-UFO): UFO folder containing the 1-loop form factors implementation for the scalar top model.
+  * [SMS-stop_FormFactors-UFO](./UFO_models/SMS-stop_FormFactors-UFO): UFO folder containing the 1-loop form factors implementation for the scalar top model.
   * [SMS_stop_NLO-UFO](./UFO_models/SMS_stop_NLO-UFO): UFO folder used to generate the (BSM) NLO events for the scalar top model.
  
